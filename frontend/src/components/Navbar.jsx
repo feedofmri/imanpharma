@@ -20,7 +20,7 @@ function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-9 h-9 rounded-lg bg-cyan-600 dark:bg-cyan-500 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-lg bg-primary-600 dark:bg-primary-500 flex items-center justify-center">
               <Pill className="w-5 h-5 text-white" />
             </div>
             <div className="leading-tight">
@@ -42,8 +42,8 @@ function Navbar() {
                   key={link.path}
                   to={link.path}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${isActive
-                      ? 'bg-cyan-50 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-400'
-                      : 'text-slate-600 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
+                    ? 'bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400'
+                    : 'text-slate-600 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
                     }`}
                 >
                   {link.name}
@@ -82,8 +82,8 @@ function Navbar() {
                   to={link.path}
                   onClick={() => setMobileOpen(false)}
                   className={`block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200 ${isActive
-                      ? 'bg-cyan-50 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-400'
-                      : 'text-slate-600 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800'
+                    ? 'bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400'
+                    : 'text-slate-600 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800'
                     }`}
                 >
                   {link.name}

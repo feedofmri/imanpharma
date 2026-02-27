@@ -7,15 +7,15 @@ function About() {
       <section className="bg-white dark:bg-[#0F172A] border-b border-gray-100 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-cyan-200 dark:border-cyan-800 bg-cyan-50 dark:bg-cyan-900/30 mb-6">
-              <Heart className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
-              <span className="text-xs font-medium text-cyan-700 dark:text-cyan-400">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary-200 dark:border-primary-800 bg-primary-50 dark:bg-primary-900/30 mb-6">
+              <Heart className="w-3.5 h-3.5 text-primary-600 dark:text-primary-400" />
+              <span className="text-xs font-medium text-primary-700 dark:text-primary-400">
                 About Us
               </span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight">
-              Built on <span className="text-cyan-600 dark:text-cyan-400">Trust</span>, Driven by{' '}
-              <span className="text-cyan-600 dark:text-cyan-400">Care</span>
+              Built on <span className="text-primary-600 dark:text-primary-400">Trust</span>, Driven by{' '}
+              <span className="text-primary-600 dark:text-primary-400">Care</span>
             </h1>
             <p className="mt-6 text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
               M/S Iman Pharmacy was founded with a simple yet powerful vision — to provide the
@@ -31,7 +31,7 @@ function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <div className="grid md:grid-cols-2 gap-8">
             <div className="p-8 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
-              <div className="w-12 h-12 rounded-lg bg-cyan-600 dark:bg-cyan-500 flex items-center justify-center mb-5">
+              <div className="w-12 h-12 rounded-lg bg-primary-600 dark:bg-primary-500 flex items-center justify-center mb-5">
                 <Eye className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Our Vision</h3>
@@ -41,7 +41,7 @@ function About() {
               </p>
             </div>
             <div className="p-8 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
-              <div className="w-12 h-12 rounded-lg bg-cyan-600 dark:bg-cyan-500 flex items-center justify-center mb-5">
+              <div className="w-12 h-12 rounded-lg bg-primary-600 dark:bg-primary-500 flex items-center justify-center mb-5">
                 <Target className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Our Mission</h3>
@@ -71,16 +71,16 @@ function About() {
 
             {/* Bio Content */}
             <div className="md:col-span-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-cyan-200 dark:border-cyan-800 bg-cyan-50 dark:bg-cyan-900/30 mb-4">
-                <User className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
-                <span className="text-xs font-medium text-cyan-700 dark:text-cyan-400">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary-200 dark:border-primary-800 bg-primary-50 dark:bg-primary-900/30 mb-4">
+                <User className="w-3.5 h-3.5 text-primary-600 dark:text-primary-400" />
+                <span className="text-xs font-medium text-primary-700 dark:text-primary-400">
                   Proprietor
                 </span>
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-2">
                 Md. Shafiqul Islam
               </h2>
-              <p className="text-sm text-cyan-600 dark:text-cyan-400 font-medium mb-6">
+              <p className="text-sm text-primary-600 dark:text-primary-400 font-medium mb-6">
                 Founder & Proprietor, M/S Iman Pharmacy
               </p>
               <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">

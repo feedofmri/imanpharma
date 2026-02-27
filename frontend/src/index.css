@@ -4,9 +4,9 @@
 
 /* ===== Custom Cyan Theme Variables ===== */
 :root {
-  --color-cyan: #00FFFF;
-  --color-cyan-dark: #0891b2;
-  --color-cyan-light: #67e8f9;
+  --color-primary: #00FFFF;
+  --color-primary-dark: #0891b2;
+  --color-primary-light: #67e8f9;
 }
 
 /* ===== Base Styles ===== */
@@ -31,9 +31,9 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-cyan-600 rounded-full;
+  @apply bg-primary-600 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-cyan-700;
+  @apply bg-primary-700;
 }

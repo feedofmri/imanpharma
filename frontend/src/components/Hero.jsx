@@ -4,23 +4,23 @@ function Hero() {
   return (
     <section className="relative overflow-hidden bg-white dark:bg-[#0F172A]">
       {/* Decorative background elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-100 dark:bg-cyan-900/20 rounded-full -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-72 h-72 bg-cyan-50 dark:bg-cyan-900/10 rounded-full translate-y-1/2 -translate-x-1/2" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary-100 dark:bg-primary-900/20 rounded-full -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-72 h-72 bg-primary-50 dark:bg-primary-900/10 rounded-full translate-y-1/2 -translate-x-1/2" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-cyan-200 dark:border-cyan-800 bg-cyan-50 dark:bg-cyan-900/30 mb-6">
-              <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
-              <span className="text-xs font-medium text-cyan-700 dark:text-cyan-400">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary-200 dark:border-primary-800 bg-primary-50 dark:bg-primary-900/30 mb-6">
+              <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
+              <span className="text-xs font-medium text-primary-700 dark:text-primary-400">
                 Open 7 Days a Week
               </span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight">
               Your Trusted{' '}
-              <span className="text-cyan-600 dark:text-cyan-400">Health Partner</span>{' '}
+              <span className="text-primary-600 dark:text-primary-400">Health Partner</span>{' '}
               in Ullapara
             </h1>
 
@@ -32,7 +32,7 @@ function Hero() {
             <div className="mt-8 flex flex-wrap gap-4">
               <a
                 href="#location"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 dark:bg-cyan-500 dark:hover:bg-cyan-600 text-white font-semibold text-sm shadow-lg shadow-cyan-600/20 transition-all duration-200"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600 text-white font-semibold text-sm shadow-lg shadow-primary-600/20 transition-all duration-200"
               >
                 <MapPin className="w-4 h-4" />
                 Find Location
@@ -41,7 +41,7 @@ function Hero() {
                 href="https://wa.me/8801XXXXXXXXX"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-cyan-600 dark:border-cyan-500 text-cyan-600 dark:text-cyan-400 font-semibold text-sm hover:bg-cyan-50 dark:hover:bg-cyan-900/20 transition-all duration-200"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-primary-600 dark:border-primary-500 text-primary-600 dark:text-primary-400 font-semibold text-sm hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-200"
               >
                 <MessageCircle className="w-4 h-4" />
                 WhatsApp Now

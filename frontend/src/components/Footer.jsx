@@ -18,7 +18,7 @@ function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 rounded-lg bg-cyan-600 dark:bg-cyan-500 flex items-center justify-center">
+              <div className="w-9 h-9 rounded-lg bg-primary-600 dark:bg-primary-500 flex items-center justify-center">
                 <Pill className="w-5 h-5 text-white" />
               </div>
               <div>
@@ -46,7 +46,7 @@ function Footer() {
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="text-sm text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors duration-200"
+                    className="text-sm text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
                   >
                     {link.name}
                   </Link>
@@ -62,25 +62,25 @@ function Footer() {
             </h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-cyan-600 dark:text-cyan-400 mt-0.5 shrink-0" />
+                <MapPin className="w-4 h-4 text-primary-600 dark:text-primary-400 mt-0.5 shrink-0" />
                 <span className="text-sm text-slate-600 dark:text-slate-400">
                   Sirajganj Road, Ullapara, Sirajganj
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-cyan-600 dark:text-cyan-400 shrink-0" />
+                <Phone className="w-4 h-4 text-primary-600 dark:text-primary-400 shrink-0" />
                 <a
                   href="tel:+8801XXXXXXXXX"
-                  className="text-sm text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
+                  className="text-sm text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                 >
                   +880 1XXX-XXXXXX
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-cyan-600 dark:text-cyan-400 shrink-0" />
+                <Mail className="w-4 h-4 text-primary-600 dark:text-primary-400 shrink-0" />
                 <a
                   href="mailto:info@imanpharmacy.com"
-                  className="text-sm text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
+                  className="text-sm text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                 >
                   info@imanpharmacy.com
                 </a>

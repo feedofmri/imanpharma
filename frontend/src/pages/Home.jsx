@@ -53,7 +53,7 @@ function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
-              Why Choose <span className="text-cyan-600 dark:text-cyan-400">Iman Pharmacy?</span>
+              Why Choose <span className="text-primary-600 dark:text-primary-400">Iman Pharmacy?</span>
             </h2>
             <p className="mt-3 text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
               Trusted by hundreds of families in Ullapara for genuine medicines and caring service.
@@ -72,7 +72,7 @@ function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
-              Our <span className="text-cyan-600 dark:text-cyan-400">Services</span>
+              Our <span className="text-primary-600 dark:text-primary-400">Services</span>
             </h2>
             <p className="mt-3 text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
               From prescription medicines to baby care — we have you covered.
@@ -90,7 +90,7 @@ function Home() {
                   </span>
                 )}
                 <div className="w-12 h-12 rounded-lg bg-gray-100 dark:bg-slate-700 flex items-center justify-center mb-4">
-                  <service.icon className="w-6 h-6 text-cyan-600 dark:text-cyan-400" />
+                  <service.icon className="w-6 h-6 text-primary-600 dark:text-primary-400" />
                 </div>
                 <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
                   {service.title}

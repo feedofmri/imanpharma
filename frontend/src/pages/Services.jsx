@@ -54,15 +54,15 @@ function Services() {
       <section className="bg-white dark:bg-[#0F172A] border-b border-gray-100 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-cyan-200 dark:border-cyan-800 bg-cyan-50 dark:bg-cyan-900/30 mb-6">
-              <Pill className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
-              <span className="text-xs font-medium text-cyan-700 dark:text-cyan-400">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary-200 dark:border-primary-800 bg-primary-50 dark:bg-primary-900/30 mb-6">
+              <Pill className="w-3.5 h-3.5 text-primary-600 dark:text-primary-400" />
+              <span className="text-xs font-medium text-primary-700 dark:text-primary-400">
                 Our Services
               </span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight">
               Everything You Need,{' '}
-              <span className="text-cyan-600 dark:text-cyan-400">Under One Roof</span>
+              <span className="text-primary-600 dark:text-primary-400">Under One Roof</span>
             </h1>
             <p className="mt-6 text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
               From chronic illness management to everyday health essentials — we carry a comprehensive
@@ -82,7 +82,7 @@ function Services() {
                 className="p-6 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:shadow-lg transition-shadow duration-200"
               >
                 <div className="w-12 h-12 rounded-lg bg-gray-100 dark:bg-slate-700 flex items-center justify-center mb-4">
-                  <category.icon className="w-6 h-6 text-cyan-600 dark:text-cyan-400" />
+                  <category.icon className="w-6 h-6 text-primary-600 dark:text-primary-400" />
                 </div>
                 <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
                   {category.title}
@@ -112,7 +112,7 @@ function Services() {
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-8">
               <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-3">
-                Upload Your <span className="text-cyan-600 dark:text-cyan-400">Prescription</span>
+                Upload Your <span className="text-primary-600 dark:text-primary-400">Prescription</span>
               </h2>
               <p className="text-slate-600 dark:text-slate-400">
                 Send us your prescription and we'll prepare your medicines. This feature is coming
@@ -121,7 +121,7 @@ function Services() {
             </div>
 
             {/* Drop Zone */}
-            <div className="border-2 border-dashed border-gray-300 dark:border-slate-600 rounded-xl p-10 text-center hover:border-cyan-400 dark:hover:border-cyan-500 transition-colors duration-200 cursor-pointer">
+            <div className="border-2 border-dashed border-gray-300 dark:border-slate-600 rounded-xl p-10 text-center hover:border-primary-400 dark:hover:border-primary-500 transition-colors duration-200 cursor-pointer">
               <div className="w-16 h-16 rounded-full bg-gray-100 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 flex items-center justify-center mx-auto mb-4">
                 <Upload className="w-7 h-7 text-slate-400 dark:text-slate-500" />
               </div>
@@ -131,7 +131,7 @@ function Services() {
               <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">
                 or click to browse files (JPG, PNG, PDF)
               </p>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-600 dark:bg-cyan-500 text-white text-sm font-medium">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary-600 dark:bg-primary-500 text-white text-sm font-medium">
                 <FileText className="w-4 h-4" />
                 Browse Files
               </div>
@@ -149,7 +149,7 @@ function Services() {
                 href="https://wa.me/8801XXXXXXXXX"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-cyan-600 dark:text-cyan-400 font-semibold text-sm hover:underline"
+                className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold text-sm hover:underline"
               >
                 Send via WhatsApp
                 <ArrowRight className="w-4 h-4" />

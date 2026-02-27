@@ -35,14 +35,14 @@ function Contact() {
       <section className="bg-white dark:bg-[#0F172A] border-b border-gray-100 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-cyan-200 dark:border-cyan-800 bg-cyan-50 dark:bg-cyan-900/30 mb-6">
-              <MapPin className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
-              <span className="text-xs font-medium text-cyan-700 dark:text-cyan-400">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary-200 dark:border-primary-800 bg-primary-50 dark:bg-primary-900/30 mb-6">
+              <MapPin className="w-3.5 h-3.5 text-primary-600 dark:text-primary-400" />
+              <span className="text-xs font-medium text-primary-700 dark:text-primary-400">
                 Contact & Location
               </span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight">
-              Get in <span className="text-cyan-600 dark:text-cyan-400">Touch</span>
+              Get in <span className="text-primary-600 dark:text-primary-400">Touch</span>
             </h1>
             <p className="mt-6 text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
               Have questions about medicines or need pharmaceutical advice? Reach out to us — we're
@@ -61,8 +61,8 @@ function Contact() {
                 key={method.title}
                 className="p-6 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800"
               >
-                <div className="w-12 h-12 rounded-lg bg-cyan-50 dark:bg-cyan-900/30 border border-cyan-200 dark:border-cyan-800 flex items-center justify-center mb-4">
-                  <method.icon className="w-6 h-6 text-cyan-600 dark:text-cyan-400" />
+                <div className="w-12 h-12 rounded-lg bg-primary-50 dark:bg-primary-900/30 border border-primary-200 dark:border-primary-800 flex items-center justify-center mb-4">
+                  <method.icon className="w-6 h-6 text-primary-600 dark:text-primary-400" />
                 </div>
                 <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1">
                   {method.title}
@@ -77,7 +77,7 @@ function Contact() {
                   href={method.action}
                   target={method.external ? '_blank' : undefined}
                   rel={method.external ? 'noopener noreferrer' : undefined}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-600 dark:bg-cyan-500 hover:bg-cyan-700 dark:hover:bg-cyan-600 text-white text-sm font-medium transition-colors duration-200"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary-600 dark:bg-primary-500 hover:bg-primary-700 dark:hover:bg-primary-600 text-white text-sm font-medium transition-colors duration-200"
                 >
                   {method.actionLabel}
                 </a>
@@ -94,12 +94,12 @@ function Contact() {
             {/* Address Details */}
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-6">
-                Our <span className="text-cyan-600 dark:text-cyan-400">Location</span>
+                Our <span className="text-primary-600 dark:text-primary-400">Location</span>
               </h2>
 
               <div className="space-y-5">
                 <div className="flex items-start gap-4 p-4 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800">
-                  <div className="w-10 h-10 rounded-lg bg-cyan-600 dark:bg-cyan-500 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-primary-600 dark:bg-primary-500 flex items-center justify-center shrink-0">
                     <MapPin className="w-5 h-5 text-white" />
                   </div>
                   <div>
@@ -111,7 +111,7 @@ function Contact() {
                 </div>
 
                 <div className="flex items-start gap-4 p-4 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800">
-                  <div className="w-10 h-10 rounded-lg bg-cyan-600 dark:bg-cyan-500 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-primary-600 dark:bg-primary-500 flex items-center justify-center shrink-0">
                     <Clock className="w-5 h-5 text-white" />
                   </div>
                   <div>
@@ -126,7 +126,7 @@ function Contact() {
                 </div>
 
                 <div className="flex items-start gap-4 p-4 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800">
-                  <div className="w-10 h-10 rounded-lg bg-cyan-600 dark:bg-cyan-500 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-primary-600 dark:bg-primary-500 flex items-center justify-center shrink-0">
                     <Navigation className="w-5 h-5 text-white" />
                   </div>
                   <div>
