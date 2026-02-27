@@ -1,6 +1,19 @@
-import { MapPin, MessageCircle } from 'lucide-react';
+import { MapPin, MessageCircle, Upload, CheckCircle2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useRef } from 'react';
 
 function Hero() {
+  const navigate = useNavigate();
+  const fileInputRef = useRef(null);
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Navigate to order details page, passing the file info in state
+      navigate('/order-details', { state: { fileName: file.name } });
+    }
+  };
+
   return (
     <section className="relative overflow-hidden bg-white dark:bg-[#0F172A]">
       {/* Decorative background elements */}
@@ -49,25 +62,55 @@ function Hero() {
             </div>
           </div>
 
-          {/* Hero Image Placeholder */}
-          <div className="hidden lg:block">
-            <div className="relative aspect-[4/3] rounded-2xl border border-gray-200 dark:border-slate-700 bg-gray-100 dark:bg-slate-800 overflow-hidden shadow-xl">
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-400 dark:text-slate-500">
-                <svg
-                  className="w-16 h-16 mb-3"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.41a2.25 2.25 0 013.182 0l2.909 2.91m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-                  />
-                </svg>
-                <span className="text-sm font-medium">Pharmacy Storefront Image</span>
-                <span className="text-xs mt-1">Recommended: 800×600px</span>
+          {/* Upload Prescription Card */}
+          <div className="hidden lg:block relative z-10">
+            {/* Background glowing blur effect */}
+            <div className="absolute inset-0 bg-primary-400/20 dark:bg-primary-600/10 blur-3xl rounded-full transform translate-y-10 scale-105" />
+
+            <div className="relative bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-slate-800/80 rounded-3xl p-8 shadow-2xl shadow-slate-200/50 dark:shadow-none">
+              <div className="mb-6">
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                  Have a Prescription?
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400 text-sm">
+                  Upload it securely and let our pharmacists prepare your order for quick pickup or delivery.
+                </p>
+              </div>
+
+              <div
+                onClick={() => fileInputRef.current?.click()}
+                className="border-2 border-dashed border-primary-200 dark:border-primary-800/60 rounded-2xl p-8 text-center bg-primary-50/50 dark:bg-primary-900/10 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-300 cursor-pointer group"
+              >
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                  className="hidden"
+                  accept=".jpg,.jpeg,.png,.pdf"
+                />
+                <div className="w-16 h-16 rounded-full bg-primary-100 dark:bg-primary-900/40 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-primary-200 dark:group-hover:bg-primary-800/60 transition-all duration-300">
+                  <Upload className="w-8 h-8 text-primary-600 dark:text-primary-400" />
+                </div>
+                <p className="text-slate-900 dark:text-white font-medium mb-1 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                  Click to upload or drag & drop
+                </p>
+                <p className="text-slate-500 dark:text-slate-500 text-xs">
+                  JPG, PNG or PDF (max. 10MB)
+                </p>
+              </div>
+
+              <div className="mt-6 flex flex-col gap-4">
+                <div className="flex items-center justify-center gap-3 text-xs font-medium text-slate-500 dark:text-slate-400">
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                    <span>Verified Secure</span>
+                  </div>
+                  <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-slate-600"></span>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                    <span>Fast Processing</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

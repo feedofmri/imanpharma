@@ -5,6 +5,9 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
+import Products from './pages/Products';
+import FAQ from './pages/FAQ';
+import OrderDetails from './pages/OrderDetails';
 
 function App() {
   return (
@@ -15,7 +18,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/faq" element={<FAQ />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/order-details" element={<OrderDetails />} />
           </Routes>
         </Layout>
       </Router>

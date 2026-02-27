@@ -1,4 +1,5 @@
-import { ShieldCheck, HeartHandshake, Clock, Pill, Baby, Truck } from 'lucide-react';
+import { ShieldCheck, HeartHandshake, Clock, Pill, Baby, Truck, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 import FeatureCard from '../components/FeatureCard';
 
@@ -100,6 +101,51 @@ function Home() {
                 </p>
               </div>
             ))}
+          </div>
+          <div className="mt-12 text-center">
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-medium hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
+            >
+              View all services <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Explore Section */}
+      <section className="bg-white dark:bg-[#0F172A] border-t border-gray-100 dark:border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="p-8 rounded-2xl bg-primary-50 dark:bg-primary-900/20 border border-primary-100 dark:border-primary-800/50">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+                Explore Our Products
+              </h3>
+              <p className="text-slate-600 dark:text-slate-400 mb-6">
+                Browse our comprehensive catalog of authentic medicines, healthcare items, and medical devices.
+              </p>
+              <Link
+                to="/products"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary-600 dark:bg-primary-500 text-white font-medium hover:bg-primary-700 dark:hover:bg-primary-600 transition-colors"
+              >
+                View Products
+              </Link>
+            </div>
+
+            <div className="p-8 rounded-2xl bg-gray-50 dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+                Have Questions?
+              </h3>
+              <p className="text-slate-600 dark:text-slate-400 mb-6">
+                Find answers to common questions about our delivery, prescription requirements, and return policies.
+              </p>
+              <Link
+                to="/faq"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-gray-200 dark:border-slate-700 font-medium hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors"
+              >
+                Read FAQ
+              </Link>
+            </div>
           </div>
         </div>
       </section>

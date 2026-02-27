@@ -5,8 +5,10 @@ import ThemeToggle from './ThemeToggle';
 
 const navLinks = [
   { name: 'Home', path: '/' },
-  { name: 'About', path: '/about' },
+  { name: 'Products', path: '/products' },
   { name: 'Services', path: '/services' },
+  { name: 'About', path: '/about' },
+  { name: 'FAQ', path: '/faq' },
   { name: 'Contact', path: '/contact' },
 ];
 
