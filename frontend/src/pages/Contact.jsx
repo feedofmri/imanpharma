@@ -145,19 +145,16 @@ function Contact() {
             {/* Map Placeholder */}
             <div>
               <div className="aspect-[4/3] lg:aspect-auto lg:h-full min-h-[350px] rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-100 dark:bg-slate-800 overflow-hidden">
-                <div className="w-full h-full flex flex-col items-center justify-center text-slate-400 dark:text-slate-500">
-                  <MapPin className="w-12 h-12 mb-3" />
-                  <span className="text-sm font-medium mb-1">Google Maps Embed</span>
-                  <span className="text-xs text-center max-w-xs">
-                    Replace this placeholder with a Google Maps iframe embed of Sirajganj Road,
-                    Ullapara, Sirajganj
-                  </span>
-                  <div className="mt-4 px-4 py-2 rounded-lg border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-700">
-                    <code className="text-xs text-slate-500 dark:text-slate-400">
-                      {'<iframe src="maps.google.com/..." />'}
-                    </code>
-                  </div>
-                </div>
+                <iframe
+                  title="Google Maps - Location"
+                  width="100%"
+                  height="100%"
+                  className="w-full h-full border-0 min-h-[350px]"
+                  src="https://maps.google.com/maps?q=Sirajganj%20Road,%20Ullapara,%20Sirajganj&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
               </div>
             </div>
           </div>
