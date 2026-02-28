@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './Theme.jsx';
+import ScrollToTop from './components/ScrollToTop';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -18,6 +19,7 @@ import BuyerDashboard from './pages/buyer/Dashboard';
 import BuyerOrders from './pages/buyer/Orders';
 import BuyerProfile from './pages/buyer/Profile';
 import BuyerAddresses from './pages/buyer/Addresses';
+import BuyerComplaints from './pages/buyer/Complaints';
 
 import SellerLayout from './layouts/SellerLayout';
 import SellerDashboard from './pages/seller/Dashboard';
@@ -25,12 +27,15 @@ import ManageProducts from './pages/seller/ManageProducts';
 import ManageOrders from './pages/seller/ManageOrders';
 import ManageManagers from './pages/seller/ManageManagers';
 import ManageBranches from './pages/seller/ManageBranches';
+import ManageComplaints from './pages/seller/ManageComplaints';
+import ManageCustomers from './pages/seller/ManageCustomers';
 import Reports from './pages/seller/Reports';
 
 function App() {
   return (
     <ThemeProvider>
       <Router>
+        <ScrollToTop />
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -49,6 +54,7 @@ function App() {
               <Route index element={<BuyerDashboard />} />
               <Route path="orders" element={<BuyerOrders />} />
               <Route path="addresses" element={<BuyerAddresses />} />
+              <Route path="complaints" element={<BuyerComplaints />} />
               <Route path="profile" element={<BuyerProfile />} />
             </Route>
 
@@ -57,9 +63,11 @@ function App() {
               <Route index element={<SellerDashboard />} />
               <Route path="products" element={<ManageProducts />} />
               <Route path="orders" element={<ManageOrders />} />
+              <Route path="customers" element={<ManageCustomers />} />
               <Route path="managers" element={<ManageManagers />} />
               <Route path="branches" element={<ManageBranches />} />
               <Route path="reports" element={<Reports />} />
+              <Route path="inbox" element={<ManageComplaints />} />
             </Route>
           </Routes>
         </Layout>

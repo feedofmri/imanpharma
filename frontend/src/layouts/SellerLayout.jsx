@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { Package, Users, ShoppingBag, LayoutDashboard, LogOut, FileText, Store } from 'lucide-react';
+import { Package, Users, ShoppingBag, LayoutDashboard, LogOut, FileText, Store, MessageSquare, UserCog } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -12,12 +12,14 @@ function SellerLayout() {
         { name: t('seller.dashboard'), path: '/seller', icon: LayoutDashboard },
         { name: t('seller.products'), path: '/seller/products', icon: Package },
         { name: t('seller.orders'), path: '/seller/orders', icon: ShoppingBag },
+        { name: t('seller.customers'), path: '/seller/customers', icon: Users },
     ];
 
     if (isAdmin) {
-        links.push({ name: t('seller.managers'), path: '/seller/managers', icon: Users });
+        links.push({ name: t('seller.managers'), path: '/seller/managers', icon: UserCog });
         links.push({ name: t('seller.branches'), path: '/seller/branches', icon: Store });
         links.push({ name: t('seller.reports'), path: '/seller/reports', icon: FileText });
+        links.push({ name: t('seller.inbox'), path: '/seller/inbox', icon: MessageSquare });
     }
 
     return (
@@ -62,13 +64,13 @@ function SellerLayout() {
 
             {/* Mobile Bottom Tab Bar */}
             <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-900 border-t border-slate-800 shadow-[0_-4px_20px_rgba(0,0,0,0.3)]">
-                <div className="flex items-center justify-around px-1 py-1 overflow-x-auto">
+                <div className="flex items-center gap-1 px-2 py-1 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                     {links.map((link) => {
                         const isActive = location.pathname === link.path || location.pathname === link.path + '/';
                         const Icon = link.icon;
                         return (
                             <Link key={link.path} to={link.path}
-                                className={`flex flex-col items-center gap-0.5 py-2 px-2 rounded-xl min-w-[52px] transition-all ${isActive
+                                className={`flex flex-col items-center gap-1 py-2 px-2 rounded-xl min-w-[72px] shrink-0 transition-all ${isActive
                                     ? 'text-primary-400'
                                     : 'text-slate-500'
                                     }`}
@@ -76,17 +78,17 @@ function SellerLayout() {
                                 <div className={`p-1.5 rounded-lg transition-colors ${isActive ? 'bg-primary-600/20' : ''}`}>
                                     <Icon className="w-5 h-5" />
                                 </div>
-                                <span className="text-[10px] font-semibold leading-tight">{link.name}</span>
+                                <span className="text-[10px] font-semibold leading-tight whitespace-nowrap">{link.name}</span>
                             </Link>
                         );
                     })}
                     <button onClick={logout}
-                        className="flex flex-col items-center gap-0.5 py-2 px-2 rounded-xl min-w-[52px] text-rose-500"
+                        className="flex flex-col items-center gap-1 py-2 px-2 rounded-xl min-w-[72px] shrink-0 text-rose-500"
                     >
                         <div className="p-1.5 rounded-lg">
                             <LogOut className="w-5 h-5" />
                         </div>
-                        <span className="text-[10px] font-semibold leading-tight">{t('seller.logout')}</span>
+                        <span className="text-[10px] font-semibold leading-tight whitespace-nowrap">{t('seller.logout')}</span>
                     </button>
                 </div>
             </nav>

@@ -3,12 +3,13 @@ import { users as initialUsers } from '../mockdata/users';
 import { products as initialProducts } from '../mockdata/products';
 import { orders as initialOrders } from '../mockdata/orders';
 import { branches as initialBranches } from '../mockdata/branches';
+import { complaints as initialComplaints } from '../mockdata/complaints';
 
 const DataContext = createContext();
 
 // ⚡ Bump this version whenever mock data files change.
 // This forces localStorage to reset so fresh data loads.
-const DATA_VERSION = '4';
+const DATA_VERSION = '5';
 
 export const useData = () => {
     return useContext(DataContext);
@@ -21,6 +22,7 @@ export const DataProvider = ({ children }) => {
         localStorage.removeItem('app_products');
         localStorage.removeItem('app_orders');
         localStorage.removeItem('app_branches');
+        localStorage.removeItem('app_complaints');
         localStorage.setItem('app_data_version', DATA_VERSION);
     }
 
@@ -42,12 +44,14 @@ export const DataProvider = ({ children }) => {
     const [products, setProducts] = useState(() => initializeState('app_products', initialProducts));
     const [orders, setOrders] = useState(() => initializeState('app_orders', initialOrders));
     const [branches, setBranches] = useState(() => initializeState('app_branches', initialBranches));
+    const [complaints, setComplaints] = useState(() => initializeState('app_complaints', initialComplaints));
 
     // Persist changes to localStorage whenever state updates
     useEffect(() => localStorage.setItem('app_users', JSON.stringify(users)), [users]);
     useEffect(() => localStorage.setItem('app_products', JSON.stringify(products)), [products]);
     useEffect(() => localStorage.setItem('app_orders', JSON.stringify(orders)), [orders]);
     useEffect(() => localStorage.setItem('app_branches', JSON.stringify(branches)), [branches]);
+    useEffect(() => localStorage.setItem('app_complaints', JSON.stringify(complaints)), [complaints]);
 
     // Data Management Methods
 
@@ -70,11 +74,16 @@ export const DataProvider = ({ children }) => {
     const updateBranch = (id, updatedBranch) => setBranches(prev => prev.map(b => b.id === id ? updatedBranch : b));
     const deleteBranch = (id) => setBranches(prev => prev.filter(b => b.id !== id));
 
+    // --- Complaints ---
+    const addComplaint = (complaint) => setComplaints(prev => [...prev, complaint]);
+    const updateComplaintStatus = (id, status) => setComplaints(prev => prev.map(c => c.id === id ? { ...c, status } : c));
+
     const value = {
         users, addUser, updateUser, deleteUser,
         products, addProduct, updateProduct, deleteProduct,
         orders, addOrder, updateOrderStatus,
-        branches, addBranch, updateBranch, deleteBranch
+        branches, addBranch, updateBranch, deleteBranch,
+        complaints, addComplaint, updateComplaintStatus
     };
 
     return (

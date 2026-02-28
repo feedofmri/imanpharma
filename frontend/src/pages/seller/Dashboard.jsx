@@ -2,7 +2,9 @@ import { DollarSign, Package, ShoppingCart, TrendingUp, AlertTriangle } from 'lu
 import { useAuth } from '../../contexts/AuthContext';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useData } from '../../contexts/DataContext';
+import { useState } from 'react';
 import DashCharts from '../../components/DashCharts';
+import DateFilter from '../../components/DateFilter';
 
 function SellerDashboard() {
     const { isAdmin, user } = useAuth();
@@ -11,8 +13,23 @@ function SellerDashboard() {
 
     // Filter data based on role
     const managedBranch = branches.find(b => b.managerId === user?.id);
-    const sellerOrders = isAdmin ? orders : orders.filter(o => o.branchId === managedBranch?.id);
+    const baseSellerOrders = isAdmin ? orders : orders.filter(o => o.branchId === managedBranch?.id);
     const sellerProducts = isAdmin ? products : products.filter(p => p.branchStocks?.[managedBranch?.id] > 0);
+
+    const [dateRange, setDateRange] = useState({ start: null, end: null });
+
+    const sellerOrders = baseSellerOrders.filter(o => {
+        if (!dateRange.start && !dateRange.end) return true;
+        const oDate = new Date(o.date);
+        oDate.setHours(0, 0, 0, 0);
+
+        if (dateRange.start && dateRange.end) {
+            return oDate >= dateRange.start && oDate <= dateRange.end;
+        }
+        if (dateRange.start) return oDate >= dateRange.start;
+        if (dateRange.end) return oDate <= dateRange.end;
+        return true;
+    });
 
     // Dynamic Calculations
     const totalRevenue = sellerOrders.reduce((sum, o) => sum + parseFloat(o.total.replace('৳ ', '').replace(',', '')), 0);
@@ -36,6 +53,7 @@ function SellerDashboard() {
                     <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{t('seller.dash.title')}</h1>
                     <p className="text-slate-600 dark:text-slate-400 mt-1">{t('seller.dash.subtitle')}</p>
                 </div>
+                <DateFilter onDateRangeChange={setDateRange} />
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">

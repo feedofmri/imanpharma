@@ -20,12 +20,11 @@ const navLinks = [
 
 function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
   const { language, toggleLanguage, t } = useLanguage();
-  const { cartCount } = useCart();
+  const { cartCount, isCartOpen, setIsCartOpen } = useCart();
   const { isAuthenticated, user, isAdmin, isManager } = useAuth();
 
   const isSeller = isAdmin || isManager;
@@ -91,7 +90,7 @@ function Navbar() {
               <span className="font-medium">{language === 'bn' ? 'English' : 'বাংলা'}</span>
             </button>
 
-            {!isSeller && (
+            {!isSeller && (isAuthenticated || cartCount > 0) && (
               <button
                 onClick={() => setIsCartOpen(true)}
                 className="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1 text-slate-700 dark:text-slate-300"

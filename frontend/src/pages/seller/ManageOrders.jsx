@@ -5,6 +5,8 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useLanguage } from '../../contexts/LanguageContext';
 import NewOrderModal from './NewOrderModal';
 import Pagination from '../../components/Pagination';
+import Invoice from '../../components/Invoice';
+import DateFilter from '../../components/DateFilter';
 
 function ManageOrders() {
     const { orders, branches, updateOrderStatus } = useData();
@@ -17,10 +19,24 @@ function ManageOrders() {
     const [isNewOrderModalOpen, setIsNewOrderModalOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const ordersPerPage = 10;
+    const [dateRange, setDateRange] = useState({ start: null, end: null });
 
     // Filter orders: Admins see all, Managers see only their branch
     const managedBranch = branches.find(b => b.managerId === user?.id);
-    const filteredOrders = isAdmin ? orders : orders.filter(o => o.branchId === managedBranch?.id);
+    const baseOrders = isAdmin ? orders : orders.filter(o => o.branchId === managedBranch?.id);
+
+    const filteredOrders = baseOrders.filter(o => {
+        if (!dateRange.start && !dateRange.end) return true;
+        const oDate = new Date(o.date);
+        oDate.setHours(0, 0, 0, 0);
+
+        if (dateRange.start && dateRange.end) {
+            return oDate >= dateRange.start && oDate <= dateRange.end;
+        }
+        if (dateRange.start) return oDate >= dateRange.start;
+        if (dateRange.end) return oDate <= dateRange.end;
+        return true;
+    });
 
     // Sort youngest first
     const sortedOrders = [...filteredOrders].sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -43,13 +59,16 @@ function ManageOrders() {
         <div className="space-y-6">
             <div className="flex sm:items-center justify-between flex-col sm:flex-row gap-4">
                 <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{t('seller.ord.title')}</h1>
-                <button
-                    onClick={() => setIsNewOrderModalOpen(true)}
-                    className="flex items-center justify-center gap-2 px-4 py-2.5 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-xl transition-all shadow-lg shadow-primary-600/20"
-                >
-                    <Plus className="w-5 h-5" />
-                    {t('seller.ord.new_manual')}
-                </button>
+                <div className="flex items-center gap-4 flex-wrap">
+                    <DateFilter onDateRangeChange={setDateRange} />
+                    <button
+                        onClick={() => setIsNewOrderModalOpen(true)}
+                        className="flex items-center justify-center gap-2 px-4 py-2.5 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-xl transition-all shadow-lg shadow-primary-600/20"
+                    >
+                        <Plus className="w-5 h-5" />
+                        {t('seller.ord.new_manual')}
+                    </button>
+                </div>
             </div>
 
             <div className="bg-white dark:bg-[#1E293B] rounded-2xl border border-gray-200 dark:border-slate-800 shadow-sm overflow-hidden">

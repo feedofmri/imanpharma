@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { Package, User, LogOut, LayoutDashboard, MapPin } from 'lucide-react';
+import { Package, User, LogOut, LayoutDashboard, MapPin, MessageSquare } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -12,6 +12,7 @@ function BuyerLayout() {
         { name: t('buyer.dashboard'), path: '/buyer', icon: LayoutDashboard },
         { name: t('buyer.orders'), path: '/buyer/orders', icon: Package },
         { name: t('buyer.addresses'), path: '/buyer/addresses', icon: MapPin },
+        { name: t('buyer.complaints'), path: '/buyer/complaints', icon: MessageSquare },
         { name: t('buyer.profile'), path: '/buyer/profile', icon: User },
     ];
 

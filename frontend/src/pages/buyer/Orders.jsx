@@ -4,18 +4,36 @@ import { useData } from '../../contexts/DataContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { useLanguage } from '../../contexts/LanguageContext';
 import Invoice from '../../components/Invoice';
+import DateFilter from '../../components/DateFilter';
 
 function BuyerOrders() {
     const { orders, branches } = useData();
     const { user } = useAuth();
     const { t } = useLanguage();
     const [invoiceOrder, setInvoiceOrder] = useState(null);
+    const [dateRange, setDateRange] = useState({ start: null, end: null });
 
-    const userOrders = orders.filter(o => o.customerId === user?.id).sort((a, b) => new Date(b.date) - new Date(a.date));
+    const baseOrders = orders.filter(o => o.customerId === user?.id).sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    const userOrders = baseOrders.filter(o => {
+        if (!dateRange.start && !dateRange.end) return true;
+        const oDate = new Date(o.date);
+        oDate.setHours(0, 0, 0, 0);
+
+        if (dateRange.start && dateRange.end) {
+            return oDate >= dateRange.start && oDate <= dateRange.end;
+        }
+        if (dateRange.start) return oDate >= dateRange.start;
+        if (dateRange.end) return oDate <= dateRange.end;
+        return true;
+    });
 
     return (
         <div className="space-y-6">
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{t('buyer.orders_page.title')}</h1>
+            <div className="flex sm:items-center justify-between flex-col sm:flex-row gap-4">
+                <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{t('buyer.orders_page.title')}</h1>
+                <DateFilter onDateRangeChange={setDateRange} />
+            </div>
 
             <div className="bg-white dark:bg-[#1E293B] rounded-2xl border border-gray-200 dark:border-slate-800 shadow-sm overflow-hidden">
                 {userOrders.length > 0 ? (

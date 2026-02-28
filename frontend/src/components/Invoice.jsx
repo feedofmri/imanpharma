@@ -34,6 +34,10 @@ function Invoice({ order, branches, onClose }) {
                     <title>Invoice_${order.id}</title>
                     <style>
                         * { margin: 0; padding: 0; box-sizing: border-box; }
+                        @media print {
+                            @page { margin: 0; }
+                            body { margin: 1.6cm; }
+                        }
                         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #1e293b; padding: 40px; }
                         .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 2px solid #e2e8f0; }
                         .company-name { font-size: 24px; font-weight: bold; color: #6CA668; }

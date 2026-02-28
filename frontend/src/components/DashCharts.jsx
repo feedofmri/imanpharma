@@ -71,7 +71,7 @@ function DashCharts({ orders, isAdmin, branches }) {
             <div className="p-6 bg-white dark:bg-[#1E293B] rounded-2xl border border-gray-200 dark:border-slate-800 shadow-sm">
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-6">{t('seller.dash.revenue_trend')}</h3>
                 <div className="h-[300px] w-full">
-                    <ResponsiveContainer width="100%" height="100%" minWidth={0}>
+                    <ResponsiveContainer width="99%" height="100%" minHeight={1}>
                         <AreaChart data={revenueData}>
                             <defs>
                                 <linearGradient id="colorRev" x1="0" y1="0" x2="0" y2="1">
@@ -113,7 +113,7 @@ function DashCharts({ orders, isAdmin, branches }) {
                     {isAdmin ? t('seller.dash.sales_by_branch') : t('seller.dash.top_categories')}
                 </h3>
                 <div className="h-[300px] w-full">
-                    <ResponsiveContainer width="100%" height="100%" minWidth={0}>
+                    <ResponsiveContainer width="99%" height="100%" minHeight={1}>
                         <BarChart data={distributionData} layout="vertical">
                             <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#E2E8F0" />
                             <XAxis type="number" hide />
@@ -144,7 +144,7 @@ function DashCharts({ orders, isAdmin, branches }) {
             <div className="p-6 bg-white dark:bg-[#1E293B] rounded-2xl border border-gray-200 dark:border-slate-800 shadow-sm lg:col-span-2">
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-6 text-center">{t('seller.dash.sales_by_status')}</h3>
                 <div className="h-[300px] w-full">
-                    <ResponsiveContainer width="100%" height="100%">
+                    <ResponsiveContainer width="99%" height="100%" minHeight={1}>
                         <PieChart>
                             <Pie
                                 data={statusData}

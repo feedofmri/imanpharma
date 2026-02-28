@@ -66,15 +66,15 @@ function OrderDetails() {
             navigate('/login', { state: { from: '/order-details' } });
             return;
         }
-        // If no file was uploaded AND cart is empty, redirect back to products
-        if (!location.state?.fileName && cartItems.length === 0) {
+        // If no file was uploaded AND cart is empty and not successfully ordered, redirect back to products
+        if (!location.state?.fileName && cartItems.length === 0 && !isSuccess) {
             navigate('/products');
             return;
         }
         if (location.state?.fileName) {
             setFileName(location.state.fileName);
         }
-    }, [location, navigate, cartItems.length, isAuthenticated, user]);
+    }, [location, navigate, cartItems.length, isAuthenticated, user, isSuccess]);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });

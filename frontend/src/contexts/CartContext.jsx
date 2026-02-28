@@ -7,6 +7,7 @@ export const useCart = () => {
 };
 
 export const CartProvider = ({ children }) => {
+    const [isCartOpen, setIsCartOpen] = useState(false);
     const [cartItems, setCartItems] = useState(() => {
         const savedCart = localStorage.getItem('cartItems');
         if (savedCart) {
@@ -39,6 +40,7 @@ export const CartProvider = ({ children }) => {
             }
             return [...prevItems, { product, quantity, branchId }];
         });
+        setIsCartOpen(true);
     };
 
     const removeFromCart = (productId, branchId) => {
@@ -68,6 +70,8 @@ export const CartProvider = ({ children }) => {
 
     const value = {
         cartItems,
+        isCartOpen,
+        setIsCartOpen,
         addToCart,
         removeFromCart,
         updateQuantity,
