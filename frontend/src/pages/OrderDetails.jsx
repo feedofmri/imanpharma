@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { FileText, MapPin, Phone, User, CheckCircle2, AlertCircle } from 'lucide-react';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { FileText, MapPin, Phone, User, CheckCircle2, AlertCircle, ShoppingBag } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useCart } from '../contexts/CartContext';
 
 function OrderDetails() {
     const { t } = useLanguage();
+    const { cartItems, clearCart } = useCart();
     const location = useLocation();
     const navigate = useNavigate();
     const [fileName, setFileName] = useState('');
@@ -19,14 +21,24 @@ function OrderDetails() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
 
+    const subtotal = cartItems.reduce((sum, item) => {
+        const priceNum = parseFloat(item.product.price.replace(/[^0-9.]/g, ''));
+        return sum + (priceNum * item.quantity);
+    }, 0);
+
+    const shipping = cartItems.length > 0 ? 50 : 0; // Fixed shipping for now
+    const total = subtotal + shipping;
+
     useEffect(() => {
-        // If no file was uploaded, redirect back to home
-        if (!location.state?.fileName) {
-            navigate('/');
+        // If no file was uploaded AND cart is empty, redirect back to products
+        if (!location.state?.fileName && cartItems.length === 0) {
+            navigate('/products');
             return;
         }
-        setFileName(location.state.fileName);
-    }, [location, navigate]);
+        if (location.state?.fileName) {
+            setFileName(location.state.fileName);
+        }
+    }, [location, navigate, cartItems.length]);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -40,9 +52,7 @@ function OrderDetails() {
         setTimeout(() => {
             setIsSubmitting(false);
             setIsSuccess(true);
-
-            // Reset form or redirect after success (optional)
-            // setTimeout(() => navigate('/'), 3000);
+            clearCart();
         }, 1500);
     };
 
@@ -155,7 +165,7 @@ function OrderDetails() {
                                                 value={formData.address}
                                                 onChange={handleChange}
                                                 className="pl-10 block w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary-500 focus:ring-primary-500 sm:text-sm py-3"
-                                                placeholder={t('order.form.address_placeholder')}
+                                                placeholder={t('order.form.address_ph')}
                                             />
                                         </div>
                                     </div>
@@ -172,7 +182,7 @@ function OrderDetails() {
                                             value={formData.notes}
                                             onChange={handleChange}
                                             className="block w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary-500 focus:ring-primary-500 sm:text-sm py-3 px-4"
-                                            placeholder={t('order.form.notes_placeholder')}
+                                            placeholder={t('order.form.notes_ph')}
                                         />
                                     </div>
 
@@ -183,7 +193,7 @@ function OrderDetails() {
                                             disabled={isSubmitting}
                                             className="w-full flex justify-center py-3.5 px-4 border border-transparent rounded-xl shadow-sm text-base font-medium text-white bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-70 disabled:cursor-not-allowed transition-colors"
                                         >
-                                            {isSubmitting ? t('order.form.processing') : t('order.form.submit')}
+                                            {isSubmitting ? t('order.form.btn_processing') : t('order.form.btn_confirm')}
                                         </button>
                                     </div>
                                 </form>
@@ -193,35 +203,76 @@ function OrderDetails() {
                         {/* Sidebar Column */}
                         <div className="md:col-span-1 space-y-6">
 
-                            {/* File Attachment Summary */}
-                            <div className="bg-white dark:bg-[#1E293B] rounded-2xl border border-gray-200 dark:border-slate-700 p-6 shadow-sm">
-                                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
-                                    {t('order.summary.attachment')}
-                                </h3>
-                                <div className="flex items-center gap-3 p-4 bg-primary-50 dark:bg-primary-900/20 rounded-xl border border-primary-100 dark:border-primary-800/50">
-                                    <div className="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-800/60 flex items-center justify-center shrink-0">
-                                        <FileText className="w-5 h-5 text-primary-600 dark:text-primary-400" />
+                            {/* Cart Summary */}
+                            {cartItems.length > 0 && (
+                                <div className="bg-white dark:bg-[#1E293B] rounded-2xl border border-gray-200 dark:border-slate-700 p-6 shadow-sm">
+                                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                                        <ShoppingBag className="w-5 h-5 text-primary-600 dark:text-primary-400" />
+                                        Cart Summary
+                                    </h3>
+
+                                    <div className="space-y-4 mb-6">
+                                        {cartItems.map(item => (
+                                            <div key={item.product.id} className="flex justify-between items-start text-sm">
+                                                <div className="pr-4">
+                                                    <span className="font-medium text-slate-900 dark:text-white">{item.quantity}x </span>
+                                                    <span className="text-slate-600 dark:text-slate-400 line-clamp-1">{item.product.name}</span>
+                                                </div>
+                                                <span className="font-semibold text-slate-900 dark:text-white shrink-0">
+                                                    ৳ {(parseFloat(item.product.price.replace(/[^0-9.]/g, '')) * item.quantity).toFixed(2)}
+                                                </span>
+                                            </div>
+                                        ))}
                                     </div>
-                                    <div className="min-w-0 flex-1">
-                                        <p className="text-sm font-medium text-slate-900 dark:text-white truncate">
-                                            {fileName}
-                                        </p>
-                                        <p className="text-xs text-primary-600 dark:text-primary-400 mt-0.5">
-                                            {t('order.summary.uploaded_success')}
-                                        </p>
+
+                                    <div className="space-y-3 pt-4 border-t border-gray-100 dark:border-slate-800">
+                                        <div className="flex justify-between text-sm">
+                                            <span className="text-slate-500 dark:text-slate-400">Subtotal</span>
+                                            <span className="font-medium text-slate-900 dark:text-white">৳ {subtotal.toFixed(2)}</span>
+                                        </div>
+                                        <div className="flex justify-between text-sm">
+                                            <span className="text-slate-500 dark:text-slate-400">Shipping</span>
+                                            <span className="font-medium text-slate-900 dark:text-white">৳ {shipping.toFixed(2)}</span>
+                                        </div>
+                                        <div className="pt-3 border-t border-gray-100 dark:border-slate-800 flex justify-between">
+                                            <span className="font-bold text-slate-900 dark:text-white">Total</span>
+                                            <span className="font-bold text-primary-600 dark:text-primary-400 text-lg">৳ {total.toFixed(2)}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            )}
+
+                            {/* File Attachment Summary */}
+                            {fileName && (
+                                <div className="bg-white dark:bg-[#1E293B] rounded-2xl border border-gray-200 dark:border-slate-700 p-6 shadow-sm">
+                                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+                                        {t('order.sidebar.rx_title')}
+                                    </h3>
+                                    <div className="flex items-center gap-3 p-4 bg-primary-50 dark:bg-primary-900/20 rounded-xl border border-primary-100 dark:border-primary-800/50">
+                                        <div className="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-800/60 flex items-center justify-center shrink-0">
+                                            <FileText className="w-5 h-5 text-primary-600 dark:text-primary-400" />
+                                        </div>
+                                        <div className="min-w-0 flex-1">
+                                            <p className="text-sm font-medium text-slate-900 dark:text-white truncate">
+                                                {fileName}
+                                            </p>
+                                            <p className="text-xs text-primary-600 dark:text-primary-400 mt-0.5">
+                                                {t('order.sidebar.rx_success')}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
 
                             {/* Information */}
                             <div className="bg-blue-50 dark:bg-blue-900/20 rounded-2xl border border-blue-100 dark:border-blue-800/50 p-6 flex gap-3">
                                 <AlertCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />
                                 <div>
-                                    <h4 className="text-sm font-semibold text-blue-900 dark:text-blue-300">{t('order.summary.next_title')}</h4>
+                                    <h4 className="text-sm font-semibold text-blue-900 dark:text-blue-300">{t('order.sidebar.next_title')}</h4>
                                     <ul className="mt-2 text-sm text-blue-800 dark:text-blue-400/80 space-y-2 list-disc list-inside">
-                                        <li>{t('order.summary.next_1')}</li>
-                                        <li>{t('order.summary.next_2')}</li>
-                                        <li>{t('order.summary.next_3')}</li>
+                                        <li>{t('order.sidebar.l1')}</li>
+                                        <li>{t('order.sidebar.l2')}</li>
+                                        <li>{t('order.sidebar.l3')}</li>
                                     </ul>
                                 </div>
                             </div>

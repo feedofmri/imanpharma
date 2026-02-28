@@ -1,11 +1,13 @@
 import { useParams, Link } from 'react-router-dom';
 import { Pill, AlertCircle, CheckCircle2, ArrowLeft, Heart, Share2, ShoppingCart } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useCart } from '../contexts/CartContext';
 import { products } from '../data/products';
 
 function ProductDetails() {
     const { id } = useParams();
     const { t, language } = useLanguage();
+    const { addToCart } = useCart();
 
     // Find the product by ID
     const product = products.find(p => p.id === parseInt(id));
@@ -150,6 +152,7 @@ function ProductDetails() {
                             <div className="mt-10 flex gap-4">
                                 <button
                                     disabled={!product.inStock}
+                                    onClick={(e) => { e.preventDefault(); addToCart(product, 1); }}
                                     className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-white font-bold text-lg bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600 transition-colors shadow-lg shadow-primary-600/20 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     <ShoppingCart className="w-5 h-5" />

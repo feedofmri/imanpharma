@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Search, Languages } from 'lucide-react';
+import { Menu, X, Search, Languages, ShoppingBag, User } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useCart } from '../contexts/CartContext';
+import { useAuth } from '../contexts/AuthContext';
+import CartDrawer from './CartDrawer';
 import logoDark from '../assets/logo/Logo Dark.png';
 import logoWhite from '../assets/logo/Logo White.png';
 
@@ -17,10 +20,13 @@ const navLinks = [
 
 function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
   const { language, toggleLanguage, t } = useLanguage();
+  const { cartCount } = useCart();
+  const { isAuthenticated, user } = useAuth();
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -82,7 +88,39 @@ function Navbar() {
               <Languages className="w-5 h-5" />
               <span className="hidden sm:inline-block font-medium">{language === 'bn' ? 'English' : 'বাংলা'}</span>
             </button>
+
+            <button
+              onClick={() => setIsCartOpen(true)}
+              className="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1 text-slate-700 dark:text-slate-300"
+              aria-label="Open cart"
+            >
+              <ShoppingBag className="w-5 h-5" />
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-white ring-2 ring-white dark:ring-[#0F172A]">
+                  {cartCount}
+                </span>
+              )}
+            </button>
+
             <ThemeToggle />
+
+            {isAuthenticated ? (
+              <Link
+                to={user?.role === 'buyer' ? '/buyer' : '/seller'}
+                className="hidden sm:flex p-2 rounded-full bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 hover:bg-primary-100 dark:hover:bg-primary-900/50 transition-colors items-center gap-2"
+                aria-label="Dashboard"
+              >
+                <User className="w-5 h-5" />
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                className="hidden sm:flex px-4 py-2 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-medium hover:bg-slate-800 dark:hover:bg-gray-100 transition-colors items-center gap-2"
+              >
+                <User className="w-4 h-4" />
+                {t('nav.signin')}
+              </Link>
+            )}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="md:hidden p-2 rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors"
@@ -114,6 +152,26 @@ function Navbar() {
               <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             </form>
 
+            <div className="flex border-b border-gray-200 dark:border-slate-700 pb-4 mb-4 justify-between items-center px-1">
+              {isAuthenticated ? (
+                <Link
+                  to={user?.role === 'buyer' ? '/buyer' : '/seller'}
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 font-medium text-sm"
+                >
+                  <User className="w-4 h-4" /> {t('nav.dashboard')}
+                </Link>
+              ) : (
+                <Link
+                  to="/login"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-medium"
+                >
+                  <User className="w-4 h-4" /> {t('nav.signin')}
+                </Link>
+              )}
+            </div>
+
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
               return (
@@ -133,6 +191,8 @@ function Navbar() {
           </div>
         </div>
       )}
+
+      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </nav>
   );
 }

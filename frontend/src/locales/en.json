@@ -7,7 +7,9 @@
         "faq": "FAQ",
         "contact": "Contact",
         "search": "Search...",
-        "search_mobile": "Search products..."
+        "search_mobile": "Search products...",
+        "signin": "Sign In",
+        "dashboard": "Dashboard"
     },
     "footer": {
         "description": "Your trusted health partner in Sirajganj. Providing authentic medicines and expert pharmaceutical advice to the community since day one.",
@@ -278,5 +280,35 @@
         "pack_size": "Pack Size",
         "add_cart": "Add to Cart",
         "out_of_stock_btn": "Out of Stock"
+    },
+    "auth": {
+        "login": {
+            "title": "Welcome Back",
+            "subtitle": "Sign in to access your account",
+            "email": "Email Address",
+            "password": "Password",
+            "remember": "Remember me",
+            "forgot": "Forgot Password?",
+            "submit": "Sign In",
+            "google": "Sign in with Google",
+            "no_account": "Don't have an account?",
+            "signup": "Sign up",
+            "error": "Invalid email or password"
+        },
+        "register": {
+            "title": "Create an Account",
+            "subtitle": "Join Iman Pharmacy today",
+            "name": "Full Name",
+            "email": "Email Address",
+            "password": "Password",
+            "confirm": "Confirm Password",
+            "agree": "I agree to the Terms and Conditions",
+            "submit": "Create Account",
+            "google": "Sign up with Google",
+            "has_account": "Already have an account?",
+            "signin": "Sign in",
+            "error_match": "Passwords do not match",
+            "error_admin": "Cannot register as admin/manager with this email"
+        }
     }
 }

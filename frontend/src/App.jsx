@@ -9,6 +9,19 @@ import Products from './pages/Products';
 import FAQ from './pages/FAQ';
 import OrderDetails from './pages/OrderDetails';
 import ProductDetails from './pages/ProductDetails';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import ProtectedRoute from './components/ProtectedRoute';
+
+import BuyerLayout from './layouts/BuyerLayout';
+import BuyerDashboard from './pages/buyer/Dashboard';
+import BuyerOrders from './pages/buyer/Orders';
+import BuyerProfile from './pages/buyer/Profile';
+
+import SellerLayout from './layouts/SellerLayout';
+import SellerDashboard from './pages/seller/Dashboard';
+import ManageProducts from './pages/seller/ManageProducts';
+import ManageOrders from './pages/seller/ManageOrders';
 
 function App() {
   return (
@@ -24,6 +37,22 @@ function App() {
             <Route path="/faq" element={<FAQ />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/order-details" element={<OrderDetails />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+
+            {/* Buyer Routes */}
+            <Route path="/buyer" element={<ProtectedRoute allowedRoles={['buyer']}><BuyerLayout /></ProtectedRoute>}>
+              <Route index element={<BuyerDashboard />} />
+              <Route path="orders" element={<BuyerOrders />} />
+              <Route path="profile" element={<BuyerProfile />} />
+            </Route>
+
+            {/* Seller Routes */}
+            <Route path="/seller" element={<ProtectedRoute allowedRoles={['admin', 'manager']}><SellerLayout /></ProtectedRoute>}>
+              <Route index element={<SellerDashboard />} />
+              <Route path="products" element={<ManageProducts />} />
+              <Route path="orders" element={<ManageOrders />} />
+            </Route>
           </Routes>
         </Layout>
       </Router>

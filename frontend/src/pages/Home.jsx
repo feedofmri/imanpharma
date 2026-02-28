@@ -133,9 +133,9 @@ function Home() {
                   <span className="text-lg font-bold text-slate-900 dark:text-white">
                     {product.price}
                   </span>
-                  <button className="px-4 py-2 text-sm font-medium text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 rounded-lg group-hover:bg-primary-100 dark:group-hover:bg-primary-900/50 transition-colors">
+                  <span className="px-4 py-2 text-sm font-medium text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 rounded-lg group-hover:bg-primary-100 dark:group-hover:bg-primary-900/50 transition-colors">
                     {t('home.featured.details')}
-                  </button>
+                  </span>
                 </div>
               </Link>
             ))}
