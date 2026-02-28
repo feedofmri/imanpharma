@@ -1,16 +1,18 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { Package, User, LogOut, LayoutDashboard, MapPin } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import { useLanguage } from '../contexts/LanguageContext';
 
 function BuyerLayout() {
     const { logout, user } = useAuth();
     const location = useLocation();
+    const { t } = useLanguage();
 
     const links = [
-        { name: 'Dashboard', path: '/buyer', icon: LayoutDashboard },
-        { name: 'Orders', path: '/buyer/orders', icon: Package },
-        { name: 'Addresses', path: '/buyer/addresses', icon: MapPin },
-        { name: 'Profile', path: '/buyer/profile', icon: User },
+        { name: t('buyer.dashboard'), path: '/buyer', icon: LayoutDashboard },
+        { name: t('buyer.orders'), path: '/buyer/orders', icon: Package },
+        { name: t('buyer.addresses'), path: '/buyer/addresses', icon: MapPin },
+        { name: t('buyer.profile'), path: '/buyer/profile', icon: User },
     ];
 
     return (
@@ -18,8 +20,8 @@ function BuyerLayout() {
             {/* Desktop Sidebar */}
             <aside className="hidden md:block w-64 bg-white dark:bg-[#1E293B] border-r border-gray-200 dark:border-slate-800 p-6 shrink-0">
                 <div className="mb-8">
-                    <h2 className="text-xl font-bold text-slate-900 dark:text-white">My Account</h2>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">Welcome, {user?.name}</p>
+                    <h2 className="text-xl font-bold text-slate-900 dark:text-white">{t('buyer.account')}</h2>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">{t('buyer.welcome')} {user?.name}</p>
                 </div>
 
                 <nav className="space-y-2">
@@ -43,7 +45,7 @@ function BuyerLayout() {
                         className="flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-900/20 transition-colors mt-8 w-full"
                     >
                         <LogOut className="w-5 h-5 shrink-0" />
-                        <span>Logout</span>
+                        <span>{t('buyer.logout')}</span>
                     </button>
                 </nav>
             </aside>
@@ -79,7 +81,7 @@ function BuyerLayout() {
                         <div className="p-1.5 rounded-lg">
                             <LogOut className="w-5 h-5" />
                         </div>
-                        <span className="text-[10px] font-semibold leading-tight">Logout</span>
+                        <span className="text-[10px] font-semibold leading-tight">{t('buyer.logout')}</span>
                     </button>
                 </div>
             </nav>

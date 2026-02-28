@@ -2,10 +2,12 @@ import { useMemo } from 'react';
 import { TrendingUp, ShoppingBag, DollarSign, Package, BarChart3 } from 'lucide-react';
 import { useData } from '../../contexts/DataContext';
 import { useAuth } from '../../contexts/AuthContext';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 function Reports() {
     const { orders, products, branches } = useData();
     const { user, isAdmin } = useAuth();
+    const { t } = useLanguage();
 
     // Filter for manager
     const managedBranch = branches.find(b => b.managerId === user?.id);
@@ -56,17 +58,17 @@ function Reports() {
     }, [filteredOrders, branches, isAdmin]);
 
     const statCards = [
-        { label: 'Total Revenue', value: `৳ ${stats.totalRevenue.toFixed(2)}`, icon: DollarSign, color: 'text-emerald-600 bg-emerald-50 dark:bg-emerald-900/30 dark:text-emerald-400' },
-        { label: 'Total Orders', value: filteredOrders.length, icon: ShoppingBag, color: 'text-blue-600 bg-blue-50 dark:bg-blue-900/30 dark:text-blue-400' },
-        { label: 'Delivered', value: stats.delivered, icon: TrendingUp, color: 'text-primary-600 bg-primary-50 dark:bg-primary-900/30 dark:text-primary-400' },
-        { label: 'Processing', value: stats.processing, icon: Package, color: 'text-amber-600 bg-amber-50 dark:bg-amber-900/30 dark:text-amber-400' },
+        { label: t('seller.reports_page.revenue'), value: `৳ ${stats.totalRevenue.toFixed(2)}`, icon: DollarSign, color: 'text-emerald-600 bg-emerald-50 dark:bg-emerald-900/30 dark:text-emerald-400' },
+        { label: t('seller.reports_page.orders'), value: filteredOrders.length, icon: ShoppingBag, color: 'text-blue-600 bg-blue-50 dark:bg-blue-900/30 dark:text-blue-400' },
+        { label: t('seller.reports_page.delivered'), value: stats.delivered, icon: TrendingUp, color: 'text-primary-600 bg-primary-50 dark:bg-primary-900/30 dark:text-primary-400' },
+        { label: t('seller.reports_page.processing'), value: stats.processing, icon: Package, color: 'text-amber-600 bg-amber-50 dark:bg-amber-900/30 dark:text-amber-400' },
     ];
 
     const maxTopProduct = stats.topProducts.length > 0 ? stats.topProducts[0][1] : 1;
 
     return (
         <div className="space-y-8">
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Reports & Analytics</h1>
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{t('seller.reports_page.title')}</h1>
 
             {/* Stat Cards */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -89,7 +91,7 @@ function Reports() {
                 <div className="bg-white dark:bg-[#1E293B] rounded-2xl border border-gray-200 dark:border-slate-800 p-6 shadow-sm">
                     <div className="flex items-center gap-2 mb-5">
                         <BarChart3 className="w-5 h-5 text-primary-600" />
-                        <h2 className="text-lg font-bold text-slate-900 dark:text-white">Top Selling Products</h2>
+                        <h2 className="text-lg font-bold text-slate-900 dark:text-white">{t('seller.reports_page.top_products')}</h2>
                     </div>
                     {stats.topProducts.length > 0 ? (
                         <div className="space-y-4">
@@ -97,7 +99,7 @@ function Reports() {
                                 <div key={name}>
                                     <div className="flex items-center justify-between text-sm mb-1.5">
                                         <span className="font-medium text-slate-700 dark:text-slate-300 truncate pr-4">{idx + 1}. {name}</span>
-                                        <span className="text-slate-500 dark:text-slate-400 shrink-0">{count} sold</span>
+                                        <span className="text-slate-500 dark:text-slate-400 shrink-0">{count} {t('seller.reports_page.sold')}</span>
                                     </div>
                                     <div className="w-full bg-gray-100 dark:bg-slate-800 rounded-full h-2.5">
                                         <div
@@ -109,7 +111,7 @@ function Reports() {
                             ))}
                         </div>
                     ) : (
-                        <p className="text-sm text-slate-400 text-center py-4">No sales data yet.</p>
+                        <p className="text-sm text-slate-400 text-center py-4">{t('seller.reports_page.no_sales')}</p>
                     )}
                 </div>
 
@@ -117,7 +119,7 @@ function Reports() {
                 <div className="bg-white dark:bg-[#1E293B] rounded-2xl border border-gray-200 dark:border-slate-800 p-6 shadow-sm">
                     <div className="flex items-center gap-2 mb-5">
                         <DollarSign className="w-5 h-5 text-emerald-600" />
-                        <h2 className="text-lg font-bold text-slate-900 dark:text-white">Revenue by Payment Method</h2>
+                        <h2 className="text-lg font-bold text-slate-900 dark:text-white">{t('seller.reports_page.revenue_method')}</h2>
                     </div>
                     {Object.keys(stats.paymentBreakdown).length > 0 ? (
                         <div className="space-y-3">
@@ -129,7 +131,7 @@ function Reports() {
                             ))}
                         </div>
                     ) : (
-                        <p className="text-sm text-slate-400 text-center py-4">No payment data yet.</p>
+                        <p className="text-sm text-slate-400 text-center py-4">{t('seller.reports_page.no_payment')}</p>
                     )}
                 </div>
             </div>
@@ -137,13 +139,13 @@ function Reports() {
             {/* Branch Breakdown (Admin only) */}
             {isAdmin && Object.keys(stats.branchBreakdown).length > 0 && (
                 <div className="bg-white dark:bg-[#1E293B] rounded-2xl border border-gray-200 dark:border-slate-800 p-6 shadow-sm">
-                    <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-5">Revenue by Branch</h2>
+                    <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-5">{t('seller.reports_page.revenue_branch')}</h2>
                     <div className="overflow-x-auto">
                         <table className="w-full text-sm text-left">
                             <thead className="text-xs text-slate-700 uppercase bg-gray-50 dark:bg-slate-800/50 dark:text-slate-400 border-b border-gray-200 dark:border-slate-800">
                                 <tr>
-                                    <th className="px-6 py-3">Branch</th>
-                                    <th className="px-6 py-3 text-right">Revenue</th>
+                                    <th className="px-6 py-3">{t('seller.reports_page.branch')}</th>
+                                    <th className="px-6 py-3 text-right">{t('seller.reports_page.revenue_col')}</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-100 dark:divide-slate-800">

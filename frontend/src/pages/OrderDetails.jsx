@@ -224,7 +224,7 @@ function OrderDetails() {
                                                     </button>
                                                 ))}
                                                 <Link to="/buyer/addresses" className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors">
-                                                    + Manage
+                                                    {t('order.form.manage_addr')}
                                                 </Link>
                                             </div>
                                         )}
@@ -308,7 +308,7 @@ function OrderDetails() {
                                 <div className="bg-white dark:bg-[#1E293B] rounded-2xl border border-gray-200 dark:border-slate-700 p-6 shadow-sm">
                                     <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                                         <ShoppingBag className="w-5 h-5 text-primary-600 dark:text-primary-400" />
-                                        Cart Summary
+                                        {t('order.sidebar.cart_title')}
                                     </h3>
 
                                     <div className="space-y-4 mb-6">
@@ -327,15 +327,15 @@ function OrderDetails() {
 
                                     <div className="space-y-3 pt-4 border-t border-gray-100 dark:border-slate-800">
                                         <div className="flex justify-between text-sm">
-                                            <span className="text-slate-500 dark:text-slate-400">Subtotal</span>
+                                            <span className="text-slate-500 dark:text-slate-400">{t('order.sidebar.subtotal')}</span>
                                             <span className="font-medium text-slate-900 dark:text-white">৳ {subtotal.toFixed(2)}</span>
                                         </div>
                                         <div className="flex justify-between text-sm">
-                                            <span className="text-slate-500 dark:text-slate-400">Shipping</span>
+                                            <span className="text-slate-500 dark:text-slate-400">{t('order.sidebar.shipping')}</span>
                                             <span className="font-medium text-slate-900 dark:text-white">৳ {shipping.toFixed(2)}</span>
                                         </div>
                                         <div className="pt-3 border-t border-gray-100 dark:border-slate-800 flex justify-between">
-                                            <span className="font-bold text-slate-900 dark:text-white">Total</span>
+                                            <span className="font-bold text-slate-900 dark:text-white">{t('order.sidebar.total')}</span>
                                             <span className="font-bold text-primary-600 dark:text-primary-400 text-lg">৳ {total.toFixed(2)}</span>
                                         </div>
                                     </div>

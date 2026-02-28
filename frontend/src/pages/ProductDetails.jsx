@@ -144,7 +144,7 @@ function ProductDetails() {
                                 <div className="mb-4">
                                     <label className="block text-sm font-semibold text-slate-900 dark:text-white mb-2 uppercase tracking-wider">
                                         <Store className="w-4 h-4 inline-block mr-1.5 -mt-0.5" />
-                                        Select Branch
+                                        {t('product_details.select_branch')}
                                     </label>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                         {branches.map(branch => {
@@ -163,7 +163,7 @@ function ProductDetails() {
                                                         {branch.name}
                                                     </p>
                                                     <p className={`text-xs mt-0.5 ${stock > 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-500 dark:text-rose-400'}`}>
-                                                        {stock > 0 ? `${stock} in stock` : 'Out of stock'}
+                                                        {stock > 0 ? `${stock} ${t('product_details.in_stock')}` : t('product_details.out_of_stock')}
                                                     </p>
                                                     {isSelected && (
                                                         <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-primary-500" />
@@ -202,7 +202,7 @@ function ProductDetails() {
                                 <div className="mt-6 flex items-center gap-3 p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
                                     <XCircle className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0" />
                                     <p className="text-sm text-amber-800 dark:text-amber-300 font-medium">
-                                        Adding products to cart is only available for buyer accounts. Please log in with a buyer account to purchase.
+                                        {t('product_details.buyer_only_notice')}
                                     </p>
                                 </div>
                             )}
@@ -234,7 +234,7 @@ function ProductDetails() {
                                     className="flex-1 inline-flex items-center justify-center gap-2 px-8 h-14 rounded-xl text-white font-bold text-lg bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600 transition-colors shadow-lg shadow-primary-600/20 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     <ShoppingCart className="w-5 h-5" />
-                                    {isSeller ? 'Buyer Only' : (inStock ? t('product.add_cart') : t('product.out_of_stock_btn'))}
+                                    {isSeller ? t('product_details.buyer_only') : (inStock ? t('product.add_cart') : t('product.out_of_stock_btn'))}
                                 </button>
                                 <button className="w-14 h-14 shrink-0 rounded-xl bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all shadow-sm">
                                     <Share2 className="w-5 h-5" />

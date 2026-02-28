@@ -31,7 +31,7 @@ function Invoice({ order, branches, onClose }) {
         printWindow.document.write(`
             <html>
                 <head>
-                    <title>Invoice - ${order.id}</title>
+                    <title>Invoice_${order.id}</title>
                     <style>
                         * { margin: 0; padding: 0; box-sizing: border-box; }
                         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #1e293b; padding: 40px; }
@@ -72,8 +72,11 @@ function Invoice({ order, branches, onClose }) {
             </html>
         `);
         printWindow.document.close();
+        printWindow.document.title = `Invoice_${order.id}`;
         printWindow.focus();
-        printWindow.print();
+        setTimeout(() => {
+            printWindow.print();
+        }, 300);
     };
 
     if (!order) return null;

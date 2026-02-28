@@ -34,7 +34,7 @@ function CartDrawer({ isOpen, onClose }) {
                         <div className="p-2 bg-primary-50 dark:bg-primary-900/30 rounded-lg">
                             <ShoppingBag className="w-5 h-5 text-primary-600 dark:text-primary-400" />
                         </div>
-                        <h2 className="text-xl font-bold text-slate-900 dark:text-white">Your Cart</h2>
+                        <h2 className="text-xl font-bold text-slate-900 dark:text-white">{t('cart.title')}</h2>
                         <span className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2.5 py-0.5 rounded-full text-sm font-medium">
                             {cartItems.length}
                         </span>
@@ -55,14 +55,14 @@ function CartDrawer({ isOpen, onClose }) {
                                 <ShoppingBag className="w-10 h-10 text-slate-300 dark:text-slate-600" />
                             </div>
                             <div>
-                                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1">Your cart is empty</h3>
-                                <p className="text-slate-500 dark:text-slate-400">Looks like you haven't added anything yet.</p>
+                                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1">{t('cart.empty')}</h3>
+                                <p className="text-slate-500 dark:text-slate-400">{t('cart.empty_subtitle')}</p>
                             </div>
                             <button
                                 onClick={onClose}
                                 className="mt-4 px-6 py-2.5 rounded-xl bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 font-medium hover:bg-primary-100 dark:hover:bg-primary-900/50 transition-colors"
                             >
-                                Continue Shopping
+                                {t('cart.browse')}
                             </button>
                         </div>
                     ) : (
@@ -131,25 +131,25 @@ function CartDrawer({ isOpen, onClose }) {
                 {cartItems.length > 0 && (
                     <div className="border-t border-gray-100 dark:border-slate-800 p-6 bg-gray-50 dark:bg-slate-900/50">
                         <div className="flex justify-between items-center mb-4">
-                            <span className="text-slate-500 dark:text-slate-400">Subtotal</span>
+                            <span className="text-slate-500 dark:text-slate-400">{t('cart.subtotal')}</span>
                             <span className="text-xl font-bold text-slate-900 dark:text-white">৳ {subtotal.toFixed(2)}</span>
                         </div>
                         <p className="text-xs text-slate-500 dark:text-slate-400 mb-6 text-center">
-                            Shipping and taxes calculated at checkout.
+                            {t('cart.shipping_notice')}
                         </p>
                         <div className="flex gap-4">
                             <button
                                 onClick={clearCart}
                                 className="px-6 py-4 rounded-xl font-bold text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors"
                             >
-                                Clear
+                                {t('cart.clear')}
                             </button>
                             <Link
                                 to="/order-details"
                                 onClick={onClose}
                                 className="flex-1 flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-bold transition-colors shadow-lg shadow-primary-600/20"
                             >
-                                Checkout <ArrowRight className="w-5 h-5" />
+                                {t('cart.checkout')} <ArrowRight className="w-5 h-5" />
                             </Link>
                         </div>
                     </div>

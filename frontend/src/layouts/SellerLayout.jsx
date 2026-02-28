@@ -1,21 +1,23 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { Package, Users, ShoppingBag, LayoutDashboard, LogOut, FileText, Store } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import { useLanguage } from '../contexts/LanguageContext';
 
 function SellerLayout() {
     const { logout, user, isAdmin } = useAuth();
     const location = useLocation();
+    const { t } = useLanguage();
 
     const links = [
-        { name: 'Dashboard', path: '/seller', icon: LayoutDashboard },
-        { name: 'Products', path: '/seller/products', icon: Package },
-        { name: 'Orders', path: '/seller/orders', icon: ShoppingBag },
+        { name: t('seller.dashboard'), path: '/seller', icon: LayoutDashboard },
+        { name: t('seller.products'), path: '/seller/products', icon: Package },
+        { name: t('seller.orders'), path: '/seller/orders', icon: ShoppingBag },
     ];
 
     if (isAdmin) {
-        links.push({ name: 'Managers', path: '/seller/managers', icon: Users });
-        links.push({ name: 'Branches', path: '/seller/branches', icon: Store });
-        links.push({ name: 'Reports', path: '/seller/reports', icon: FileText });
+        links.push({ name: t('seller.managers'), path: '/seller/managers', icon: Users });
+        links.push({ name: t('seller.branches'), path: '/seller/branches', icon: Store });
+        links.push({ name: t('seller.reports'), path: '/seller/reports', icon: FileText });
     }
 
     return (
@@ -23,8 +25,8 @@ function SellerLayout() {
             {/* Desktop Sidebar */}
             <aside className="hidden md:block w-64 bg-slate-900 border-r border-slate-800 p-6 shrink-0 text-slate-300">
                 <div className="mb-8">
-                    <h2 className="text-xl font-bold text-white">Seller Portal</h2>
-                    <p className="text-sm text-slate-400 capitalize">{user?.role} Access</p>
+                    <h2 className="text-xl font-bold text-white">{t('seller.portal')}</h2>
+                    <p className="text-sm text-slate-400 capitalize">{user?.role} {t('seller.access')}</p>
                 </div>
 
                 <nav className="space-y-2">
@@ -48,7 +50,7 @@ function SellerLayout() {
                         className="flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-rose-400 hover:bg-rose-500/10 transition-colors mt-8 w-full"
                     >
                         <LogOut className="w-5 h-5 shrink-0" />
-                        <span>Logout</span>
+                        <span>{t('seller.logout')}</span>
                     </button>
                 </nav>
             </aside>
@@ -84,7 +86,7 @@ function SellerLayout() {
                         <div className="p-1.5 rounded-lg">
                             <LogOut className="w-5 h-5" />
                         </div>
-                        <span className="text-[10px] font-semibold leading-tight">Logout</span>
+                        <span className="text-[10px] font-semibold leading-tight">{t('seller.logout')}</span>
                     </button>
                 </div>
             </nav>

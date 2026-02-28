@@ -1,23 +1,34 @@
 import { useState } from 'react';
-import { Edit2, Eye, X, MapPin, Phone, CreditCard, FileText, CheckCircle2, Printer } from 'lucide-react';
+import { Edit2, Eye, X, MapPin, Phone, CreditCard, FileText, CheckCircle2, Printer, Plus } from 'lucide-react';
 import { useData } from '../../contexts/DataContext';
 import { useAuth } from '../../contexts/AuthContext';
-import Invoice from '../../components/Invoice';
+import { useLanguage } from '../../contexts/LanguageContext';
+import NewOrderModal from './NewOrderModal';
+import Pagination from '../../components/Pagination';
 
 function ManageOrders() {
     const { orders, branches, updateOrderStatus } = useData();
     const { user, isAdmin } = useAuth();
+    const { t } = useLanguage();
 
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [isStatusDropdownOpen, setIsStatusDropdownOpen] = useState(false);
     const [invoiceOrder, setInvoiceOrder] = useState(null);
+    const [isNewOrderModalOpen, setIsNewOrderModalOpen] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const ordersPerPage = 10;
 
     // Filter orders: Admins see all, Managers see only their branch
     const managedBranch = branches.find(b => b.managerId === user?.id);
-    const displayOrders = isAdmin ? orders : orders.filter(o => o.branchId === managedBranch?.id);
+    const filteredOrders = isAdmin ? orders : orders.filter(o => o.branchId === managedBranch?.id);
 
     // Sort youngest first
-    const sortedOrders = [...displayOrders].sort((a, b) => new Date(b.date) - new Date(a.date));
+    const sortedOrders = [...filteredOrders].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    const indexOfLastOrder = currentPage * ordersPerPage;
+    const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
+    const currentOrders = sortedOrders.slice(indexOfFirstOrder, indexOfLastOrder);
+    const totalPages = Math.ceil(sortedOrders.length / ordersPerPage);
 
     const getStatusColor = (status) => {
         switch (status) {
@@ -31,7 +42,14 @@ function ManageOrders() {
     return (
         <div className="space-y-6">
             <div className="flex sm:items-center justify-between flex-col sm:flex-row gap-4">
-                <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Manage Orders</h1>
+                <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{t('seller.ord.title')}</h1>
+                <button
+                    onClick={() => setIsNewOrderModalOpen(true)}
+                    className="flex items-center justify-center gap-2 px-4 py-2.5 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-xl transition-all shadow-lg shadow-primary-600/20"
+                >
+                    <Plus className="w-5 h-5" />
+                    {t('seller.ord.new_manual')}
+                </button>
             </div>
 
             <div className="bg-white dark:bg-[#1E293B] rounded-2xl border border-gray-200 dark:border-slate-800 shadow-sm overflow-hidden">
@@ -48,7 +66,7 @@ function ManageOrders() {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100 dark:divide-slate-800">
-                            {sortedOrders.map((order) => (
+                            {currentOrders.map((order) => (
                                 <tr key={order.id} className="hover:bg-gray-50 dark:hover:bg-slate-800/30 transition-colors">
                                     <td className="px-6 py-4 font-semibold text-slate-900 dark:text-white whitespace-nowrap">
                                         {order.id}
@@ -73,6 +91,11 @@ function ManageOrders() {
                         </tbody>
                     </table>
                 </div>
+                <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={setCurrentPage}
+                />
             </div>
 
             {/* Order Details Modal */}
@@ -200,6 +223,11 @@ function ManageOrders() {
             {/* Invoice Modal */}
             {invoiceOrder && (
                 <Invoice order={invoiceOrder} branches={branches} onClose={() => setInvoiceOrder(null)} />
+            )}
+
+            {/* New Manual Order Modal */}
+            {isNewOrderModalOpen && (
+                <NewOrderModal onClose={() => setIsNewOrderModalOpen(false)} />
             )}
         </div>
     );

@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { Plus, Trash2, Edit2, X, MapPin, Home, Star, Check } from 'lucide-react';
 import { useData } from '../../contexts/DataContext';
 import { useAuth } from '../../contexts/AuthContext';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 function BuyerAddresses() {
     const { user } = useAuth();
     const { users, updateUser } = useData();
+    const { t } = useLanguage();
 
-    // Addresses are stored in the user object
     const currentUser = users.find(u => u.id === user?.id) || user;
     const addresses = currentUser?.addresses || [];
 
@@ -35,18 +36,14 @@ function BuyerAddresses() {
     const handleSubmit = (e) => {
         e.preventDefault();
         let updatedAddresses = [...addresses];
-
-        // If setting as default, unset all others
         if (formData.isDefault) {
             updatedAddresses = updatedAddresses.map(a => ({ ...a, isDefault: false }));
         }
-
         if (editingIndex !== null) {
             updatedAddresses[editingIndex] = { ...formData };
         } else {
             updatedAddresses.push({ ...formData });
         }
-
         updateUser(user.id, { ...currentUser, addresses: updatedAddresses });
         setIsModalOpen(false);
     };
@@ -67,32 +64,31 @@ function BuyerAddresses() {
         <div className="space-y-6 max-w-3xl">
             <div className="flex sm:items-center justify-between flex-col sm:flex-row gap-4">
                 <div>
-                    <h1 className="text-2xl font-bold text-slate-900 dark:text-white">My Addresses</h1>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Manage your delivery addresses for faster checkout.</p>
+                    <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{t('buyer.addr.title')}</h1>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">{t('buyer.addr.empty_desc')}</p>
                 </div>
                 <button
                     onClick={openCreateModal}
                     className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary-600 text-white rounded-xl text-sm font-medium hover:bg-primary-700 transition-colors shadow-sm"
                 >
-                    <Plus className="w-4 h-4" /> Add Address
+                    <Plus className="w-4 h-4" /> {t('buyer.addr.add')}
                 </button>
             </div>
 
-            {/* Address Cards */}
             {addresses.length > 0 ? (
                 <div className="grid gap-4">
                     {addresses.map((addr, index) => (
                         <div key={index} className={`relative bg-white dark:bg-[#1E293B] rounded-2xl border-2 p-5 shadow-sm transition-all ${addr.isDefault
-                                ? 'border-primary-500 ring-1 ring-primary-500/20'
-                                : 'border-gray-200 dark:border-slate-800'
+                            ? 'border-primary-500 ring-1 ring-primary-500/20'
+                            : 'border-gray-200 dark:border-slate-800'
                             }`}>
                             <div className="flex items-start justify-between gap-4">
                                 <div className="flex items-start gap-3">
                                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${addr.label === 'Home'
-                                            ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
-                                            : addr.label === 'Office'
-                                                ? 'bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400'
-                                                : 'bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400'
+                                        ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+                                        : addr.label === 'Office'
+                                            ? 'bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400'
+                                            : 'bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400'
                                         }`}>
                                         {addr.label === 'Home' ? <Home className="w-5 h-5" /> : <MapPin className="w-5 h-5" />}
                                     </div>
@@ -101,7 +97,7 @@ function BuyerAddresses() {
                                             <h3 className="font-semibold text-slate-900 dark:text-white">{addr.label}</h3>
                                             {addr.isDefault && (
                                                 <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400">
-                                                    <Star className="w-3 h-3" /> Default
+                                                    <Star className="w-3 h-3" /> {t('buyer.addr.default')}
                                                 </span>
                                             )}
                                         </div>
@@ -114,7 +110,7 @@ function BuyerAddresses() {
                                         <button
                                             onClick={() => setAsDefault(index)}
                                             className="p-2 text-slate-400 hover:text-primary-600 transition-colors bg-gray-50 dark:bg-slate-800 hover:bg-primary-50 dark:hover:bg-slate-700 rounded-lg"
-                                            title="Set as default"
+                                            title={t('buyer.addr.set_default')}
                                         >
                                             <Check className="w-4 h-4" />
                                         </button>
@@ -139,8 +135,8 @@ function BuyerAddresses() {
             ) : (
                 <div className="bg-white dark:bg-[#1E293B] rounded-2xl border border-gray-200 dark:border-slate-800 shadow-sm p-10 text-center">
                     <MapPin className="w-12 h-12 text-slate-300 dark:text-slate-600 mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1">No addresses yet</h3>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">Add your first delivery address to speed up checkout.</p>
+                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1">{t('buyer.addr.empty')}</h3>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">{t('buyer.addr.empty_desc')}</p>
                 </div>
             )}
 
@@ -151,7 +147,7 @@ function BuyerAddresses() {
                     <div className="relative w-full max-w-md bg-white dark:bg-slate-900 rounded-2xl shadow-xl overflow-hidden">
                         <div className="flex items-center justify-between p-6 border-b border-gray-100 dark:border-slate-800">
                             <h3 className="text-lg font-bold text-slate-900 dark:text-white">
-                                {editingIndex !== null ? 'Edit Address' : 'Add New Address'}
+                                {editingIndex !== null ? t('buyer.addr.edit') : t('buyer.addr.add')}
                             </h3>
                             <button onClick={() => setIsModalOpen(false)} className="p-2 text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-xl transition-colors">
                                 <X className="w-5 h-5" />
@@ -159,29 +155,29 @@ function BuyerAddresses() {
                         </div>
                         <form onSubmit={handleSubmit} className="p-6 space-y-4">
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Label</label>
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">{t('buyer.addr.label')}</label>
                                 <select name="label" value={formData.label} onChange={handleChange}
                                     className="block w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary-500 focus:ring-primary-500 sm:text-sm py-3 px-4 appearance-none">
-                                    <option>Home</option>
-                                    <option>Office</option>
-                                    <option>Other</option>
+                                    <option value="Home">{t('buyer.addr.labels.home')}</option>
+                                    <option value="Office">{t('buyer.addr.labels.office')}</option>
+                                    <option value="Other">{t('buyer.addr.labels.other')}</option>
                                 </select>
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Street Address</label>
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">{t('buyer.addr.address')}</label>
                                 <input type="text" name="address" required value={formData.address} onChange={handleChange}
                                     className="block w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary-500 focus:ring-primary-500 sm:text-sm py-3 px-4"
                                     placeholder="House/Road/Block" />
                             </div>
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Area</label>
+                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">{t('buyer.addr.area')}</label>
                                     <input type="text" name="area" value={formData.area} onChange={handleChange}
                                         className="block w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary-500 focus:ring-primary-500 sm:text-sm py-3 px-4"
                                         placeholder="Area / Thana" />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">City</label>
+                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">{t('buyer.addr.city')}</label>
                                     <input type="text" name="city" value={formData.city} onChange={handleChange}
                                         className="block w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary-500 focus:ring-primary-500 sm:text-sm py-3 px-4"
                                         placeholder="City / District" />
@@ -190,10 +186,10 @@ function BuyerAddresses() {
                             <label className="flex items-center gap-2 cursor-pointer">
                                 <input type="checkbox" name="isDefault" checked={formData.isDefault} onChange={handleChange}
                                     className="w-4 h-4 text-primary-600 bg-gray-100 dark:bg-slate-800 border-gray-300 dark:border-slate-600 rounded focus:ring-primary-500" />
-                                <span className="text-sm text-slate-700 dark:text-slate-300">Set as default address</span>
+                                <span className="text-sm text-slate-700 dark:text-slate-300">{t('buyer.addr.set_default')}</span>
                             </label>
                             <button type="submit" className="w-full py-3 px-4 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-medium transition-colors shadow-sm mt-2">
-                                {editingIndex !== null ? 'Save Changes' : 'Add Address'}
+                                {editingIndex !== null ? t('buyer.addr.save') : t('buyer.addr.add')}
                             </button>
                         </form>
                     </div>

@@ -1,12 +1,14 @@
 import { Package, CreditCard } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 function BuyerDashboard() {
     const { user } = useAuth();
+    const { t } = useLanguage();
 
     return (
         <div className="space-y-6">
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Overview</h1>
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{t('buyer.dash.title')}</h1>
 
             <div className="grid sm:grid-cols-3 gap-6">
                 <div className="p-6 bg-white dark:bg-[#1E293B] rounded-2xl border border-gray-200 dark:border-slate-800 shadow-sm flex items-center gap-4">
@@ -14,7 +16,7 @@ function BuyerDashboard() {
                         <Package className="w-6 h-6" />
                     </div>
                     <div>
-                        <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Total Orders</p>
+                        <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{t('buyer.dash.orders_title')}</p>
                         <p className="text-2xl font-bold text-slate-900 dark:text-white">12</p>
                     </div>
                 </div>
@@ -24,7 +26,7 @@ function BuyerDashboard() {
                         <Package className="w-6 h-6" />
                     </div>
                     <div>
-                        <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Active Orders</p>
+                        <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{t('buyer.dash.pending_title')}</p>
                         <p className="text-2xl font-bold text-slate-900 dark:text-white">1</p>
                     </div>
                 </div>
@@ -34,15 +36,10 @@ function BuyerDashboard() {
                         <CreditCard className="w-6 h-6" />
                     </div>
                     <div>
-                        <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Total Spent</p>
+                        <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{t('buyer.dash.delivered_title')}</p>
                         <p className="text-2xl font-bold text-slate-900 dark:text-white">৳ 4,250</p>
                     </div>
                 </div>
-            </div>
-
-            <div className="p-6 bg-white dark:bg-[#1E293B] rounded-2xl border border-gray-200 dark:border-slate-800 shadow-sm">
-                <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Recent Activity</h2>
-                <p className="text-slate-600 dark:text-slate-400">You have no recent activity.</p>
             </div>
         </div>
     );

@@ -52,12 +52,12 @@ function Register() {
         setError('');
 
         if (email.includes('admin') || email.includes('manager')) {
-            setError('You cannot register an admin or manager account.');
+            setError(t('auth.errors.admin_reg'));
             return;
         }
 
         if (!phone || phone.length < 11) {
-            setError('Please enter a valid Bangladeshi phone number (11 digits).');
+            setError(t('auth.errors.valid_phone'));
             return;
         }
 
@@ -100,12 +100,12 @@ function Register() {
     const handleOtpVerify = async () => {
         const enteredOtp = otp.join('');
         if (enteredOtp.length < 6) {
-            setOtpError('Please enter the complete 6-digit code.');
+            setOtpError(t('auth.errors.otp_incomplete'));
             return;
         }
 
         if (enteredOtp !== generatedOtp) {
-            setOtpError('Invalid OTP. Please check and try again.');
+            setOtpError(t('auth.errors.otp_invalid'));
             return;
         }
 
@@ -115,7 +115,7 @@ function Register() {
             await register(name, email, password, phone);
             navigate('/buyer');
         } catch (err) {
-            setOtpError(err.message || 'Failed to create account');
+            setError(err.message || t('auth.errors.reg_failed'));
         } finally {
             setLoading(false);
         }
@@ -132,11 +132,11 @@ function Register() {
                 <div className="bg-white dark:bg-[#1E293B] rounded-3xl p-8 border border-gray-200 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none">
                     <div className="text-center mb-8">
                         <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
-                            {step === 'otp' ? 'Verify Phone' : t('auth.register.title')}
+                            {step === 'otp' ? t('auth.otp_title') : t('auth.register.title')}
                         </h2>
                         <p className="text-slate-600 dark:text-slate-400">
                             {step === 'otp'
-                                ? `Enter the 6-digit code sent to ${phone}`
+                                ? `${t('auth.otp_subtitle')} ${phone}`
                                 : t('auth.register.subtitle')
                             }
                         </p>
@@ -158,24 +158,24 @@ function Register() {
                                     <input
                                         type="text" value={name} onChange={(e) => setName(e.target.value)} required
                                         className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500"
-                                        placeholder="John Doe"
+                                        placeholder={t('auth.register.placeholder_name')}
                                     />
                                 </div>
                             </div>
 
                             {/* Phone */}
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Phone Number</label>
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{t('auth.phone')}</label>
                                 <div className="relative">
                                     <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
                                     <input
                                         type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} required
                                         className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500"
-                                        placeholder="01XXXXXXXXX"
+                                        placeholder={t('auth.register.placeholder_phone')}
                                         maxLength={11}
                                     />
                                 </div>
-                                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">We'll send an OTP to verify this number</p>
+                                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{t('auth.phone_hint')}</p>
                             </div>
 
                             {/* Email */}
@@ -186,7 +186,7 @@ function Register() {
                                     <input
                                         type="email" value={email} onChange={(e) => setEmail(e.target.value)} required
                                         className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500"
-                                        placeholder="you@example.com"
+                                        placeholder={t('auth.register.placeholder_email')}
                                     />
                                 </div>
                             </div>
@@ -212,7 +212,7 @@ function Register() {
                                 type="submit" disabled={otpSending}
                                 className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-white font-medium bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-600/20 transition-all disabled:opacity-50"
                             >
-                                {otpSending ? 'Sending OTP...' : 'Continue'}
+                                {otpSending ? t('auth.otp_sending') : t('auth.otp_continue')}
                                 {!otpSending && <ArrowRight className="w-4 h-4" />}
                             </button>
                         </form>
@@ -238,8 +238,8 @@ function Register() {
                                         onChange={(e) => handleOtpChange(index, e.target.value)}
                                         onKeyDown={(e) => handleOtpKeyDown(index, e)}
                                         className={`w-12 h-14 text-center text-xl font-bold rounded-xl border-2 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500/30 ${digit
-                                                ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400'
-                                                : 'border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white'
+                                            ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400'
+                                            : 'border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white'
                                             }`}
                                     />
                                 ))}
@@ -249,11 +249,11 @@ function Register() {
                             <div className="text-center">
                                 {otpTimer > 0 ? (
                                     <p className="text-sm text-slate-500 dark:text-slate-400">
-                                        Resend code in <span className="font-semibold text-primary-600 dark:text-primary-400">{otpTimer}s</span>
+                                        {t('auth.otp_resend_in')} <span className="font-semibold text-primary-600 dark:text-primary-400">{otpTimer}s</span>
                                     </p>
                                 ) : (
                                     <button onClick={handleResendOtp} className="inline-flex items-center gap-1.5 text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline">
-                                        <RotateCcw className="w-4 h-4" /> Resend OTP
+                                        <RotateCcw className="w-4 h-4" /> {t('auth.otp_resend')}
                                     </button>
                                 )}
                             </div>
@@ -264,7 +264,7 @@ function Register() {
                                 className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-white font-medium bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-600/20 transition-all disabled:opacity-50"
                             >
                                 <ShieldCheck className="w-5 h-5" />
-                                {loading ? 'Creating Account...' : 'Verify & Register'}
+                                {loading ? t('auth.otp_creating') : t('auth.otp_verify')}
                             </button>
 
                             {/* Back to form */}
@@ -272,7 +272,7 @@ function Register() {
                                 onClick={() => setStep('form')}
                                 className="w-full text-center text-sm text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300"
                             >
-                                ← Back to registration form
+                                ← {t('auth.otp_back')}
                             </button>
                         </div>
                     )}

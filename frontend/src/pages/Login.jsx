@@ -33,7 +33,7 @@ function Login() {
                     break;
             }
         } catch (err) {
-            setError(err.message || 'Failed to login');
+            setError(err.message || t('auth.errors.login_failed'));
         } finally {
             setLoading(false);
         }
@@ -65,7 +65,7 @@ function Login() {
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
                                     className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500"
-                                    placeholder="you@example.com (e.g. admin@imanpharma.com)"
+                                    placeholder={t('auth.login.placeholder_email')}
                                 />
                             </div>
                         </div>
