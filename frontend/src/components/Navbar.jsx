@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Search } from 'lucide-react';
+import { Menu, X, Search, Languages } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import { useLanguage } from '../contexts/LanguageContext';
 import logoDark from '../assets/logo/Logo Dark.png';
 import logoWhite from '../assets/logo/Logo White.png';
 
 const navLinks = [
-  { name: 'Home', path: '/' },
-  { name: 'Products', path: '/products' },
-  { name: 'Services', path: '/services' },
-  { name: 'About', path: '/about' },
-  { name: 'FAQ', path: '/faq' },
-  { name: 'Contact', path: '/contact' },
+  { nameKey: 'nav.home', path: '/' },
+  { nameKey: 'nav.products', path: '/products' },
+  { nameKey: 'nav.services', path: '/services' },
+  { nameKey: 'nav.about', path: '/about' },
+  { nameKey: 'nav.faq', path: '/faq' },
+  { nameKey: 'nav.contact', path: '/contact' },
 ];
 
 function Navbar() {
@@ -19,6 +20,7 @@ function Navbar() {
   const [searchQuery, setSearchQuery] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
+  const { language, toggleLanguage, t } = useLanguage();
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -52,7 +54,7 @@ function Navbar() {
                     : 'text-slate-600 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
                     }`}
                 >
-                  {link.name}
+                  {t(link.nameKey)}
                 </Link>
               );
             })}
@@ -64,7 +66,7 @@ function Navbar() {
             <form onSubmit={handleSearch} className="hidden md:flex relative items-center mr-2">
               <input
                 type="text"
-                placeholder="Search..."
+                placeholder={t('nav.search')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-40 lg:w-56 pl-9 pr-4 py-1.5 text-sm rounded-full border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-[#1E293B] text-slate-900 dark:text-white focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all"
@@ -72,6 +74,14 @@ function Navbar() {
               <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
             </form>
 
+            <button
+              onClick={toggleLanguage}
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1 text-slate-700 dark:text-slate-300 border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 sm:border-none sm:bg-transparent dark:sm:bg-transparent font-medium text-sm"
+              aria-label="Toggle language"
+            >
+              <Languages className="w-5 h-5" />
+              <span className="hidden sm:inline-block uppercase">{language}</span>
+            </button>
             <ThemeToggle />
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -96,7 +106,7 @@ function Navbar() {
             <form onSubmit={(e) => { handleSearch(e); setMobileOpen(false); }} className="relative mb-4 mt-2">
               <input
                 type="text"
-                placeholder="Search products..."
+                placeholder={t('nav.search_mobile')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 pr-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all"
@@ -116,7 +126,7 @@ function Navbar() {
                     : 'text-slate-600 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800'
                     }`}
                 >
-                  {link.name}
+                  {t(link.nameKey)}
                 </Link>
               );
             })}

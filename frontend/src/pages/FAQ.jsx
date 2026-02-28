@@ -1,26 +1,27 @@
 import { useState } from 'react';
 import { HelpCircle, ChevronDown, ChevronUp } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
-const faqs = [
+const getFaqs = (t) => [
     {
-        question: "What are your operating hours?",
-        answer: "We are open from Saturday to Thursday, 8:00 AM to 10:00 PM. On Fridays, we open from 3:00 PM to 10:00 PM."
+        question: t('faq.items.q1.q'),
+        answer: t('faq.items.q1.a')
     },
     {
-        question: "Do you offer home delivery?",
-        answer: "Yes, we offer home delivery within the local Sirajganj area. Please call our contact number or message us on WhatsApp with your prescription to arrange delivery."
+        question: t('faq.items.q2.q'),
+        answer: t('faq.items.q2.a')
     },
     {
-        question: "Do I need a prescription to buy medicines?",
-        answer: "A valid prescription is required for all prescription-only medicines (POM), such as antibiotics and specialized treatments. Over-the-counter (OTC) medicines like paracetamol or vitamins can be purchased without one."
+        question: t('faq.items.q3.q'),
+        answer: t('faq.items.q3.a')
     },
     {
-        question: "What is your return policy?",
-        answer: "For safety and hygiene reasons, we only accept returns on unsealed, unbroken items up to 3 days after purchase with the original receipt. Cold-chain items (like insulin or vaccines) cannot be returned."
+        question: t('faq.items.q4.q'),
+        answer: t('faq.items.q4.a')
     },
     {
-        question: "Can I pre-order medicines that are out of stock?",
-        answer: "Absolutely. If a medicine is out of stock, we can order it specially for you from our distributors. It typically takes 1-2 business days to arrive."
+        question: t('faq.items.q5.q'),
+        answer: t('faq.items.q5.a')
     }
 ];
 
@@ -42,7 +43,7 @@ function FAQItem({ question, answer }) {
             </button>
 
             <div
-                className={`px-5 pb-5 text-slate-600 dark:text-slate-400 leading-relaxed transition-all duration-300 ease-in-out ${isOpen ? 'opacity-100 max-h-96' : 'opacity-0 max-h-0 pb-0 overflow-hidden'
+                className={`px-5 text-slate-600 dark:text-slate-400 leading-relaxed transition-all duration-300 ease-in-out ${isOpen ? 'opacity-100 max-h-96 pb-5' : 'opacity-0 max-h-0 pb-0 overflow-hidden'
                     }`}
             >
                 <div className="pt-2 border-t border-gray-100 dark:border-slate-800/50 mt-2">
@@ -54,6 +55,8 @@ function FAQItem({ question, answer }) {
 }
 
 function FAQ() {
+    const { t } = useLanguage();
+    const faqs = getFaqs(t);
     return (
         <>
             <section className="bg-white dark:bg-[#0F172A] border-b border-gray-100 dark:border-slate-800">
@@ -62,14 +65,14 @@ function FAQ() {
                         <div className="inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-full border border-primary-200 dark:border-primary-800 bg-primary-50 dark:bg-primary-900/30 mb-6">
                             <HelpCircle className="w-3.5 h-3.5 text-primary-600 dark:text-primary-400" />
                             <span className="text-xs font-medium text-primary-700 dark:text-primary-400">
-                                Frequently Asked Questions
+                                {t('faq.tag')}
                             </span>
                         </div>
                         <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight">
-                            How can we <span className="text-primary-600 dark:text-primary-400">Help You?</span>
+                            {t('faq.title_1')} <span className="text-primary-600 dark:text-primary-400">{t('faq.title_2')}</span>
                         </h1>
                         <p className="mt-6 text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-                            Find answers to common questions about our services, prescriptions, and store policies.
+                            {t('faq.desc')}
                         </p>
                     </div>
                 </div>
@@ -85,7 +88,7 @@ function FAQ() {
 
                     <div className="mt-12 text-center">
                         <p className="text-slate-600 dark:text-slate-400">
-                            Still have questions? <a href="/contact" className="text-primary-600 dark:text-primary-400 font-medium hover:underline">Contact us</a> directly.
+                            {t('faq.more.q')} <a href="/contact" className="text-primary-600 dark:text-primary-400 font-medium hover:underline">{t('faq.more.action')}</a> {t('faq.more.suffix')}
                         </p>
                     </div>
                 </div>

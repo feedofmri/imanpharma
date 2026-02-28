@@ -1,8 +1,10 @@
 import { MapPin, MessageCircle, Upload, CheckCircle2, Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 function Hero() {
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -35,26 +37,25 @@ function Hero() {
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary-200 dark:border-primary-800 bg-primary-50 dark:bg-primary-900/30 mb-6">
               <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
               <span className="text-xs font-medium text-primary-700 dark:text-primary-400">
-                Open 7 Days a Week
+                {t('home.hero.open')}
               </span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight">
-              Your Trusted{' '}
-              <span className="text-primary-600 dark:text-primary-400">Health Partner</span>{' '}
-              in Sirajganj
+              {t('home.hero.title_1')}{' '}
+              <span className="text-primary-600 dark:text-primary-400">{t('home.hero.title_highlight')}</span>{' '}
+              {t('home.hero.title_2')}
             </h1>
 
             <p className="mt-6 text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-lg">
-              M/S Iman Pharmacy provides 100% authentic medicines, expert pharmaceutical advice, and
-              reliable health solutions for the entire Sirajganj community.
+              {t('home.hero.description')}
             </p>
 
             <form onSubmit={handleSearch} className="mt-8 relative max-w-lg">
               <div className="flex items-center bg-white dark:bg-[#1E293B] rounded-2xl p-2 pl-4 shadow-lg shadow-slate-200/50 dark:shadow-none border border-gray-100 dark:border-slate-800 focus-within:ring-2 focus-within:ring-primary-500/50 focus-within:border-primary-500 transition-all">
                 <input
                   type="text"
-                  placeholder="Search for medicines, devices..."
+                  placeholder={t('home.hero.search_placeholder')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full bg-transparent border-none outline-none focus:ring-0 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 px-3 py-3"
@@ -78,10 +79,10 @@ function Hero() {
             <div className="relative bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-slate-800/80 rounded-3xl p-8 shadow-2xl shadow-slate-200/50 dark:shadow-none">
               <div className="mb-6">
                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
-                  Have a Prescription?
+                  {t('home.hero.have_prescription')}
                 </h3>
                 <p className="text-slate-600 dark:text-slate-400 text-sm">
-                  Upload it securely and let our pharmacists prepare your order for quick pickup or delivery.
+                  {t('home.hero.upload_desc')}
                 </p>
               </div>
 
@@ -100,10 +101,10 @@ function Hero() {
                   <Upload className="w-8 h-8 text-primary-600 dark:text-primary-400" />
                 </div>
                 <p className="text-slate-900 dark:text-white font-medium mb-1 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
-                  Click to upload or drag & drop
+                  {t('home.hero.click_upload')}
                 </p>
                 <p className="text-slate-500 dark:text-slate-500 text-xs">
-                  JPG, PNG or PDF (max. 10MB)
+                  {t('home.hero.file_types')}
                 </p>
               </div>
 
@@ -111,12 +112,12 @@ function Hero() {
                 <div className="flex items-center justify-center gap-3 text-xs font-medium text-slate-500 dark:text-slate-400">
                   <div className="flex items-center gap-1.5">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                    <span>Verified Secure</span>
+                    <span>{t('home.hero.verified')}</span>
                   </div>
                   <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-slate-600"></span>
                   <div className="flex items-center gap-1.5">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                    <span>Fast Processing</span>
+                    <span>{t('home.hero.fast')}</span>
                   </div>
                 </div>
               </div>

@@ -2,16 +2,19 @@ import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail } from 'lucide-react';
 import logoDark from '../assets/logo/Logo Dark.png';
 import logoWhite from '../assets/logo/Logo White.png';
+import { useLanguage } from '../contexts/LanguageContext';
 
-const quickLinks = [
-  { name: 'Home', path: '/' },
-  { name: 'About Us', path: '/about' },
-  { name: 'Services', path: '/services' },
-  { name: 'Contact', path: '/contact' },
+const getQuickLinks = (t) => [
+  { name: t('nav.home'), path: '/' },
+  { name: t('nav.about'), path: '/about' },
+  { name: t('nav.services'), path: '/services' },
+  { name: t('nav.contact'), path: '/contact' },
 ];
 
 function Footer() {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
+  const quickLinks = getQuickLinks(t);
 
   return (
     <footer className="bg-gray-50 dark:bg-slate-900 border-t border-gray-100 dark:border-slate-800">
@@ -26,15 +29,14 @@ function Footer() {
               </div>
             </div>
             <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-              Your trusted health partner in Sirajganj. Providing authentic medicines and expert
-              pharmaceutical advice to the community since day one.
+              {t('footer.description')}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
             <h3 className="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-wider mb-4">
-              Quick Links
+              {t('footer.quickLinks')}
             </h3>
             <ul className="space-y-2.5">
               {quickLinks.map((link) => (
@@ -53,13 +55,13 @@ function Footer() {
           {/* Contact Info */}
           <div>
             <h3 className="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-wider mb-4">
-              Contact
+              {t('footer.contact')}
             </h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-primary-600 dark:text-primary-400 mt-0.5 shrink-0" />
                 <span className="text-sm text-slate-600 dark:text-slate-400">
-                  Sirajganj Road, Ullapara, Sirajganj
+                  {t('contact.address_val')}
                 </span>
               </li>
               <li className="flex items-center gap-3">
@@ -87,10 +89,10 @@ function Footer() {
         {/* Bottom Bar */}
         <div className="mt-10 pt-6 border-t border-gray-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-slate-500 dark:text-slate-500">
-            © {currentYear} M/S Iman Pharmacy. All rights reserved.
+            © {currentYear} {t('footer.rights')}
           </p>
           <p className="text-xs text-slate-500 dark:text-slate-500">
-            Managing Director: <span className="font-medium text-slate-700 dark:text-slate-300">Md. Shofiqul Islam</span>
+            {t('footer.director')}: <span className="font-medium text-slate-700 dark:text-slate-300">{t('about.director_name')}</span>
           </p>
         </div>
       </div>

@@ -1,0 +1,282 @@
+{
+    "nav": {
+        "home": "Home",
+        "products": "Products",
+        "services": "Services",
+        "about": "About",
+        "faq": "FAQ",
+        "contact": "Contact",
+        "search": "Search...",
+        "search_mobile": "Search products..."
+    },
+    "footer": {
+        "description": "Your trusted health partner in Sirajganj. Providing authentic medicines and expert pharmaceutical advice to the community since day one.",
+        "quickLinks": "Quick Links",
+        "contact": "Contact",
+        "rights": "All rights reserved.",
+        "director": "Managing Director"
+    },
+    "home": {
+        "hero": {
+            "open": "Open 7 Days a Week",
+            "title_1": "Your Trusted",
+            "title_highlight": "Health Partner",
+            "title_2": "in Sirajganj",
+            "description": "M/S Iman Pharmacy provides 100% authentic medicines, expert pharmaceutical advice, and reliable health solutions for the entire Sirajganj community.",
+            "search_placeholder": "Search for medicines, devices...",
+            "have_prescription": "Have a Prescription?",
+            "upload_desc": "Upload it securely and let our pharmacists prepare your order for quick pickup or delivery.",
+            "click_upload": "Click to upload or drag & drop",
+            "file_types": "JPG, PNG or PDF (max. 10MB)",
+            "verified": "Verified Secure",
+            "fast": "Fast Processing"
+        },
+        "why": {
+            "title_1": "Why Choose",
+            "title_highlight": "Iman Pharmacy?",
+            "description": "Trusted by hundreds of families in Sirajganj for genuine medicines and caring service.",
+            "auth_title": "100% Authentic",
+            "auth_desc": "Every medicine sourced directly from authorized distributors. No compromises on quality.",
+            "expert_title": "Expert Advice",
+            "expert_desc": "Our trained pharmacists provide professional guidance on medications and dosage.",
+            "open_title": "Open 7 Days",
+            "open_desc": "We are here for you every day of the week, because health emergencies don't wait."
+        },
+        "featured": {
+            "title_1": "Featured",
+            "title_highlight": "Products",
+            "description": "A selection of our most popular medicines and healthcare items.",
+            "in_stock": "In Stock",
+            "out_of_stock": "Out of Stock",
+            "details": "Details",
+            "browse": "Browse Full Catalog"
+        },
+        "services": {
+            "title_1": "Our",
+            "title_highlight": "Services",
+            "description": "From prescription medicines to baby care — we have you covered.",
+            "coming_soon": "Coming Soon",
+            "rx_title": "Prescription Medicine",
+            "rx_desc": "Full range of prescription drugs from trusted national and international brands.",
+            "baby_title": "Baby Care",
+            "baby_desc": "Complete baby care essentials — formulas, diapers, skincare, and hygiene products.",
+            "delivery_title": "Home Delivery",
+            "delivery_desc": "Coming soon — doorstep delivery for your medicines and healthcare products.",
+            "view_all": "View all services"
+        },
+        "explore": {
+            "p_title": "Explore Our Products",
+            "p_desc": "Browse our comprehensive catalog of authentic medicines, healthcare items, and medical devices.",
+            "p_btn": "View Products",
+            "q_title": "Have Questions?",
+            "q_desc": "Find answers to common questions about our delivery, prescription requirements, and return policies.",
+            "q_btn": "Read FAQ"
+        },
+        "cta": {
+            "title": "Need Immediate Assistance?",
+            "desc": "Reach out to us directly via WhatsApp or visit our pharmacy in person.",
+            "location": "Find Location",
+            "whatsapp": "WhatsApp Now"
+        }
+    },
+    "about": {
+        "tag": "About Us",
+        "title_1": "Built on",
+        "title_2": "Trust",
+        "title_3": ", Driven by",
+        "title_4": "Care",
+        "desc": "M/S Iman Pharmacy was founded with a simple yet powerful vision — to provide the community of Sirajganj with access to 100% authentic medicines, reliable healthcare products, and compassionate pharmaceutical advice.",
+        "vision_title": "Our Vision",
+        "vision_desc": "To become the most trusted pharmacy in Sirajganj and surrounding areas by prioritizing authenticity, accessibility, and compassionate customer care in everything we do.",
+        "mission_title": "Our Mission",
+        "mission_desc": "To serve every customer with integrity, ensuring that no one in our community goes without essential medicines. We believe healthcare is a right, not a privilege.",
+        "director_tag": "Managing Director",
+        "director_name": "Md. Shofiqul Islam",
+        "director_role": "Founder & Managing Director, M/S Iman Pharmacy",
+        "director_desc_1": "Md. Shofiqul Islam established M/S Iman Pharmacy with the core belief that every individual in Sirajganj deserves access to genuine, affordable medicines. His dedication to the community and his unwavering commitment to quality have made Iman Pharmacy a household name.",
+        "director_desc_2": "Under his leadership, the pharmacy has grown to serve hundreds of families, offering not just medicines but also trusted pharmaceutical guidance. His vision is to expand services to include home delivery and digital prescriptions for greater convenience.",
+        "legal_title": "Registered & Compliant",
+        "legal_desc": "M/S Iman Pharmacy operates under strict legal and professional guidelines. We are fully registered with the relevant authorities, ensuring that our operations meet the highest standards of transparency, safety, and legality.",
+        "legal_badge": "Verified Business Entity",
+        "trade_title": "Trade License",
+        "trade_desc": "Official business registration authorized by the local government.",
+        "drug_title": "Drug License",
+        "drug_desc": "Authorized by the Directorate General of Drug Administration (DGDA).",
+        "pcb_title": "PCB Certificate",
+        "pcb_desc": "Registered with the Pharmacy Council of Bangladesh (PCB)."
+    },
+    "services": {
+        "tag": "Our Services",
+        "title_1": "Everything You Need,",
+        "title_2": "Under One Roof",
+        "desc": "From chronic illness management to everyday health essentials — we carry a comprehensive range of pharmaceutical products and healthcare supplies.",
+        "cat": {
+            "chronic": {
+                "title": "Chronic Illness Medicine",
+                "desc": "Complete range of medicines for diabetes, hypertension, heart disease, thyroid conditions, and other chronic illnesses.",
+                "tags": [
+                    "Diabetes Care",
+                    "Blood Pressure",
+                    "Heart Health",
+                    "Thyroid Meds"
+                ]
+            },
+            "otc": {
+                "title": "OTC Drugs",
+                "desc": "Over-the-counter medicines for common ailments like headache, fever, cold, cough, and digestive issues.",
+                "tags": [
+                    "Pain Relief",
+                    "Cold & Flu",
+                    "Antacids",
+                    "Vitamins"
+                ]
+            },
+            "surgical": {
+                "title": "Surgical Supplies",
+                "desc": "Bandages, gauze, syringes, surgical tapes, and other essential surgical and wound-care supplies.",
+                "tags": [
+                    "Bandages",
+                    "Syringes",
+                    "Surgical Tape",
+                    "Wound Care"
+                ]
+            },
+            "care": {
+                "title": "Personal Care",
+                "desc": "Skincare, haircare, oral hygiene, and grooming products from trusted local and international brands.",
+                "tags": [
+                    "Skincare",
+                    "Haircare",
+                    "Oral Care",
+                    "Hygiene"
+                ]
+            },
+            "firstaid": {
+                "title": "First Aid",
+                "desc": "Ready-to-use first aid kits, antiseptics, thermometers, BP monitors, and emergency health essentials.",
+                "tags": [
+                    "First Aid Kits",
+                    "Antiseptics",
+                    "Thermometers",
+                    "BP Monitors"
+                ]
+            }
+        },
+        "upload_title": "Upload Your Prescription",
+        "upload_desc": "Upload it securely and let our pharmacists prepare your order for quick pickup or delivery.",
+        "upload_cta": "Click to upload or drag & drop",
+        "upload_types": "JPG, PNG or PDF (max. 10MB)",
+        "whatsapp_or": "Or send your prescription via WhatsApp:",
+        "whatsapp_btn": "Message on WhatsApp"
+    },
+    "contact": {
+        "tag": "Contact & Location",
+        "title_1": "Get in",
+        "title_2": "Touch",
+        "desc": "Have questions about medicines or need pharmaceutical advice? Reach out to us — we're always happy to help.",
+        "methods": {
+            "phone_title": "Phone",
+            "phone_desc": "Call us directly for inquiries or medicine availability.",
+            "phone_btn": "Call Now",
+            "wa_title": "WhatsApp",
+            "wa_desc": "Send your prescriptions or ask questions via WhatsApp.",
+            "wa_btn": "Chat on WhatsApp",
+            "email_title": "Email",
+            "email_desc": "Email us for business inquiries or partnership proposals.",
+            "email_btn": "Send Email"
+        },
+        "loc_title_1": "Our",
+        "loc_title_2": "Location",
+        "address_title": "Address",
+        "address_val": "Sirajganj Road, Ullapara, Sirajganj",
+        "hours_title": "Opening Hours",
+        "hours_1": "Saturday – Thursday: 8:00 AM – 10:00 PM",
+        "hours_2": "Friday: 3:00 PM – 10:00 PM",
+        "dir_title": "Directions",
+        "dir_desc": "Located on the main Sirajganj Road in Ullapara town center. Easily accessible from the bus stand and market area."
+    },
+    "faq": {
+        "tag": "Frequently Asked Questions",
+        "title_1": "How can we",
+        "title_2": "Help You?",
+        "desc": "Find answers to common questions about our services, prescriptions, and store policies.",
+        "still_have": "Still have questions?",
+        "contact_us": "Contact us",
+        "directly": "directly.",
+        "q1": {
+            "q": "What are your operating hours?",
+            "a": "We are open from Saturday to Thursday, 8:00 AM to 10:00 PM. On Fridays, we open from 3:00 PM to 10:00 PM."
+        },
+        "q2": {
+            "q": "Do you offer home delivery?",
+            "a": "Yes, we offer home delivery within the local Sirajganj area. Please call our contact number or message us on WhatsApp with your prescription to arrange delivery."
+        },
+        "q3": {
+            "q": "Do I need a prescription to buy medicines?",
+            "a": "A valid prescription is required for all prescription-only medicines (POM), such as antibiotics and specialized treatments. Over-the-counter (OTC) medicines like paracetamol or vitamins can be purchased without one."
+        },
+        "q4": {
+            "q": "What is your return policy?",
+            "a": "For safety and hygiene reasons, we only accept returns on unsealed, unbroken items up to 3 days after purchase with the original receipt. Cold-chain items (like insulin or vaccines) cannot be returned."
+        },
+        "q5": {
+            "q": "Can I pre-order medicines that are out of stock?",
+            "a": "Absolutely. If a medicine is out of stock, we can order it specially for you from our distributors. It typically takes 1-2 business days to arrive."
+        }
+    },
+    "order": {
+        "success_title": "Order Received!",
+        "success_desc_1": "Thank you for your order. Our pharmacists are reviewing your prescription and will contact you shortly at",
+        "success_desc_2": "to confirm the delivery details.",
+        "success_btn": "Return to Home",
+        "title_1": "Complete Your",
+        "title_2": "Order",
+        "desc": "Please provide your delivery details so we can process your prescription.",
+        "form": {
+            "name": "Full Name",
+            "name_ph": "John Doe",
+            "phone": "Phone Number",
+            "phone_ph": "01XXXXXXXXX",
+            "address": "Delivery Address",
+            "address_ph": "House/Apt, Street, Area, Sirajganj",
+            "notes": "Additional Notes (Optional)",
+            "notes_ph": "Any specific instructions for delivery?",
+            "btn_processing": "Processing...",
+            "btn_confirm": "Confirm Order"
+        },
+        "sidebar": {
+            "rx_title": "Attached Prescription",
+            "rx_success": "Uploaded successfully",
+            "next_title": "What happens next?",
+            "l1": "Our pharmacist will review the prescription.",
+            "l2": "We will call you to confirm availability and total price.",
+            "l3": "The order will be dispatched to your provided address."
+        }
+    },
+    "products": {
+        "tag": "Medicines & Healthcare",
+        "title_1": "Our",
+        "title_2": "Products",
+        "desc": "Explore our wide range of reliable medicines, healthcare products, and medical devices.",
+        "search_placeholder": "Search products...",
+        "cat": {
+            "all": "All",
+            "medicines": "Medicines",
+            "devices": "Medical Devices",
+            "antibiotics": "Antibiotics",
+            "supplements": "Supplements"
+        },
+        "empty": "No products found matching your criteria.",
+        "clear_filter": "Clear Filters"
+    },
+    "product": {
+        "not_found": "Product Not Found",
+        "not_found_desc": "We couldn't find the product you're looking for. It might have been removed or the link is incorrect.",
+        "back_catalog": "Back to catalog",
+        "desc_label": "Description",
+        "manufacturer": "Manufacturer",
+        "pack_size": "Pack Size",
+        "add_cart": "Add to Cart",
+        "out_of_stock_btn": "Out of Stock"
+    }
+}

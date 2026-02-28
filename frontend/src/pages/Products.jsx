@@ -2,15 +2,17 @@ import { useState, useEffect } from 'react';
 import { Pill, Search, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { products } from '../data/products';
-
-const categories = ['All', 'Medicines', 'Medical Devices', 'Antibiotics', 'Supplements'];
+import { useLanguage } from '../contexts/LanguageContext';
 
 function Products() {
+    const { t } = useLanguage();
     const [searchParams] = useSearchParams();
     const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 18;
+
+    const categories = ['All', 'Medicines', 'Medical Devices', 'Antibiotics', 'Supplements'];
 
     // Reset page to 1 whenever filters change
     useEffect(() => {
@@ -37,6 +39,15 @@ function Products() {
         currentPage * itemsPerPage
     );
 
+    const getCategoryTranslation = (cat) => {
+        if (cat === 'All') return t('products.cat.all');
+        if (cat === 'Medicines') return t('products.cat.medicines');
+        if (cat === 'Antibiotics') return t('products.cat.antibiotics');
+        if (cat === 'Medical Devices') return t('products.cat.devices');
+        if (cat === 'Supplements') return t('products.cat.supplements');
+        return cat;
+    };
+
     return (
         <>
             {/* Page Header */}
@@ -46,14 +57,14 @@ function Products() {
                         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary-200 dark:border-primary-800 bg-primary-50 dark:bg-primary-900/30 mb-6">
                             <Pill className="w-3.5 h-3.5 text-primary-600 dark:text-primary-400" />
                             <span className="text-xs font-medium text-primary-700 dark:text-primary-400">
-                                Medicines & Healthcare
+                                {t('products.tag')}
                             </span>
                         </div>
                         <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight">
-                            Our <span className="text-primary-600 dark:text-primary-400">Products</span>
+                            {t('products.title_1')} <span className="text-primary-600 dark:text-primary-400">{t('products.title_2')}</span>
                         </h1>
                         <p className="mt-6 text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-                            Explore our wide range of reliable medicines, healthcare products, and medical devices.
+                            {t('products.desc')}
                         </p>
                     </div>
                 </div>
@@ -72,7 +83,7 @@ function Products() {
                             </div>
                             <input
                                 type="text"
-                                placeholder="Search products..."
+                                placeholder={t('products.search_placeholder')}
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                                 className="pl-10 block w-full rounded-xl border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm py-2.5"
@@ -91,7 +102,7 @@ function Products() {
                                         : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700'
                                         }`}
                                 >
-                                    {category}
+                                    {getCategoryTranslation(category)}
                                 </button>
                             ))}
                         </div>
@@ -107,15 +118,15 @@ function Products() {
                             >
                                 <div className="flex justify-between items-start mb-4">
                                     <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">
-                                        {product.category}
+                                        {getCategoryTranslation(product.category)}
                                     </span>
                                     {product.inStock ? (
                                         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400">
-                                            In Stock
+                                            {t('home.featured.in_stock')}
                                         </span>
                                     ) : (
                                         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400">
-                                            Out of Stock
+                                            {t('home.featured.out_of_stock')}
                                         </span>
                                     )}
                                 </div>
@@ -132,7 +143,7 @@ function Products() {
                                         {product.price}
                                     </span>
                                     <button className="px-4 py-2 text-sm font-medium text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 rounded-lg group-hover:bg-primary-100 dark:group-hover:bg-primary-900/50 transition-colors">
-                                        Details
+                                        {t('home.featured.details')}
                                     </button>
                                 </div>
                             </Link>
@@ -177,12 +188,12 @@ function Products() {
 
                     {filteredProducts.length === 0 && (
                         <div className="text-center py-20">
-                            <p className="text-slate-500 dark:text-slate-400">No products found matching your criteria.</p>
+                            <p className="text-slate-500 dark:text-slate-400">{t('products.empty')}</p>
                             <button
                                 onClick={() => { setSearchTerm(''); setSelectedCategory('All'); }}
                                 className="mt-4 text-primary-600 dark:text-primary-400 hover:underline font-medium"
                             >
-                                Clear Filters
+                                {t('products.clear_filter')}
                             </button>
                         </div>
                     )}

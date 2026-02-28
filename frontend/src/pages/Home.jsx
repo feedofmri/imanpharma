@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 import FeatureCard from '../components/FeatureCard';
 import { products } from '../data/products';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const stats = [
   {
@@ -45,6 +46,7 @@ const services = [
 ];
 
 function Home() {
+  const { t } = useLanguage();
   const featuredProducts = products.slice(0, 9);
 
   return (
@@ -57,16 +59,31 @@ function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
-              Why Choose <span className="text-primary-600 dark:text-primary-400">Iman Pharmacy?</span>
+              {t('home.why.title_1')} <span className="text-primary-600 dark:text-primary-400">{t('home.why.title_highlight')}</span>
             </h2>
             <p className="mt-3 text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
-              Trusted by hundreds of families in Sirajganj for genuine medicines and caring service.
+              {t('home.why.description')}
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {stats.map((stat) => (
-              <FeatureCard key={stat.title} {...stat} />
-            ))}
+            <FeatureCard
+              icon={ShieldCheck}
+              title={t('home.why.auth_title')}
+              description={t('home.why.auth_desc')}
+              accent={true}
+            />
+            <FeatureCard
+              icon={HeartHandshake}
+              title={t('home.why.expert_title')}
+              description={t('home.why.expert_desc')}
+              accent={false}
+            />
+            <FeatureCard
+              icon={Clock}
+              title={t('home.why.open_title')}
+              description={t('home.why.open_desc')}
+              accent={false}
+            />
           </div>
         </div>
       </section>
@@ -76,10 +93,10 @@ function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
-              Featured <span className="text-primary-600 dark:text-primary-400">Products</span>
+              {t('home.featured.title_1')} <span className="text-primary-600 dark:text-primary-400">{t('home.featured.title_highlight')}</span>
             </h2>
             <p className="mt-3 text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
-              A selection of our most popular medicines and healthcare items.
+              {t('home.featured.description')}
             </p>
           </div>
 
@@ -96,11 +113,11 @@ function Home() {
                   </span>
                   {product.inStock ? (
                     <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400">
-                      In Stock
+                      {t('home.featured.in_stock')}
                     </span>
                   ) : (
                     <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400">
-                      Out of Stock
+                      {t('home.featured.out_of_stock')}
                     </span>
                   )}
                 </div>
@@ -117,7 +134,7 @@ function Home() {
                     {product.price}
                   </span>
                   <button className="px-4 py-2 text-sm font-medium text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 rounded-lg group-hover:bg-primary-100 dark:group-hover:bg-primary-900/50 transition-colors">
-                    Details
+                    {t('home.featured.details')}
                   </button>
                 </div>
               </Link>
@@ -129,7 +146,7 @@ function Home() {
               to="/products"
               className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 font-semibold hover:bg-primary-100 dark:hover:bg-primary-900/40 transition-colors border border-primary-200 dark:border-primary-800/50"
             >
-              Browse Full Catalog <ArrowRight className="w-5 h-5" />
+              {t('home.featured.browse')} <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
         </div>
@@ -140,41 +157,44 @@ function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
-              Our <span className="text-primary-600 dark:text-primary-400">Services</span>
+              {t('home.services.title_1')} <span className="text-primary-600 dark:text-primary-400">{t('home.services.title_highlight')}</span>
             </h2>
             <p className="mt-3 text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
-              From prescription medicines to baby care — we have you covered.
+              {t('home.services.description')}
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service) => (
-              <div
-                key={service.title}
-                className="relative p-6 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:shadow-lg transition-shadow duration-200"
-              >
-                {service.comingSoon && (
-                  <span className="absolute top-4 right-4 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-800">
-                    Coming Soon
-                  </span>
-                )}
-                <div className="w-12 h-12 rounded-lg bg-gray-100 dark:bg-slate-700 flex items-center justify-center mb-4">
-                  <service.icon className="w-6 h-6 text-primary-600 dark:text-primary-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  {service.description}
-                </p>
+            <div className="relative p-6 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:shadow-lg transition-shadow duration-200">
+              <div className="w-12 h-12 rounded-lg bg-gray-100 dark:bg-slate-700 flex items-center justify-center mb-4">
+                <Pill className="w-6 h-6 text-primary-600 dark:text-primary-400" />
               </div>
-            ))}
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">{t('home.services.rx_title')}</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{t('home.services.rx_desc')}</p>
+            </div>
+            <div className="relative p-6 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:shadow-lg transition-shadow duration-200">
+              <div className="w-12 h-12 rounded-lg bg-gray-100 dark:bg-slate-700 flex items-center justify-center mb-4">
+                <Baby className="w-6 h-6 text-primary-600 dark:text-primary-400" />
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">{t('home.services.baby_title')}</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{t('home.services.baby_desc')}</p>
+            </div>
+            <div className="relative p-6 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:shadow-lg transition-shadow duration-200">
+              <span className="absolute top-4 right-4 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-800">
+                {t('home.services.coming_soon')}
+              </span>
+              <div className="w-12 h-12 rounded-lg bg-gray-100 dark:bg-slate-700 flex items-center justify-center mb-4">
+                <Truck className="w-6 h-6 text-primary-600 dark:text-primary-400" />
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">{t('home.services.delivery_title')}</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{t('home.services.delivery_desc')}</p>
+            </div>
           </div>
           <div className="mt-12 text-center">
             <Link
               to="/services"
               className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-medium hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
             >
-              View all services <ArrowRight className="w-4 h-4" />
+              {t('home.services.view_all')} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
@@ -190,31 +210,31 @@ function Home() {
           <div className="grid md:grid-cols-2 gap-8">
             <div className="p-8 rounded-2xl bg-primary-50 dark:bg-primary-900/20 border border-primary-100 dark:border-primary-800/50">
               <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-                Explore Our Products
+                {t('home.explore.p_title')}
               </h3>
               <p className="text-slate-600 dark:text-slate-400 mb-6">
-                Browse our comprehensive catalog of authentic medicines, healthcare items, and medical devices.
+                {t('home.explore.p_desc')}
               </p>
               <Link
                 to="/products"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary-600 dark:bg-primary-500 text-white font-medium hover:bg-primary-700 dark:hover:bg-primary-600 transition-colors"
               >
-                View Products
+                {t('home.explore.p_btn')}
               </Link>
             </div>
 
             <div className="p-8 rounded-2xl bg-gray-50 dark:bg-slate-800/50 border border-gray-200 dark:border-slate-700">
               <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-                Have Questions?
+                {t('home.explore.q_title')}
               </h3>
               <p className="text-slate-600 dark:text-slate-400 mb-6">
-                Find answers to common questions about our delivery, prescription requirements, and return policies.
+                {t('home.explore.q_desc')}
               </p>
               <Link
                 to="/faq"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-gray-200 dark:border-slate-700 font-medium hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors"
               >
-                Read FAQ
+                {t('home.explore.q_btn')}
               </Link>
             </div>
           </div>
@@ -227,10 +247,10 @@ function Home() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left">
               <h2 className="text-2xl font-bold text-white mb-2">
-                Need Immediate Assistance?
+                {t('home.cta.title')}
               </h2>
               <p className="text-primary-100 dark:text-primary-200">
-                Reach out to us directly via WhatsApp or visit our pharmacy in person.
+                {t('home.cta.desc')}
               </p>
             </div>
             <div className="flex flex-wrap justify-center gap-4">
@@ -239,7 +259,7 @@ function Home() {
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white dark:bg-[#1E293B] text-primary-600 dark:text-primary-400 font-semibold text-sm shadow-lg hover:bg-gray-50 dark:hover:bg-slate-800 transition-all duration-200"
               >
                 <MapPin className="w-4 h-4" />
-                Find Location
+                {t('home.cta.location')}
               </a>
               <a
                 href="https://wa.me/8801716982965"
@@ -248,7 +268,7 @@ function Home() {
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-white dark:border-slate-700 text-white font-semibold text-sm hover:bg-primary-700 dark:hover:bg-slate-800 transition-all duration-200"
               >
                 <MessageCircle className="w-4 h-4" />
-                WhatsApp Now
+                {t('home.cta.whatsapp')}
               </a>
             </div>
           </div>

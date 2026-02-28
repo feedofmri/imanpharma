@@ -1,34 +1,37 @@
 import { Phone, MessageCircle, Mail, MapPin, Clock, Navigation } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
-const contactMethods = [
+const getContactMethods = (t) => [
   {
     icon: Phone,
-    title: 'Phone',
+    title: t('contact.methods.phone_title'),
     value: '+880 1716 982965',
     action: 'tel:+8801716982965',
-    actionLabel: 'Call Now',
-    description: 'Call us directly for inquiries or medicine availability.',
+    actionLabel: t('contact.methods.phone_btn'),
+    description: t('contact.methods.phone_desc'),
   },
   {
     icon: MessageCircle,
-    title: 'WhatsApp',
+    title: t('contact.methods.wa_title'),
     value: '+880 1716 982965',
     action: 'https://wa.me/8801716982965',
-    actionLabel: 'Chat on WhatsApp',
-    description: 'Send your prescriptions or ask questions via WhatsApp.',
+    actionLabel: t('contact.methods.wa_btn'),
+    description: t('contact.methods.wa_desc'),
     external: true,
   },
   {
     icon: Mail,
-    title: 'Email',
+    title: t('contact.methods.email_title'),
     value: 'info@imanpharma.com',
     action: 'mailto:info@imanpharma.com',
-    actionLabel: 'Send Email',
-    description: 'Email us for business inquiries or partnership proposals.',
+    actionLabel: t('contact.methods.email_btn'),
+    description: t('contact.methods.email_desc'),
   },
 ];
 
 function Contact() {
+  const { t } = useLanguage();
+  const contactMethods = getContactMethods(t);
   return (
     <>
       {/* Page Header */}
@@ -38,15 +41,14 @@ function Contact() {
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary-200 dark:border-primary-800 bg-primary-50 dark:bg-primary-900/30 mb-6">
               <MapPin className="w-3.5 h-3.5 text-primary-600 dark:text-primary-400" />
               <span className="text-xs font-medium text-primary-700 dark:text-primary-400">
-                Contact & Location
+                {t('contact.tag')}
               </span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight">
-              Get in <span className="text-primary-600 dark:text-primary-400">Touch</span>
+              {t('contact.title_1')} <span className="text-primary-600 dark:text-primary-400">{t('contact.title_2')}</span>
             </h1>
             <p className="mt-6 text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-              Have questions about medicines or need pharmaceutical advice? Reach out to us — we're
-              always happy to help.
+              {t('contact.desc')}
             </p>
           </div>
         </div>
@@ -94,7 +96,7 @@ function Contact() {
             {/* Address Details */}
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-6">
-                Our <span className="text-primary-600 dark:text-primary-400">Location</span>
+                {t('contact.loc_title_1')} <span className="text-primary-600 dark:text-primary-400">{t('contact.loc_title_2')}</span>
               </h2>
 
               <div className="space-y-5">
@@ -103,9 +105,9 @@ function Contact() {
                     <MapPin className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-slate-900 dark:text-white mb-1">Address</h4>
+                    <h4 className="font-semibold text-slate-900 dark:text-white mb-1">{t('contact.address_title')}</h4>
                     <p className="text-sm text-slate-600 dark:text-slate-400">
-                      Sirajganj Road, Ullapara, Sirajganj
+                      {t('contact.address_val')}
                     </p>
                   </div>
                 </div>
@@ -116,11 +118,11 @@ function Contact() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-slate-900 dark:text-white mb-1">
-                      Opening Hours
+                      {t('contact.hours_title')}
                     </h4>
                     <div className="text-sm text-slate-600 dark:text-slate-400 space-y-1">
-                      <p>Saturday – Thursday: 8:00 AM – 10:00 PM</p>
-                      <p>Friday: 3:00 PM – 10:00 PM</p>
+                      <p>{t('contact.hours_1')}</p>
+                      <p>{t('contact.hours_2')}</p>
                     </div>
                   </div>
                 </div>
@@ -131,11 +133,10 @@ function Contact() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-slate-900 dark:text-white mb-1">
-                      Directions
+                      {t('contact.dir_title')}
                     </h4>
                     <p className="text-sm text-slate-600 dark:text-slate-400">
-                      Located on the main Sirajganj Road in Ullapara town center. Easily accessible
-                      from the bus stand and market area.
+                      {t('contact.dir_desc')}
                     </p>
                   </div>
                 </div>
