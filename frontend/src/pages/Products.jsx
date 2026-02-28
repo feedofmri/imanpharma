@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Pill, Search, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { products } from '../data/products';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useData } from '../contexts/DataContext';
 
 function Products() {
     const { t } = useLanguage();
+    const { products } = useData();
     const [searchParams] = useSearchParams();
     const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
     const [selectedCategory, setSelectedCategory] = useState('All');

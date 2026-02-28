@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
-import { FileText, MapPin, Phone, User, CheckCircle2, AlertCircle, ShoppingBag } from 'lucide-react';
+import { FileText, MapPin, Phone, User, CheckCircle2, AlertCircle, ShoppingBag, Store, CreditCard } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useCart } from '../contexts/CartContext';
+import { useData } from '../contexts/DataContext';
+import { useAuth } from '../contexts/AuthContext';
 
 function OrderDetails() {
     const { t } = useLanguage();
     const { cartItems, clearCart } = useCart();
+    const { branches, addOrder } = useData();
+    const { user } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
     const [fileName, setFileName] = useState('');
@@ -15,7 +19,9 @@ function OrderDetails() {
         name: '',
         phone: '',
         address: '',
-        notes: ''
+        notes: '',
+        branch: '',
+        paymentMethod: 'cod'
     });
 
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -48,8 +54,24 @@ function OrderDetails() {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Simulate API call for order submission
+        // Build a new order and persist it
+        const newOrder = {
+            id: `ORD-${Date.now()}`,
+            customerId: user?.id || null,
+            customerName: formData.name,
+            phone: formData.phone,
+            address: formData.address,
+            total: `৳ ${total.toFixed(2)}`,
+            status: 'Processing',
+            date: new Date().toISOString().split('T')[0],
+            items: cartItems.map(ci => ({ product: ci.product, quantity: ci.quantity })),
+            branchId: parseInt(formData.branch) || 1,
+            paymentMethod: formData.paymentMethod,
+            notes: formData.notes
+        };
+
         setTimeout(() => {
+            addOrder(newOrder);
             setIsSubmitting(false);
             setIsSuccess(true);
             clearCart();
@@ -167,6 +189,57 @@ function OrderDetails() {
                                                 className="pl-10 block w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary-500 focus:ring-primary-500 sm:text-sm py-3"
                                                 placeholder={t('order.form.address_ph')}
                                             />
+                                        </div>
+                                    </div>
+
+                                    {/* Branch Selection */}
+                                    <div>
+                                        <label htmlFor="branch" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                                            {t('order.form.branch')}
+                                        </label>
+                                        <div className="relative">
+                                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <Store className="h-5 w-5 text-gray-400 dark:text-slate-500" />
+                                            </div>
+                                            <select
+                                                name="branch"
+                                                id="branch"
+                                                required
+                                                value={formData.branch}
+                                                onChange={handleChange}
+                                                className="pl-10 block w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary-500 focus:ring-primary-500 sm:text-sm py-3 appearance-none"
+                                            >
+                                                <option value="" disabled>{t('order.form.branch_ph')}</option>
+                                                {branches.map(b => (
+                                                    <option key={b.id} value={b.id}>
+                                                        {b.name}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    {/* Payment Method Selection */}
+                                    <div>
+                                        <label htmlFor="paymentMethod" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                                            {t('order.form.payment_method')}
+                                        </label>
+                                        <div className="relative">
+                                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <CreditCard className="h-5 w-5 text-gray-400 dark:text-slate-500" />
+                                            </div>
+                                            <select
+                                                name="paymentMethod"
+                                                id="paymentMethod"
+                                                required
+                                                value={formData.paymentMethod}
+                                                onChange={handleChange}
+                                                className="pl-10 block w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary-500 focus:ring-primary-500 sm:text-sm py-3 appearance-none"
+                                            >
+                                                <option value="cod">{t('order.form.payment_cod')}</option>
+                                                <option value="bkash">{t('order.form.payment_bkash')}</option>
+                                                <option value="nagad">{t('order.form.payment_nagad')}</option>
+                                            </select>
                                         </div>
                                     </div>
 

@@ -22,6 +22,9 @@ import SellerLayout from './layouts/SellerLayout';
 import SellerDashboard from './pages/seller/Dashboard';
 import ManageProducts from './pages/seller/ManageProducts';
 import ManageOrders from './pages/seller/ManageOrders';
+import ManageManagers from './pages/seller/ManageManagers';
+import ManageBranches from './pages/seller/ManageBranches';
+import Reports from './pages/seller/Reports';
 
 function App() {
   return (
@@ -52,6 +55,9 @@ function App() {
               <Route index element={<SellerDashboard />} />
               <Route path="products" element={<ManageProducts />} />
               <Route path="orders" element={<ManageOrders />} />
+              <Route path="managers" element={<ManageManagers />} />
+              <Route path="branches" element={<ManageBranches />} />
+              <Route path="reports" element={<Reports />} />
             </Route>
           </Routes>
         </Layout>

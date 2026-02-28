@@ -1,12 +1,62 @@
-import { Plus, Edit2, Trash2 } from 'lucide-react';
-import { products } from '../../data/products';
+import { useState } from 'react';
+import { Plus, Edit2, Trash2, X } from 'lucide-react';
+import { useData } from '../../contexts/DataContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 function ManageProducts() {
+    const { products, branches, addProduct, deleteProduct } = useData();
+    const { user, isAdmin } = useAuth();
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [formData, setFormData] = useState({
+        name: '', category: 'Medicines', description: '', price: '', manufacturer: '', packSize: '', branchId: '', quantity: 1
+    });
+
+    // Manager isolation: only see products for their branch
+    const managedBranch = branches.find(b => b.managerId === user?.id);
+    const displayProducts = isAdmin ? products : products.filter(p => p.branchId === managedBranch?.id);
+
+    const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+
+    const handleCreate = (e) => {
+        e.preventDefault();
+        const newProduct = {
+            id: Date.now(),
+            name: formData.name,
+            category: formData.category,
+            description: formData.description,
+            details: '',
+            price: `৳ ${formData.price}`,
+            manufacturer: formData.manufacturer,
+            inStock: true,
+            packSize: formData.packSize,
+            branchId: parseInt(formData.branchId) || (managedBranch?.id || 1),
+            quantity: parseInt(formData.quantity) || 1
+        };
+        addProduct(newProduct);
+        setFormData({ name: '', category: 'Medicines', description: '', price: '', manufacturer: '', packSize: '', branchId: '', quantity: 1 });
+        setIsModalOpen(false);
+    };
+
+    const handleDelete = (id) => {
+        if (window.confirm('Are you sure you want to delete this product?')) {
+            deleteProduct(id);
+        }
+    };
+
+    const getBranchName = (branchId) => {
+        const branch = branches.find(b => b.id === branchId);
+        return branch ? branch.name : '—';
+    };
+
     return (
         <div className="space-y-6">
             <div className="flex sm:items-center justify-between flex-col sm:flex-row gap-4">
                 <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Manage Products</h1>
-                <button className="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-xl font-medium transition-colors cursor-pointer">
+                <button
+                    onClick={() => setIsModalOpen(true)}
+                    className="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-xl font-medium transition-colors cursor-pointer"
+                >
                     <Plus className="w-5 h-5" /> Add Product
                 </button>
             </div>
@@ -19,12 +69,13 @@ function ManageProducts() {
                                 <th scope="col" className="px-6 py-4">Product Name</th>
                                 <th scope="col" className="px-6 py-4">Category</th>
                                 <th scope="col" className="px-6 py-4">Price</th>
+                                <th scope="col" className="px-6 py-4">Branch</th>
                                 <th scope="col" className="px-6 py-4">Status</th>
                                 <th scope="col" className="px-6 py-4 text-right">Actions</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100 dark:divide-slate-800">
-                            {products.slice(0, 10).map((product) => (
+                            {displayProducts.map((product) => (
                                 <tr key={product.id} className="hover:bg-gray-50 dark:hover:bg-slate-800/30 transition-colors">
                                     <td className="px-6 py-4 font-medium text-slate-900 dark:text-white flex items-center gap-3">
                                         <div className="w-10 h-10 rounded-lg bg-gray-100 dark:bg-slate-800 flex items-center justify-center font-bold text-slate-300 dark:text-slate-600 shrink-0">
@@ -33,7 +84,10 @@ function ManageProducts() {
                                         <span className="line-clamp-1">{product.name}</span>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">{product.category}</td>
-                                    <td className="px-6 py-4 font-semibold text-slate-900 dark:text-white whitespace-nowrap">{product.price.split(' ')[0]}</td>
+                                    <td className="px-6 py-4 font-semibold text-slate-900 dark:text-white whitespace-nowrap">{product.price?.split(' ')[0] || product.price}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <span className="text-xs text-primary-600 dark:text-primary-400 font-medium">{getBranchName(product.branchId)}</span>
+                                    </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         {product.inStock ? (
                                             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">In Stock</span>
@@ -43,20 +97,109 @@ function ManageProducts() {
                                     </td>
                                     <td className="px-6 py-4 text-right">
                                         <div className="flex items-center justify-end gap-2">
-                                            <button className="p-2 text-slate-400 hover:text-primary-600 transition-colors bg-gray-50 hover:bg-primary-50 dark:bg-slate-800 dark:hover:bg-slate-700 rounded-lg">
-                                                <Edit2 className="w-4 h-4" />
-                                            </button>
-                                            <button className="p-2 text-slate-400 hover:text-rose-600 transition-colors bg-gray-50 hover:bg-rose-50 dark:bg-slate-800 dark:hover:bg-slate-700 rounded-lg">
+                                            <button
+                                                onClick={() => handleDelete(product.id)}
+                                                className="p-2 text-slate-400 hover:text-rose-600 transition-colors bg-gray-50 hover:bg-rose-50 dark:bg-slate-800 dark:hover:bg-slate-700 rounded-lg"
+                                            >
                                                 <Trash2 className="w-4 h-4" />
                                             </button>
                                         </div>
                                     </td>
                                 </tr>
                             ))}
+                            {displayProducts.length === 0 && (
+                                <tr><td colSpan="6" className="px-6 py-10 text-center text-slate-400">No products found.</td></tr>
+                            )}
                         </tbody>
                     </table>
                 </div>
             </div>
+
+            {/* Add Product Modal */}
+            {isModalOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                    <div className="absolute inset-0 bg-slate-900/50 backdrop-blur-sm" onClick={() => setIsModalOpen(false)} />
+                    <div className="relative w-full max-w-lg bg-white dark:bg-slate-900 rounded-2xl shadow-xl overflow-hidden flex flex-col max-h-[90vh]">
+                        <div className="flex items-center justify-between p-6 border-b border-gray-100 dark:border-slate-800">
+                            <h3 className="text-lg font-bold text-slate-900 dark:text-white">Add New Product</h3>
+                            <button onClick={() => setIsModalOpen(false)} className="p-2 text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-xl transition-colors">
+                                <X className="w-5 h-5" />
+                            </button>
+                        </div>
+                        <form onSubmit={handleCreate} className="p-6 space-y-4 overflow-y-auto">
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Product Name</label>
+                                <input type="text" name="name" required value={formData.name} onChange={handleChange}
+                                    className="block w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary-500 focus:ring-primary-500 sm:text-sm py-3 px-4"
+                                    placeholder="e.g. Napa Extra 500mg" />
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Category</label>
+                                    <select name="category" value={formData.category} onChange={handleChange}
+                                        className="block w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary-500 focus:ring-primary-500 sm:text-sm py-3 px-4 appearance-none">
+                                        <option>Medicines</option>
+                                        <option>Medical Devices</option>
+                                        <option>Antibiotics</option>
+                                        <option>Supplements</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Price (৳)</label>
+                                    <input type="number" name="price" required value={formData.price} onChange={handleChange}
+                                        className="block w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary-500 focus:ring-primary-500 sm:text-sm py-3 px-4"
+                                        placeholder="e.g. 25" />
+                                </div>
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Manufacturer</label>
+                                    <input type="text" name="manufacturer" value={formData.manufacturer} onChange={handleChange}
+                                        className="block w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary-500 focus:ring-primary-500 sm:text-sm py-3 px-4"
+                                        placeholder="e.g. Beximco" />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Pack Size</label>
+                                    <input type="text" name="packSize" value={formData.packSize} onChange={handleChange}
+                                        className="block w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary-500 focus:ring-primary-500 sm:text-sm py-3 px-4"
+                                        placeholder="e.g. 10 tablets" />
+                                </div>
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Branch</label>
+                                    {isAdmin ? (
+                                        <select name="branchId" required value={formData.branchId} onChange={handleChange}
+                                            className="block w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary-500 focus:ring-primary-500 sm:text-sm py-3 px-4 appearance-none">
+                                            <option value="" disabled>Select branch</option>
+                                            {branches.map(b => (
+                                                <option key={b.id} value={b.id}>{b.name}</option>
+                                            ))}
+                                        </select>
+                                    ) : (
+                                        <input type="text" readOnly value={managedBranch?.name || 'Your Branch'}
+                                            className="block w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 sm:text-sm py-3 px-4 cursor-not-allowed" />
+                                    )}
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Quantity</label>
+                                    <input type="number" name="quantity" required min="1" value={formData.quantity} onChange={handleChange}
+                                        className="block w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary-500 focus:ring-primary-500 sm:text-sm py-3 px-4" />
+                                </div>
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Description</label>
+                                <textarea name="description" rows={2} value={formData.description} onChange={handleChange}
+                                    className="block w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary-500 focus:ring-primary-500 sm:text-sm py-3 px-4"
+                                    placeholder="Short description..." />
+                            </div>
+                            <button type="submit" className="w-full py-3 px-4 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-medium transition-colors shadow-sm mt-2">
+                                Add Product
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

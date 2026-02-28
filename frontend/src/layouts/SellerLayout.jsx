@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { Package, Users, ShoppingBag, LayoutDashboard, LogOut, FileText } from 'lucide-react';
+import { Package, Users, ShoppingBag, LayoutDashboard, LogOut, FileText, Store } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 function SellerLayout() {
@@ -15,6 +15,7 @@ function SellerLayout() {
     // Admins might have an extra "Users/Managers" link later, but for now just basic structure
     if (isAdmin) {
         links.push({ name: 'Managers', path: '/seller/managers', icon: Users });
+        links.push({ name: 'Branches', path: '/seller/branches', icon: Store });
         links.push({ name: 'Reports', path: '/seller/reports', icon: FileText });
     }
 
@@ -36,8 +37,8 @@ function SellerLayout() {
                                 key={link.path}
                                 to={link.path}
                                 className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-colors whitespace-nowrap ${isActive
-                                        ? 'bg-primary-600 text-white shadow-lg shadow-primary-900/20'
-                                        : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+                                    ? 'bg-primary-600 text-white shadow-lg shadow-primary-900/20'
+                                    : 'text-slate-400 hover:bg-slate-800 hover:text-white'
                                     }`}
                             >
                                 <Icon className="w-5 h-5 shrink-0" />

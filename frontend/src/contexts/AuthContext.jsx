@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+import { useData } from './DataContext';
 
 const AuthContext = createContext();
 
@@ -7,6 +8,7 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
+    const { users } = useData();
     const [user, setUser] = useState(() => {
         const savedUser = localStorage.getItem('user');
         if (savedUser) {
@@ -31,23 +33,15 @@ export const AuthProvider = ({ children }) => {
     // Mock login function
     const login = async (email, password) => {
         // In a real app, this would be an API call
-        // Mocking roles based on email
+        // Mocking validation against users.js, accepting any password for the mock for now
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                if (email === 'admin@imanpharma.com') {
-                    const adminUser = { id: 1, name: 'Admin', email, role: 'admin' };
-                    setUser(adminUser);
-                    resolve(adminUser);
-                } else if (email === 'manager@imanpharma.com') {
-                    const managerUser = { id: 2, name: 'Manager', email, role: 'manager' };
-                    setUser(managerUser);
-                    resolve(managerUser);
-                } else if (email && password) {
-                    const buyerUser = { id: 3, name: email.split('@')[0], email, role: 'buyer' };
-                    setUser(buyerUser);
-                    resolve(buyerUser);
+                const foundUser = users.find(u => u.email === email);
+                if (foundUser && password) {
+                    setUser(foundUser);
+                    resolve(foundUser);
                 } else {
-                    reject(new Error("Invalid credentials"));
+                    reject(new Error("Invalid email or password. Hint: Try admin@imanpharma.com or buyer@imanpharma.com"));
                 }
             }, 500);
         });

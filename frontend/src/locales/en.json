@@ -243,6 +243,12 @@
             "address_ph": "House/Apt, Street, Area, Sirajganj",
             "notes": "Additional Notes (Optional)",
             "notes_ph": "Any specific instructions for delivery?",
+            "branch": "Select Nearest Branch",
+            "branch_ph": "Choose a pharmacy branch",
+            "payment_method": "Payment Method",
+            "payment_cod": "Cash on Delivery",
+            "payment_bkash": "bKash",
+            "payment_nagad": "Nagad",
             "btn_processing": "Processing...",
             "btn_confirm": "Confirm Order"
         },

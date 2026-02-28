@@ -1,13 +1,16 @@
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Pill, AlertCircle, CheckCircle2, ArrowLeft, Heart, Share2, ShoppingCart } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useCart } from '../contexts/CartContext';
-import { products } from '../data/products';
+import { useData } from '../contexts/DataContext';
 
 function ProductDetails() {
     const { id } = useParams();
     const { t, language } = useLanguage();
     const { addToCart } = useCart();
+    const { products } = useData();
+    const [quantity, setQuantity] = useState(1);
 
     // Find the product by ID
     const product = products.find(p => p.id === parseInt(id));
@@ -149,16 +152,29 @@ function ProductDetails() {
                                 </div>
                             </div>
 
-                            <div className="mt-10 flex gap-4">
+                            <div className="mt-10 flex flex-col sm:flex-row gap-4">
+                                <div className="flex items-center justify-between border border-gray-200 dark:border-slate-700 rounded-xl h-14 bg-white dark:bg-slate-800 shrink-0 shadow-sm">
+                                    <button
+                                        disabled={!product.inStock || quantity <= 1}
+                                        onClick={() => setQuantity(q => Math.max(1, q - 1))}
+                                        className="w-14 h-full flex items-center justify-center text-slate-500 hover:text-primary-600 disabled:opacity-50 disabled:hover:text-slate-500 transition-colors"
+                                    >-</button>
+                                    <span className="w-12 text-center font-semibold text-slate-900 dark:text-white">{quantity}</span>
+                                    <button
+                                        disabled={!product.inStock}
+                                        onClick={() => setQuantity(q => q + 1)}
+                                        className="w-14 h-full flex items-center justify-center text-slate-500 hover:text-primary-600 disabled:opacity-50 disabled:hover:text-slate-500 transition-colors"
+                                    >+</button>
+                                </div>
                                 <button
                                     disabled={!product.inStock}
-                                    onClick={(e) => { e.preventDefault(); addToCart(product, 1); }}
-                                    className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-white font-bold text-lg bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600 transition-colors shadow-lg shadow-primary-600/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    onClick={(e) => { e.preventDefault(); addToCart(product, quantity); }}
+                                    className="flex-1 inline-flex items-center justify-center gap-2 px-8 h-14 rounded-xl text-white font-bold text-lg bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600 transition-colors shadow-lg shadow-primary-600/20 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     <ShoppingCart className="w-5 h-5" />
                                     {product.inStock ? t('product.add_cart') : t('product.out_of_stock_btn')}
                                 </button>
-                                <button className="w-14 h-14 shrink-0 rounded-xl bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all">
+                                <button className="w-14 h-14 shrink-0 rounded-xl bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all shadow-sm">
                                     <Share2 className="w-5 h-5" />
                                 </button>
                             </div>

@@ -2,8 +2,8 @@ import { ShieldCheck, HeartHandshake, Clock, Pill, Baby, Truck, ArrowRight, MapP
 import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 import FeatureCard from '../components/FeatureCard';
-import { products } from '../data/products';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useData } from '../contexts/DataContext';
 
 const stats = [
   {
@@ -47,6 +47,7 @@ const services = [
 
 function Home() {
   const { t } = useLanguage();
+  const { products } = useData();
   const featuredProducts = products.slice(0, 9);
 
   return (
