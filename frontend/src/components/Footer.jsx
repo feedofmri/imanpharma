@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
-import { Pill, MapPin, Phone, Mail } from 'lucide-react';
+import { MapPin, Phone, Mail } from 'lucide-react';
+import logoDark from '../assets/logo/Logo Dark.png';
+import logoWhite from '../assets/logo/Logo White.png';
 
 const quickLinks = [
   { name: 'Home', path: '/' },
@@ -17,17 +19,10 @@ function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 rounded-lg bg-primary-600 dark:bg-primary-500 flex items-center justify-center">
-                <Pill className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <span className="block text-lg font-bold text-slate-900 dark:text-white">
-                  Iman Pharmacy
-                </span>
-                <span className="block text-[10px] text-slate-500 dark:text-slate-400 -mt-0.5">
-                  M/S Iman Pharmacy
-                </span>
+            <div className="flex items-start mb-6">
+              <div className="flex items-center justify-center">
+                <img src={logoDark} alt="Iman Pharmacy Logo" className="h-20 sm:h-24 w-auto block dark:hidden" />
+                <img src={logoWhite} alt="Iman Pharmacy Logo" className="h-20 sm:h-24 w-auto hidden dark:block" />
               </div>
             </div>
             <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">

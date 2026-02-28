@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Pill, Menu, X, Search } from 'lucide-react';
+import { Menu, X, Search } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import logoDark from '../assets/logo/Logo Dark.png';
+import logoWhite from '../assets/logo/Logo White.png';
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -30,18 +32,10 @@ function Navbar() {
     <nav className="sticky top-0 z-50 bg-white dark:bg-[#0F172A] border-b border-gray-100 dark:border-slate-800 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-9 h-9 rounded-lg bg-primary-600 dark:bg-primary-500 flex items-center justify-center">
-              <Pill className="w-5 h-5 text-white" />
-            </div>
-            <div className="leading-tight">
-              <span className="block text-lg font-bold text-slate-900 dark:text-white tracking-tight">
-                Iman Pharmacy
-              </span>
-              <span className="block text-[10px] text-slate-500 dark:text-slate-400 -mt-0.5">
-                M/S Iman Pharmacy
-              </span>
+          <Link to="/" className="flex items-center group">
+            <div className="flex items-center justify-center py-1.5">
+              <img src={logoDark} alt="Iman Pharmacy Logo" className="h-14 sm:h-16 w-auto block dark:hidden" />
+              <img src={logoWhite} alt="Iman Pharmacy Logo" className="h-14 sm:h-16 w-auto hidden dark:block" />
             </div>
           </Link>
 
