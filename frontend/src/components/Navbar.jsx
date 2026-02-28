@@ -80,7 +80,7 @@ function Navbar() {
               aria-label="Toggle language"
             >
               <Languages className="w-5 h-5" />
-              <span className="hidden sm:inline-block uppercase">{language}</span>
+              <span className="hidden sm:inline-block font-medium">{language === 'bn' ? 'English' : 'বাংলা'}</span>
             </button>
             <ThemeToggle />
             <button
