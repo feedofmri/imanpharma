@@ -17,6 +17,7 @@ import BuyerLayout from './layouts/BuyerLayout';
 import BuyerDashboard from './pages/buyer/Dashboard';
 import BuyerOrders from './pages/buyer/Orders';
 import BuyerProfile from './pages/buyer/Profile';
+import BuyerAddresses from './pages/buyer/Addresses';
 
 import SellerLayout from './layouts/SellerLayout';
 import SellerDashboard from './pages/seller/Dashboard';
@@ -47,6 +48,7 @@ function App() {
             <Route path="/buyer" element={<ProtectedRoute allowedRoles={['buyer']}><BuyerLayout /></ProtectedRoute>}>
               <Route index element={<BuyerDashboard />} />
               <Route path="orders" element={<BuyerOrders />} />
+              <Route path="addresses" element={<BuyerAddresses />} />
               <Route path="profile" element={<BuyerProfile />} />
             </Route>
 

@@ -1,16 +1,22 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Pill, AlertCircle, CheckCircle2, ArrowLeft, Heart, Share2, ShoppingCart } from 'lucide-react';
+import { Pill, AlertCircle, CheckCircle2, ArrowLeft, Heart, Share2, ShoppingCart, Store, XCircle } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useCart } from '../contexts/CartContext';
 import { useData } from '../contexts/DataContext';
+import { useAuth } from '../contexts/AuthContext';
 
 function ProductDetails() {
     const { id } = useParams();
     const { t, language } = useLanguage();
     const { addToCart } = useCart();
-    const { products } = useData();
+    const { products, branches } = useData();
+    const { user } = useAuth();
     const [quantity, setQuantity] = useState(1);
+    const [selectedBranchId, setSelectedBranchId] = useState(branches[0]?.id || 1);
+    const [sellerNotice, setSellerNotice] = useState(false);
+
+    const isSeller = user?.role === 'admin' || user?.role === 'manager';
 
     // Find the product by ID
     const product = products.find(p => p.id === parseInt(id));
@@ -34,6 +40,23 @@ function ProductDetails() {
         );
     }
 
+    // Get stock for selected branch
+    const branchStock = product.branchStock || {};
+    const currentStock = branchStock[String(selectedBranchId)] ?? 0;
+    const inStock = currentStock > 0;
+    const selectedBranch = branches.find(b => b.id === selectedBranchId);
+
+    const getCategoryLabel = (category) => {
+        if (language !== 'bn') return category;
+        switch (category) {
+            case 'Medicines': return t('products.cat.medicines');
+            case 'Antibiotics': return t('products.cat.antibiotics');
+            case 'Medical Devices': return t('products.cat.devices');
+            case 'Supplements': return t('products.cat.supplements');
+            default: return category;
+        }
+    };
+
     return (
         <div className="bg-gray-50 dark:bg-[#0F172A] min-h-screen pb-20">
             {/* Top Breadcrumb Header */}
@@ -44,14 +67,7 @@ function ProductDetails() {
                             {t('nav.products')}
                         </Link>
                         <span className="mx-2">/</span>
-                        <span className="text-slate-900 dark:text-white">
-                            {language === 'bn' ?
-                                (product.category === 'Medicines' ? t('products.cat.medicines') :
-                                    product.category === 'Antibiotics' ? t('products.cat.antibiotics') :
-                                        product.category === 'Medical Devices' ? t('products.cat.devices') :
-                                            product.category === 'Supplements' ? t('products.cat.supplements') : product.category)
-                                : product.category}
-                        </span>
+                        <span className="text-slate-900 dark:text-white">{getCategoryLabel(product.category)}</span>
                         <span className="mx-2">/</span>
                         <span className="text-slate-900 dark:text-white truncate">{product.name}</span>
                     </nav>
@@ -91,18 +107,13 @@ function ProductDetails() {
                             <div className="mb-6">
                                 <div className="flex items-center justify-between mb-4">
                                     <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 border border-primary-100 dark:border-primary-800/50">
-                                        {language === 'bn' ?
-                                            (product.category === 'Medicines' ? t('products.cat.medicines') :
-                                                product.category === 'Antibiotics' ? t('products.cat.antibiotics') :
-                                                    product.category === 'Medical Devices' ? t('products.cat.devices') :
-                                                        product.category === 'Supplements' ? t('products.cat.supplements') : product.category)
-                                            : product.category}
+                                        {getCategoryLabel(product.category)}
                                     </span>
 
-                                    {product.inStock ? (
+                                    {inStock ? (
                                         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400">
                                             <CheckCircle2 className="w-3.5 h-3.5" />
-                                            {t('home.featured.in_stock')}
+                                            {t('home.featured.in_stock')} ({currentStock})
                                         </span>
                                     ) : (
                                         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-400">
@@ -120,13 +131,47 @@ function ProductDetails() {
                                     {product.description}
                                 </p>
 
-                                <div className="flex items-baseline gap-2 mb-8">
+                                <div className="flex items-baseline gap-2 mb-6">
                                     <span className="text-4xl font-bold text-slate-900 dark:text-white">
                                         {product.price.split(' ')[0]}
                                     </span>
                                     <span className="text-slate-500 dark:text-slate-400 font-medium">
                                         {product.price.split(' ').slice(1).join(' ')}
                                     </span>
+                                </div>
+
+                                {/* Branch Selector */}
+                                <div className="mb-4">
+                                    <label className="block text-sm font-semibold text-slate-900 dark:text-white mb-2 uppercase tracking-wider">
+                                        <Store className="w-4 h-4 inline-block mr-1.5 -mt-0.5" />
+                                        Select Branch
+                                    </label>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                        {branches.map(branch => {
+                                            const stock = branchStock[String(branch.id)] ?? 0;
+                                            const isSelected = selectedBranchId === branch.id;
+                                            return (
+                                                <button
+                                                    key={branch.id}
+                                                    onClick={() => { setSelectedBranchId(branch.id); setQuantity(1); }}
+                                                    className={`relative p-3 rounded-xl border-2 text-left transition-all ${isSelected
+                                                        ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20 ring-1 ring-primary-500/30'
+                                                        : 'border-gray-200 dark:border-slate-700 hover:border-gray-300 dark:hover:border-slate-600 bg-white dark:bg-slate-800'
+                                                        }`}
+                                                >
+                                                    <p className={`text-sm font-medium ${isSelected ? 'text-primary-700 dark:text-primary-400' : 'text-slate-900 dark:text-white'}`}>
+                                                        {branch.name}
+                                                    </p>
+                                                    <p className={`text-xs mt-0.5 ${stock > 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-500 dark:text-rose-400'}`}>
+                                                        {stock > 0 ? `${stock} in stock` : 'Out of stock'}
+                                                    </p>
+                                                    {isSelected && (
+                                                        <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-primary-500" />
+                                                    )}
+                                                </button>
+                                            );
+                                        })}
+                                    </div>
                                 </div>
                             </div>
 
@@ -152,27 +197,44 @@ function ProductDetails() {
                                 </div>
                             </div>
 
-                            <div className="mt-10 flex flex-col sm:flex-row gap-4">
+                            {/* Seller Notice */}
+                            {sellerNotice && (
+                                <div className="mt-6 flex items-center gap-3 p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
+                                    <XCircle className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0" />
+                                    <p className="text-sm text-amber-800 dark:text-amber-300 font-medium">
+                                        Adding products to cart is only available for buyer accounts. Please log in with a buyer account to purchase.
+                                    </p>
+                                </div>
+                            )}
+
+                            <div className="mt-6 flex flex-col sm:flex-row gap-4">
                                 <div className="flex items-center justify-between border border-gray-200 dark:border-slate-700 rounded-xl h-14 bg-white dark:bg-slate-800 shrink-0 shadow-sm">
                                     <button
-                                        disabled={!product.inStock || quantity <= 1}
+                                        disabled={!inStock || quantity <= 1 || isSeller}
                                         onClick={() => setQuantity(q => Math.max(1, q - 1))}
                                         className="w-14 h-full flex items-center justify-center text-slate-500 hover:text-primary-600 disabled:opacity-50 disabled:hover:text-slate-500 transition-colors"
                                     >-</button>
                                     <span className="w-12 text-center font-semibold text-slate-900 dark:text-white">{quantity}</span>
                                     <button
-                                        disabled={!product.inStock}
-                                        onClick={() => setQuantity(q => q + 1)}
+                                        disabled={!inStock || quantity >= currentStock || isSeller}
+                                        onClick={() => setQuantity(q => Math.min(q + 1, currentStock))}
                                         className="w-14 h-full flex items-center justify-center text-slate-500 hover:text-primary-600 disabled:opacity-50 disabled:hover:text-slate-500 transition-colors"
                                     >+</button>
                                 </div>
                                 <button
-                                    disabled={!product.inStock}
-                                    onClick={(e) => { e.preventDefault(); addToCart(product, quantity); }}
+                                    disabled={!inStock || isSeller}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        if (isSeller) {
+                                            setSellerNotice(true);
+                                            return;
+                                        }
+                                        addToCart(product, quantity, selectedBranchId);
+                                    }}
                                     className="flex-1 inline-flex items-center justify-center gap-2 px-8 h-14 rounded-xl text-white font-bold text-lg bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600 transition-colors shadow-lg shadow-primary-600/20 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     <ShoppingCart className="w-5 h-5" />
-                                    {product.inStock ? t('product.add_cart') : t('product.out_of_stock_btn')}
+                                    {isSeller ? 'Buyer Only' : (inStock ? t('product.add_cart') : t('product.out_of_stock_btn'))}
                                 </button>
                                 <button className="w-14 h-14 shrink-0 rounded-xl bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all shadow-sm">
                                     <Share2 className="w-5 h-5" />

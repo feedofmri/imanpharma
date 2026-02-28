@@ -112,7 +112,7 @@ function Home() {
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">
                     {product.category}
                   </span>
-                  {product.inStock ? (
+                  {Object.values(product.branchStock || {}).some(v => v > 0) ? (
                     <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400">
                       {t('home.featured.in_stock')}
                     </span>

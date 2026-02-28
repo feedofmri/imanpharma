@@ -9,8 +9,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳36.00 / strip",
     "manufacturer": "Beximco Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":5,"2":78,"3":0,"4":46,"5":63}
   },
   {
     "id": 2,
@@ -20,8 +20,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳22.00 / strip",
     "manufacturer": "Aristopharma Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":44,"2":0,"3":76,"4":17,"5":25}
   },
   {
     "id": 3,
@@ -31,8 +31,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳51.00 / strip",
     "manufacturer": "Beximco Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":26,"2":76,"3":48,"4":0,"5":0}
   },
   {
     "id": 4,
@@ -42,8 +42,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳52.00 / strip",
     "manufacturer": "ACME Laboratories Ltd.",
-    "inStock": false,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":74,"2":40,"3":58,"4":9,"5":13}
   },
   {
     "id": 5,
@@ -53,8 +53,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳32.00 / strip",
     "manufacturer": "Opsonin Pharma Limited",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":40,"2":70,"3":11,"4":58,"5":37}
   },
   {
     "id": 6,
@@ -64,8 +64,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳23.00 / strip",
     "manufacturer": "Opsonin Pharma Limited",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":52,"2":54,"3":42,"4":50,"5":38}
   },
   {
     "id": 7,
@@ -75,8 +75,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳62.00 / strip",
     "manufacturer": "Square Pharmaceuticals Ltd.",
-    "inStock": false,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":53,"2":77,"3":7,"4":0,"5":69}
   },
   {
     "id": 8,
@@ -86,8 +86,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳56.00 / strip",
     "manufacturer": "Renata Limited",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":74,"2":60,"3":42,"4":41,"5":0}
   },
   {
     "id": 9,
@@ -97,8 +97,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳29.00 / strip",
     "manufacturer": "Beximco Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":68,"2":74,"3":12,"4":13,"5":44}
   },
   {
     "id": 10,
@@ -108,8 +108,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳23.00 / strip",
     "manufacturer": "Renata Limited",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":77,"2":79,"3":77,"4":31,"5":71}
   },
   {
     "id": 11,
@@ -119,8 +119,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳33.00 / strip",
     "manufacturer": "Incepta Pharmaceuticals Ltd.",
-    "inStock": false,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":52,"2":68,"3":70,"4":0,"5":53}
   },
   {
     "id": 12,
@@ -130,8 +130,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳32.00 / strip",
     "manufacturer": "Opsonin Pharma Limited",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":13,"2":8,"3":63,"4":74,"5":48}
   },
   {
     "id": 13,
@@ -141,8 +141,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳55.00 / strip",
     "manufacturer": "Beximco Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":8,"2":71,"3":50,"4":60,"5":0}
   },
   {
     "id": 14,
@@ -152,8 +152,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳20.00 / strip",
     "manufacturer": "Incepta Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":49,"2":43,"3":24,"4":59,"5":0}
   },
   {
     "id": 15,
@@ -163,8 +163,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳54.00 / strip",
     "manufacturer": "ACME Laboratories Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":0,"2":65,"3":21,"4":76,"5":70}
   },
   {
     "id": 16,
@@ -174,8 +174,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳46.00 / strip",
     "manufacturer": "Square Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":25,"2":23,"3":34,"4":0,"5":56}
   },
   {
     "id": 17,
@@ -185,8 +185,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳30.00 / strip",
     "manufacturer": "Renata Limited",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":57,"2":78,"3":0,"4":56,"5":35}
   },
   {
     "id": 18,
@@ -196,8 +196,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳43.00 / strip",
     "manufacturer": "Renata Limited",
-    "inStock": false,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":67,"2":47,"3":72,"4":62,"5":31}
   },
   {
     "id": 19,
@@ -207,8 +207,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳40.00 / strip",
     "manufacturer": "Square Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":0,"2":0,"3":46,"4":0,"5":52}
   },
   {
     "id": 20,
@@ -218,8 +218,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳36.00 / strip",
     "manufacturer": "Eskayef Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":75,"2":79,"3":24,"4":20,"5":19}
   },
   {
     "id": 21,
@@ -229,8 +229,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳61.00 / strip",
     "manufacturer": "ACME Laboratories Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":10,"2":50,"3":6,"4":48,"5":45}
   },
   {
     "id": 22,
@@ -240,8 +240,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳28.00 / strip",
     "manufacturer": "Incepta Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":0,"2":9,"3":12,"4":77,"5":76}
   },
   {
     "id": 23,
@@ -251,8 +251,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳50.00 / strip",
     "manufacturer": "Incepta Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":52,"2":10,"3":27,"4":37,"5":57}
   },
   {
     "id": 24,
@@ -262,8 +262,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳56.00 / strip",
     "manufacturer": "Beximco Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":7,"2":70,"3":9,"4":70,"5":80}
   },
   {
     "id": 25,
@@ -273,8 +273,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳27.00 / strip",
     "manufacturer": "Renata Limited",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":42,"2":69,"3":0,"4":7,"5":80}
   },
   {
     "id": 26,
@@ -284,8 +284,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳35.00 / strip",
     "manufacturer": "Incepta Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":73,"2":0,"3":24,"4":20,"5":0}
   },
   {
     "id": 27,
@@ -295,8 +295,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳64.00 / strip",
     "manufacturer": "Beximco Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":42,"2":69,"3":51,"4":61,"5":0}
   },
   {
     "id": 28,
@@ -306,8 +306,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳28.00 / strip",
     "manufacturer": "Opsonin Pharma Limited",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":0,"2":32,"3":0,"4":77,"5":75}
   },
   {
     "id": 29,
@@ -317,8 +317,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳61.00 / strip",
     "manufacturer": "Opsonin Pharma Limited",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":17,"2":0,"3":15,"4":55,"5":64}
   },
   {
     "id": 30,
@@ -328,8 +328,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳59.00 / strip",
     "manufacturer": "Opsonin Pharma Limited",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":5,"2":42,"3":27,"4":31,"5":13}
   },
   {
     "id": 31,
@@ -339,8 +339,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳50.00 / strip",
     "manufacturer": "Beximco Pharmaceuticals Ltd.",
-    "inStock": false,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":74,"2":56,"3":40,"4":52,"5":56}
   },
   {
     "id": 32,
@@ -350,8 +350,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳41.00 / strip",
     "manufacturer": "Incepta Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":45,"2":62,"3":72,"4":61,"5":65}
   },
   {
     "id": 33,
@@ -361,8 +361,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳48.00 / strip",
     "manufacturer": "Aristopharma Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":11,"2":31,"3":0,"4":14,"5":29}
   },
   {
     "id": 34,
@@ -372,8 +372,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳26.00 / strip",
     "manufacturer": "Renata Limited",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":40,"2":77,"3":0,"4":65,"5":53}
   },
   {
     "id": 35,
@@ -383,8 +383,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳55.00 / strip",
     "manufacturer": "Aristopharma Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":74,"2":36,"3":65,"4":38,"5":49}
   },
   {
     "id": 36,
@@ -394,8 +394,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳34.00 / strip",
     "manufacturer": "Opsonin Pharma Limited",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":73,"2":20,"3":36,"4":29,"5":54}
   },
   {
     "id": 37,
@@ -405,8 +405,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳61.00 / strip",
     "manufacturer": "Square Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":28,"2":5,"3":35,"4":38,"5":53}
   },
   {
     "id": 38,
@@ -416,8 +416,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳60.00 / strip",
     "manufacturer": "ACME Laboratories Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":57,"2":45,"3":0,"4":39,"5":14}
   },
   {
     "id": 39,
@@ -427,8 +427,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳27.00 / strip",
     "manufacturer": "Opsonin Pharma Limited",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":61,"2":45,"3":55,"4":58,"5":70}
   },
   {
     "id": 40,
@@ -438,8 +438,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳36.00 / strip",
     "manufacturer": "Beximco Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":43,"2":0,"3":0,"4":16,"5":63}
   },
   {
     "id": 41,
@@ -449,8 +449,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳65.00 / strip",
     "manufacturer": "Opsonin Pharma Limited",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":68,"2":64,"3":62,"4":65,"5":29}
   },
   {
     "id": 42,
@@ -460,8 +460,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳32.00 / strip",
     "manufacturer": "Eskayef Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":30,"2":38,"3":26,"4":51,"5":73}
   },
   {
     "id": 43,
@@ -471,8 +471,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳28.00 / strip",
     "manufacturer": "Beximco Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":50,"2":0,"3":49,"4":45,"5":48}
   },
   {
     "id": 44,
@@ -482,8 +482,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳44.00 / strip",
     "manufacturer": "ACME Laboratories Ltd.",
-    "inStock": false,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":13,"2":71,"3":35,"4":27,"5":79}
   },
   {
     "id": 45,
@@ -493,8 +493,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳41.00 / strip",
     "manufacturer": "Aristopharma Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":31,"2":40,"3":0,"4":48,"5":0}
   },
   {
     "id": 46,
@@ -504,8 +504,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳48.00 / strip",
     "manufacturer": "Eskayef Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":62,"2":74,"3":72,"4":51,"5":45}
   },
   {
     "id": 47,
@@ -515,8 +515,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳52.00 / strip",
     "manufacturer": "Opsonin Pharma Limited",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":55,"2":40,"3":5,"4":25,"5":32}
   },
   {
     "id": 48,
@@ -526,8 +526,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳51.00 / strip",
     "manufacturer": "ACME Laboratories Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":58,"2":56,"3":47,"4":15,"5":73}
   },
   {
     "id": 49,
@@ -537,8 +537,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳32.00 / strip",
     "manufacturer": "Aristopharma Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":59,"2":80,"3":11,"4":71,"5":70}
   },
   {
     "id": 50,
@@ -548,8 +548,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳69.00 / strip",
     "manufacturer": "Square Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":0,"2":0,"3":68,"4":22,"5":51}
   },
   {
     "id": 51,
@@ -559,8 +559,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳66.00 / strip",
     "manufacturer": "Aristopharma Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":72,"2":66,"3":63,"4":79,"5":52}
   },
   {
     "id": 52,
@@ -570,8 +570,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳42.00 / strip",
     "manufacturer": "Aristopharma Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":78,"2":38,"3":67,"4":28,"5":0}
   },
   {
     "id": 53,
@@ -581,8 +581,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳51.00 / strip",
     "manufacturer": "Eskayef Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":42,"2":41,"3":22,"4":9,"5":37}
   },
   {
     "id": 54,
@@ -592,8 +592,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳42.00 / strip",
     "manufacturer": "Square Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":55,"2":79,"3":0,"4":63,"5":10}
   },
   {
     "id": 55,
@@ -603,8 +603,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳49.00 / strip",
     "manufacturer": "Renata Limited",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":28,"2":80,"3":36,"4":61,"5":6}
   },
   {
     "id": 56,
@@ -614,8 +614,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳21.00 / strip",
     "manufacturer": "Square Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":32,"2":11,"3":48,"4":19,"5":23}
   },
   {
     "id": 57,
@@ -625,8 +625,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳27.00 / strip",
     "manufacturer": "Renata Limited",
-    "inStock": false,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":71,"2":0,"3":38,"4":13,"5":42}
   },
   {
     "id": 58,
@@ -636,8 +636,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳59.00 / strip",
     "manufacturer": "Aristopharma Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":0,"2":31,"3":61,"4":46,"5":0}
   },
   {
     "id": 59,
@@ -647,8 +647,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳50.00 / strip",
     "manufacturer": "Beximco Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":15,"2":15,"3":61,"4":22,"5":45}
   },
   {
     "id": 60,
@@ -658,8 +658,8 @@ export const products = [
     "details": "This is a high-quality medicines manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳44.00 / strip",
     "manufacturer": "Eskayef Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 tablets per strip"
+    "packSize": "10 tablets per strip",
+    "branchStock": {"1":43,"2":16,"3":45,"4":56,"5":79}
   },
   {
     "id": 61,
@@ -669,8 +669,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳71.00 / strip",
     "manufacturer": "Square Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":17,"2":0,"3":77,"4":6,"5":35}
   },
   {
     "id": 62,
@@ -680,8 +680,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳58.00 / strip",
     "manufacturer": "Eskayef Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":53,"2":75,"3":42,"4":8,"5":0}
   },
   {
     "id": 63,
@@ -691,8 +691,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳89.00 / strip",
     "manufacturer": "Renata Limited",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":15,"2":45,"3":80,"4":79,"5":78}
   },
   {
     "id": 64,
@@ -702,8 +702,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳83.00 / strip",
     "manufacturer": "Renata Limited",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":6,"2":59,"3":75,"4":29,"5":50}
   },
   {
     "id": 65,
@@ -713,8 +713,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳64.00 / strip",
     "manufacturer": "Incepta Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":0,"2":56,"3":68,"4":34,"5":42}
   },
   {
     "id": 66,
@@ -724,8 +724,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳96.00 / strip",
     "manufacturer": "Square Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":78,"2":33,"3":68,"4":15,"5":74}
   },
   {
     "id": 67,
@@ -735,8 +735,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳91.00 / strip",
     "manufacturer": "Square Pharmaceuticals Ltd.",
-    "inStock": false,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":57,"2":0,"3":71,"4":50,"5":55}
   },
   {
     "id": 68,
@@ -746,8 +746,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳86.00 / strip",
     "manufacturer": "Square Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":67,"2":20,"3":29,"4":16,"5":41}
   },
   {
     "id": 69,
@@ -757,8 +757,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳57.00 / strip",
     "manufacturer": "Incepta Pharmaceuticals Ltd.",
-    "inStock": false,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":50,"2":47,"3":50,"4":78,"5":48}
   },
   {
     "id": 70,
@@ -768,8 +768,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳59.00 / strip",
     "manufacturer": "Incepta Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":66,"2":0,"3":66,"4":40,"5":34}
   },
   {
     "id": 71,
@@ -779,8 +779,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳70.00 / strip",
     "manufacturer": "Opsonin Pharma Limited",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":37,"2":68,"3":76,"4":0,"5":60}
   },
   {
     "id": 72,
@@ -790,8 +790,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳67.00 / strip",
     "manufacturer": "Renata Limited",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":47,"2":78,"3":28,"4":12,"5":25}
   },
   {
     "id": 73,
@@ -801,8 +801,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳62.00 / strip",
     "manufacturer": "Incepta Pharmaceuticals Ltd.",
-    "inStock": false,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":59,"2":64,"3":17,"4":0,"5":76}
   },
   {
     "id": 74,
@@ -812,8 +812,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳55.00 / strip",
     "manufacturer": "Incepta Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":21,"2":68,"3":15,"4":52,"5":51}
   },
   {
     "id": 75,
@@ -823,8 +823,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳54.00 / strip",
     "manufacturer": "Eskayef Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":47,"2":52,"3":45,"4":75,"5":37}
   },
   {
     "id": 76,
@@ -834,8 +834,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳82.00 / strip",
     "manufacturer": "Opsonin Pharma Limited",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":40,"2":59,"3":0,"4":68,"5":54}
   },
   {
     "id": 77,
@@ -845,8 +845,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳90.00 / strip",
     "manufacturer": "Square Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":73,"2":36,"3":67,"4":46,"5":17}
   },
   {
     "id": 78,
@@ -856,8 +856,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳50.00 / strip",
     "manufacturer": "Square Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":21,"2":73,"3":0,"4":71,"5":27}
   },
   {
     "id": 79,
@@ -867,8 +867,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳86.00 / strip",
     "manufacturer": "Renata Limited",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":23,"2":5,"3":57,"4":60,"5":52}
   },
   {
     "id": 80,
@@ -878,8 +878,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳85.00 / strip",
     "manufacturer": "Renata Limited",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":7,"2":76,"3":32,"4":75,"5":8}
   },
   {
     "id": 81,
@@ -889,8 +889,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳81.00 / strip",
     "manufacturer": "Aristopharma Ltd.",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":79,"2":69,"3":78,"4":29,"5":0}
   },
   {
     "id": 82,
@@ -900,8 +900,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳66.00 / strip",
     "manufacturer": "ACME Laboratories Ltd.",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":0,"2":21,"3":60,"4":0,"5":12}
   },
   {
     "id": 83,
@@ -911,8 +911,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳69.00 / strip",
     "manufacturer": "Eskayef Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":0,"2":15,"3":36,"4":25,"5":59}
   },
   {
     "id": 84,
@@ -922,8 +922,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳92.00 / strip",
     "manufacturer": "Square Pharmaceuticals Ltd.",
-    "inStock": false,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":6,"2":7,"3":12,"4":17,"5":24}
   },
   {
     "id": 85,
@@ -933,8 +933,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳57.00 / strip",
     "manufacturer": "Renata Limited",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":34,"2":0,"3":73,"4":0,"5":18}
   },
   {
     "id": 86,
@@ -944,8 +944,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳61.00 / strip",
     "manufacturer": "Renata Limited",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":45,"2":0,"3":0,"4":18,"5":19}
   },
   {
     "id": 87,
@@ -955,8 +955,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳90.00 / strip",
     "manufacturer": "Eskayef Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":59,"2":37,"3":31,"4":70,"5":0}
   },
   {
     "id": 88,
@@ -966,8 +966,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳68.00 / strip",
     "manufacturer": "Incepta Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":5,"2":23,"3":13,"4":20,"5":38}
   },
   {
     "id": 89,
@@ -977,8 +977,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳89.00 / strip",
     "manufacturer": "ACME Laboratories Ltd.",
-    "inStock": false,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":35,"2":59,"3":70,"4":41,"5":56}
   },
   {
     "id": 90,
@@ -988,8 +988,8 @@ export const products = [
     "details": "This is a high-quality antibiotics manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳81.00 / strip",
     "manufacturer": "Eskayef Pharmaceuticals Ltd.",
-    "inStock": false,
-    "packSize": "10 capsules per strip"
+    "packSize": "10 capsules per strip",
+    "branchStock": {"1":71,"2":0,"3":56,"4":46,"5":33}
   },
   {
     "id": 91,
@@ -999,8 +999,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳166.00 ",
     "manufacturer": "Square Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":52,"2":61,"3":54,"4":49,"5":49}
   },
   {
     "id": 92,
@@ -1010,8 +1010,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳198.00 ",
     "manufacturer": "Aristopharma Ltd.",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":46,"2":0,"3":10,"4":0,"5":56}
   },
   {
     "id": 93,
@@ -1021,8 +1021,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳191.00 ",
     "manufacturer": "Renata Limited",
-    "inStock": false,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":14,"2":39,"3":55,"4":25,"5":51}
   },
   {
     "id": 94,
@@ -1032,8 +1032,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳183.00 ",
     "manufacturer": "Incepta Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":0,"2":50,"3":76,"4":57,"5":0}
   },
   {
     "id": 95,
@@ -1043,8 +1043,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳178.00 ",
     "manufacturer": "ACME Laboratories Ltd.",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":74,"2":41,"3":64,"4":63,"5":75}
   },
   {
     "id": 96,
@@ -1054,8 +1054,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳168.00 ",
     "manufacturer": "Renata Limited",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":30,"2":59,"3":66,"4":30,"5":69}
   },
   {
     "id": 97,
@@ -1065,8 +1065,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳197.00 ",
     "manufacturer": "Aristopharma Ltd.",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":32,"2":0,"3":38,"4":30,"5":54}
   },
   {
     "id": 98,
@@ -1076,8 +1076,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳155.00 ",
     "manufacturer": "Renata Limited",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":0,"2":66,"3":54,"4":0,"5":43}
   },
   {
     "id": 99,
@@ -1087,8 +1087,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳193.00 ",
     "manufacturer": "Eskayef Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":69,"2":17,"3":77,"4":6,"5":45}
   },
   {
     "id": 100,
@@ -1098,8 +1098,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳166.00 ",
     "manufacturer": "Opsonin Pharma Limited",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":27,"2":0,"3":0,"4":60,"5":66}
   },
   {
     "id": 101,
@@ -1109,8 +1109,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳198.00 ",
     "manufacturer": "Square Pharmaceuticals Ltd.",
-    "inStock": false,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":72,"2":9,"3":41,"4":77,"5":0}
   },
   {
     "id": 102,
@@ -1120,8 +1120,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳152.00 ",
     "manufacturer": "Eskayef Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":67,"2":39,"3":75,"4":44,"5":34}
   },
   {
     "id": 103,
@@ -1131,8 +1131,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳193.00 ",
     "manufacturer": "Opsonin Pharma Limited",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":68,"2":16,"3":0,"4":73,"5":0}
   },
   {
     "id": 104,
@@ -1142,8 +1142,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳187.00 ",
     "manufacturer": "ACME Laboratories Ltd.",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":50,"2":67,"3":76,"4":50,"5":63}
   },
   {
     "id": 105,
@@ -1153,8 +1153,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳182.00 ",
     "manufacturer": "Square Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":41,"2":36,"3":18,"4":14,"5":71}
   },
   {
     "id": 106,
@@ -1164,8 +1164,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳165.00 ",
     "manufacturer": "Aristopharma Ltd.",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":35,"2":56,"3":18,"4":5,"5":33}
   },
   {
     "id": 107,
@@ -1175,8 +1175,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳157.00 ",
     "manufacturer": "Opsonin Pharma Limited",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":8,"2":5,"3":80,"4":38,"5":31}
   },
   {
     "id": 108,
@@ -1186,8 +1186,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳182.00 ",
     "manufacturer": "Opsonin Pharma Limited",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":31,"2":15,"3":21,"4":66,"5":5}
   },
   {
     "id": 109,
@@ -1197,8 +1197,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳192.00 ",
     "manufacturer": "Incepta Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":71,"2":15,"3":73,"4":66,"5":55}
   },
   {
     "id": 110,
@@ -1208,8 +1208,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳189.00 ",
     "manufacturer": "Renata Limited",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":80,"2":0,"3":0,"4":64,"5":0}
   },
   {
     "id": 111,
@@ -1219,8 +1219,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳194.00 ",
     "manufacturer": "Beximco Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":38,"2":0,"3":18,"4":14,"5":49}
   },
   {
     "id": 112,
@@ -1230,8 +1230,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳192.00 ",
     "manufacturer": "Incepta Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":77,"2":21,"3":0,"4":71,"5":58}
   },
   {
     "id": 113,
@@ -1241,8 +1241,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳173.00 ",
     "manufacturer": "Square Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":58,"2":14,"3":0,"4":72,"5":16}
   },
   {
     "id": 114,
@@ -1252,8 +1252,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳169.00 ",
     "manufacturer": "Aristopharma Ltd.",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":0,"2":0,"3":35,"4":71,"5":68}
   },
   {
     "id": 115,
@@ -1263,8 +1263,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳186.00 ",
     "manufacturer": "Square Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":12,"2":62,"3":37,"4":0,"5":57}
   },
   {
     "id": 116,
@@ -1274,8 +1274,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳162.00 ",
     "manufacturer": "Incepta Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":0,"2":75,"3":80,"4":34,"5":10}
   },
   {
     "id": 117,
@@ -1285,8 +1285,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳172.00 ",
     "manufacturer": "ACME Laboratories Ltd.",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":47,"2":0,"3":31,"4":0,"5":0}
   },
   {
     "id": 118,
@@ -1296,8 +1296,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳159.00 ",
     "manufacturer": "ACME Laboratories Ltd.",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":39,"2":30,"3":57,"4":73,"5":64}
   },
   {
     "id": 119,
@@ -1307,8 +1307,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳163.00 ",
     "manufacturer": "Renata Limited",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":40,"2":54,"3":9,"4":70,"5":65}
   },
   {
     "id": 120,
@@ -1318,8 +1318,8 @@ export const products = [
     "details": "This is a high-quality medical devices manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳167.00 ",
     "manufacturer": "Eskayef Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "1 unit"
+    "packSize": "1 unit",
+    "branchStock": {"1":10,"2":68,"3":16,"4":53,"5":37}
   },
   {
     "id": 121,
@@ -1329,8 +1329,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳117.00 / strip",
     "manufacturer": "Opsonin Pharma Limited",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":6,"2":51,"3":19,"4":27,"5":45}
   },
   {
     "id": 122,
@@ -1340,8 +1340,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳93.00 / strip",
     "manufacturer": "Incepta Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":6,"2":70,"3":39,"4":62,"5":58}
   },
   {
     "id": 123,
@@ -1351,8 +1351,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳97.00 / strip",
     "manufacturer": "Eskayef Pharmaceuticals Ltd.",
-    "inStock": false,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":7,"2":59,"3":79,"4":8,"5":42}
   },
   {
     "id": 124,
@@ -1362,8 +1362,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳114.00 / strip",
     "manufacturer": "Eskayef Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":37,"2":0,"3":71,"4":32,"5":75}
   },
   {
     "id": 125,
@@ -1373,8 +1373,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳124.00 / strip",
     "manufacturer": "ACME Laboratories Ltd.",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":47,"2":0,"3":47,"4":17,"5":38}
   },
   {
     "id": 126,
@@ -1384,8 +1384,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳106.00 / strip",
     "manufacturer": "Eskayef Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":57,"2":0,"3":37,"4":67,"5":45}
   },
   {
     "id": 127,
@@ -1395,8 +1395,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳88.00 / strip",
     "manufacturer": "Aristopharma Ltd.",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":37,"2":0,"3":48,"4":58,"5":68}
   },
   {
     "id": 128,
@@ -1406,8 +1406,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳98.00 / strip",
     "manufacturer": "Renata Limited",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":30,"2":20,"3":0,"4":51,"5":66}
   },
   {
     "id": 129,
@@ -1417,8 +1417,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳99.00 / strip",
     "manufacturer": "Incepta Pharmaceuticals Ltd.",
-    "inStock": false,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":13,"2":0,"3":40,"4":53,"5":52}
   },
   {
     "id": 130,
@@ -1428,8 +1428,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳126.00 / strip",
     "manufacturer": "Renata Limited",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":42,"2":75,"3":75,"4":15,"5":65}
   },
   {
     "id": 131,
@@ -1439,8 +1439,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳99.00 / strip",
     "manufacturer": "Beximco Pharmaceuticals Ltd.",
-    "inStock": false,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":16,"2":0,"3":44,"4":79,"5":68}
   },
   {
     "id": 132,
@@ -1450,8 +1450,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳90.00 / strip",
     "manufacturer": "Eskayef Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":79,"2":35,"3":31,"4":8,"5":59}
   },
   {
     "id": 133,
@@ -1461,8 +1461,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳108.00 / strip",
     "manufacturer": "Beximco Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":49,"2":8,"3":40,"4":6,"5":30}
   },
   {
     "id": 134,
@@ -1472,8 +1472,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳126.00 / strip",
     "manufacturer": "Beximco Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":14,"2":37,"3":0,"4":14,"5":61}
   },
   {
     "id": 135,
@@ -1483,8 +1483,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳96.00 / strip",
     "manufacturer": "ACME Laboratories Ltd.",
-    "inStock": false,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":50,"2":0,"3":12,"4":74,"5":63}
   },
   {
     "id": 136,
@@ -1494,8 +1494,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳127.00 / strip",
     "manufacturer": "Renata Limited",
-    "inStock": false,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":60,"2":0,"3":7,"4":63,"5":28}
   },
   {
     "id": 137,
@@ -1505,8 +1505,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳118.00 / strip",
     "manufacturer": "Incepta Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":51,"2":0,"3":22,"4":0,"5":68}
   },
   {
     "id": 138,
@@ -1516,8 +1516,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳111.00 / strip",
     "manufacturer": "Beximco Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":38,"2":0,"3":56,"4":45,"5":71}
   },
   {
     "id": 139,
@@ -1527,8 +1527,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳89.00 / strip",
     "manufacturer": "Aristopharma Ltd.",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":0,"2":64,"3":26,"4":0,"5":74}
   },
   {
     "id": 140,
@@ -1538,8 +1538,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳96.00 / strip",
     "manufacturer": "Incepta Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":65,"2":0,"3":19,"4":45,"5":35}
   },
   {
     "id": 141,
@@ -1549,8 +1549,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳82.00 / strip",
     "manufacturer": "Eskayef Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":17,"2":67,"3":62,"4":35,"5":34}
   },
   {
     "id": 142,
@@ -1560,8 +1560,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳96.00 / strip",
     "manufacturer": "Renata Limited",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":9,"2":0,"3":40,"4":68,"5":59}
   },
   {
     "id": 143,
@@ -1571,8 +1571,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳111.00 / strip",
     "manufacturer": "Renata Limited",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":0,"2":30,"3":48,"4":30,"5":8}
   },
   {
     "id": 144,
@@ -1582,8 +1582,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳102.00 / strip",
     "manufacturer": "ACME Laboratories Ltd.",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":0,"2":52,"3":29,"4":44,"5":0}
   },
   {
     "id": 145,
@@ -1593,8 +1593,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳89.00 / strip",
     "manufacturer": "Opsonin Pharma Limited",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":9,"2":80,"3":28,"4":36,"5":69}
   },
   {
     "id": 146,
@@ -1604,8 +1604,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳90.00 / strip",
     "manufacturer": "Square Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":78,"2":0,"3":52,"4":42,"5":16}
   },
   {
     "id": 147,
@@ -1615,8 +1615,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳90.00 / strip",
     "manufacturer": "ACME Laboratories Ltd.",
-    "inStock": false,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":65,"2":12,"3":29,"4":15,"5":58}
   },
   {
     "id": 148,
@@ -1626,8 +1626,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳117.00 / strip",
     "manufacturer": "ACME Laboratories Ltd.",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":18,"2":0,"3":16,"4":54,"5":16}
   },
   {
     "id": 149,
@@ -1637,8 +1637,8 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳83.00 / strip",
     "manufacturer": "Incepta Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":73,"2":36,"3":40,"4":0,"5":42}
   },
   {
     "id": 150,
@@ -1648,7 +1648,7 @@ export const products = [
     "details": "This is a high-quality supplements manufactured according to the best pharmaceutical standards. Always read the label and follow the directions for use. If symptoms persist, talk to your health professional.",
     "price": "৳81.00 / strip",
     "manufacturer": "Beximco Pharmaceuticals Ltd.",
-    "inStock": true,
-    "packSize": "30 tablets"
+    "packSize": "30 tablets",
+    "branchStock": {"1":22,"2":36,"3":20,"4":23,"5":27}
   }
 ];

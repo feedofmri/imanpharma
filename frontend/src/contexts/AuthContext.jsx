@@ -47,11 +47,11 @@ export const AuthProvider = ({ children }) => {
         });
     };
 
-    const register = async (name, email, password) => {
+    const register = async (name, email, password, phone) => {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 if (email && password && name) {
-                    const buyerUser = { id: Date.now(), name, email, role: 'buyer' };
+                    const buyerUser = { id: Date.now(), name, email, phone: phone || '', role: 'buyer' };
                     setUser(buyerUser);
                     resolve(buyerUser);
                 } else {

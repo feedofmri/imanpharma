@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
-import { FileText, MapPin, Phone, User, CheckCircle2, AlertCircle, ShoppingBag, Store, CreditCard } from 'lucide-react';
+import { FileText, MapPin, Phone, User, CheckCircle2, AlertCircle, ShoppingBag, CreditCard, LogIn } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useCart } from '../contexts/CartContext';
 import { useData } from '../contexts/DataContext';
@@ -9,18 +9,26 @@ import { useAuth } from '../contexts/AuthContext';
 function OrderDetails() {
     const { t } = useLanguage();
     const { cartItems, clearCart } = useCart();
-    const { branches, addOrder } = useData();
-    const { user } = useAuth();
+    const { branches, users, addOrder } = useData();
+    const { user, isAuthenticated } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
     const [fileName, setFileName] = useState('');
 
+    // Get full user data from DataContext (includes phone, addresses)
+    const currentUser = users.find(u => u.id === user?.id) || user;
+    const savedAddresses = currentUser?.addresses || [];
+    const defaultAddress = savedAddresses.find(a => a.isDefault) || savedAddresses[0];
+
+    const [selectedAddressIndex, setSelectedAddressIndex] = useState(
+        defaultAddress ? savedAddresses.indexOf(defaultAddress) : -1
+    );
+
     const [formData, setFormData] = useState({
-        name: '',
-        phone: '',
-        address: '',
+        name: currentUser?.name || '',
+        phone: currentUser?.phone || '',
+        address: defaultAddress ? [defaultAddress.address, defaultAddress.area, defaultAddress.city].filter(Boolean).join(', ') : '',
         notes: '',
-        branch: '',
         paymentMethod: 'cod'
     });
 
@@ -32,10 +40,32 @@ function OrderDetails() {
         return sum + (priceNum * item.quantity);
     }, 0);
 
-    const shipping = cartItems.length > 0 ? 50 : 0; // Fixed shipping for now
+    const shipping = cartItems.length > 0 ? 50 : 0;
     const total = subtotal + shipping;
 
+    // When user selects a saved address, update the form
+    const handleAddressSelect = (index) => {
+        setSelectedAddressIndex(index);
+        if (index >= 0 && savedAddresses[index]) {
+            const addr = savedAddresses[index];
+            setFormData(prev => ({
+                ...prev,
+                address: [addr.address, addr.area, addr.city].filter(Boolean).join(', ')
+            }));
+        }
+    };
+
     useEffect(() => {
+        // Redirect sellers — they can't checkout
+        if (user && (user.role === 'admin' || user.role === 'manager')) {
+            navigate('/products');
+            return;
+        }
+        // Redirect to login if not authenticated
+        if (!isAuthenticated) {
+            navigate('/login', { state: { from: '/order-details' } });
+            return;
+        }
         // If no file was uploaded AND cart is empty, redirect back to products
         if (!location.state?.fileName && cartItems.length === 0) {
             navigate('/products');
@@ -44,7 +74,7 @@ function OrderDetails() {
         if (location.state?.fileName) {
             setFileName(location.state.fileName);
         }
-    }, [location, navigate, cartItems.length]);
+    }, [location, navigate, cartItems.length, isAuthenticated, user]);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -65,7 +95,7 @@ function OrderDetails() {
             status: 'Processing',
             date: new Date().toISOString().split('T')[0],
             items: cartItems.map(ci => ({ product: ci.product, quantity: ci.quantity })),
-            branchId: parseInt(formData.branch) || 1,
+            branchId: cartItems[0]?.branchId || 1,
             paymentMethod: formData.paymentMethod,
             notes: formData.notes
         };
@@ -175,6 +205,30 @@ function OrderDetails() {
                                         <label htmlFor="address" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                                             {t('order.form.address')}
                                         </label>
+
+                                        {/* Saved Address Quick Picker */}
+                                        {savedAddresses.length > 0 && (
+                                            <div className="flex flex-wrap gap-2 mb-3">
+                                                {savedAddresses.map((addr, index) => (
+                                                    <button
+                                                        key={index}
+                                                        type="button"
+                                                        onClick={() => handleAddressSelect(index)}
+                                                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${selectedAddressIndex === index
+                                                            ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400'
+                                                            : 'border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:border-gray-300'
+                                                            }`}
+                                                    >
+                                                        <MapPin className="w-3 h-3" />
+                                                        {addr.label}
+                                                    </button>
+                                                ))}
+                                                <Link to="/buyer/addresses" className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors">
+                                                    + Manage
+                                                </Link>
+                                            </div>
+                                        )}
+
                                         <div className="relative">
                                             <div className="absolute top-3 left-3 flex items-start pointer-events-none">
                                                 <MapPin className="h-5 w-5 text-gray-400 dark:text-slate-500" />
@@ -185,37 +239,10 @@ function OrderDetails() {
                                                 required
                                                 rows={3}
                                                 value={formData.address}
-                                                onChange={handleChange}
+                                                onChange={(e) => { handleChange(e); setSelectedAddressIndex(-1); }}
                                                 className="pl-10 block w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary-500 focus:ring-primary-500 sm:text-sm py-3"
                                                 placeholder={t('order.form.address_ph')}
                                             />
-                                        </div>
-                                    </div>
-
-                                    {/* Branch Selection */}
-                                    <div>
-                                        <label htmlFor="branch" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                                            {t('order.form.branch')}
-                                        </label>
-                                        <div className="relative">
-                                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                <Store className="h-5 w-5 text-gray-400 dark:text-slate-500" />
-                                            </div>
-                                            <select
-                                                name="branch"
-                                                id="branch"
-                                                required
-                                                value={formData.branch}
-                                                onChange={handleChange}
-                                                className="pl-10 block w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary-500 focus:ring-primary-500 sm:text-sm py-3 appearance-none"
-                                            >
-                                                <option value="" disabled>{t('order.form.branch_ph')}</option>
-                                                {branches.map(b => (
-                                                    <option key={b.id} value={b.id}>
-                                                        {b.name}
-                                                    </option>
-                                                ))}
-                                            </select>
                                         </div>
                                     </div>
 

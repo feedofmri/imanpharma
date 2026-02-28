@@ -26,7 +26,9 @@ function Navbar() {
   const navigate = useNavigate();
   const { language, toggleLanguage, t } = useLanguage();
   const { cartCount } = useCart();
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, user, isAdmin, isManager } = useAuth();
+
+  const isSeller = isAdmin || isManager;
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -89,18 +91,20 @@ function Navbar() {
               <span className="hidden sm:inline-block font-medium">{language === 'bn' ? 'English' : 'বাংলা'}</span>
             </button>
 
-            <button
-              onClick={() => setIsCartOpen(true)}
-              className="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1 text-slate-700 dark:text-slate-300"
-              aria-label="Open cart"
-            >
-              <ShoppingBag className="w-5 h-5" />
-              {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-white ring-2 ring-white dark:ring-[#0F172A]">
-                  {cartCount}
-                </span>
-              )}
-            </button>
+            {!isSeller && (
+              <button
+                onClick={() => setIsCartOpen(true)}
+                className="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1 text-slate-700 dark:text-slate-300"
+                aria-label="Open cart"
+              >
+                <ShoppingBag className="w-5 h-5" />
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-white ring-2 ring-white dark:ring-[#0F172A]">
+                    {cartCount}
+                  </span>
+                )}
+              </button>
+            )}
 
             <ThemeToggle />
 
@@ -192,7 +196,7 @@ function Navbar() {
         </div>
       )}
 
-      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      {!isSeller && <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />}
     </nav>
   );
 }

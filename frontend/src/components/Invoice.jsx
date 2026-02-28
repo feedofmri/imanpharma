@@ -1,13 +1,33 @@
 import { useRef } from 'react';
 import { X, Download, Printer } from 'lucide-react';
+import logoDark from '../assets/logo/Logo Dark.png';
 
 function Invoice({ order, branches, onClose }) {
     const printRef = useRef();
     const branch = branches?.find(b => b.id === order?.branchId);
 
     const handlePrint = () => {
+        // Convert logo to base64 for the print window
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+            canvas.getContext('2d').drawImage(img, 0, 0);
+            const logoBase64 = canvas.toDataURL('image/png');
+            openPrintWindow(logoBase64);
+        };
+        img.onerror = () => openPrintWindow('');
+        img.src = logoDark;
+    };
+
+    const openPrintWindow = (logoBase64) => {
         const content = printRef.current;
         const printWindow = window.open('', '_blank');
+        const logoHtml = logoBase64
+            ? `<img src="${logoBase64}" alt="Logo" style="height:48px; margin-bottom: 8px;" />`
+            : '';
         printWindow.document.write(`
             <html>
                 <head>
@@ -33,7 +53,20 @@ function Invoice({ order, branches, onClose }) {
                     </style>
                 </head>
                 <body>
-                    ${content.innerHTML}
+                    <div class="header">
+                        <div>
+                            ${logoHtml}
+                            <div class="company-name">M/S Iman Pharmacy</div>
+                            <div class="company-sub">Your Trusted Health Partner</div>
+                            ${branch ? `<div class="company-sub">${branch.name} — ${branch.location}</div>` : ''}
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="invoice-title">INVOICE</div>
+                            <div class="invoice-id">${order.id}</div>
+                            <div style="font-size:12px;color:#94a3b8;margin-top:2px;">Date: ${order.date}</div>
+                        </div>
+                    </div>
+                    ${content.querySelector('.invoice-body').innerHTML}
                     <div class="footer">Thank you for choosing M/S Iman Pharmacy. &bull; www.imanpharma.com</div>
                 </body>
             </html>
@@ -65,9 +98,10 @@ function Invoice({ order, branches, onClose }) {
                 {/* Invoice Content */}
                 <div className="p-6 sm:p-8 overflow-y-auto" ref={printRef}>
                     {/* Header */}
-                    <div className="header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '32px', paddingBottom: '24px', borderBottom: '2px solid #e2e8f0' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '32px', paddingBottom: '24px', borderBottom: '2px solid #e2e8f0' }}>
                         <div>
-                            <div className="company-name" style={{ fontSize: '24px', fontWeight: 'bold', color: '#6CA668' }}>M/S Iman Pharmacy</div>
+                            <img src={logoDark} alt="Iman Pharmacy" style={{ height: '48px', marginBottom: '8px' }} />
+                            <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#6CA668' }}>M/S Iman Pharmacy</div>
                             <div style={{ fontSize: '12px', color: '#64748b', marginTop: '4px' }}>Your Trusted Health Partner</div>
                             {branch && <div style={{ fontSize: '12px', color: '#64748b', marginTop: '2px' }}>{branch.name} — {branch.location}</div>}
                         </div>
@@ -78,63 +112,65 @@ function Invoice({ order, branches, onClose }) {
                         </div>
                     </div>
 
-                    {/* Customer & Payment Info */}
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginBottom: '32px' }}>
-                        <div>
-                            <h4 style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#94a3b8', fontWeight: 600, marginBottom: '8px' }}>Bill To</h4>
-                            <p style={{ fontSize: '14px', color: '#334155', lineHeight: 1.6, margin: 0 }}>
-                                {order.customerName}<br />
-                                {order.phone}<br />
-                                {order.address}
-                            </p>
+                    <div className="invoice-body">
+                        {/* Customer & Payment Info */}
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginBottom: '32px' }}>
+                            <div>
+                                <h4 style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#94a3b8', fontWeight: 600, marginBottom: '8px' }}>Bill To</h4>
+                                <p style={{ fontSize: '14px', color: '#334155', lineHeight: 1.6, margin: 0 }}>
+                                    {order.customerName}<br />
+                                    {order.phone}<br />
+                                    {order.address}
+                                </p>
+                            </div>
+                            <div>
+                                <h4 style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#94a3b8', fontWeight: 600, marginBottom: '8px' }}>Payment Info</h4>
+                                <p style={{ fontSize: '14px', color: '#334155', lineHeight: 1.6, margin: 0 }}>
+                                    Method: <strong style={{ textTransform: 'uppercase' }}>{order.paymentMethod}</strong><br />
+                                    Status: <strong>{order.status}</strong>
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <h4 style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#94a3b8', fontWeight: 600, marginBottom: '8px' }}>Payment Info</h4>
-                            <p style={{ fontSize: '14px', color: '#334155', lineHeight: 1.6, margin: 0 }}>
-                                Method: <strong style={{ textTransform: 'uppercase' }}>{order.paymentMethod}</strong><br />
-                                Status: <strong>{order.status}</strong>
-                            </p>
-                        </div>
+
+                        {/* Items Table */}
+                        <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '24px' }}>
+                            <thead>
+                                <tr>
+                                    <th style={{ background: '#f8fafc', textAlign: 'left', padding: '12px 16px', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#64748b', borderBottom: '2px solid #e2e8f0' }}>Item</th>
+                                    <th style={{ background: '#f8fafc', textAlign: 'left', padding: '12px 16px', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#64748b', borderBottom: '2px solid #e2e8f0' }}>Qty</th>
+                                    <th style={{ background: '#f8fafc', textAlign: 'left', padding: '12px 16px', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#64748b', borderBottom: '2px solid #e2e8f0' }}>Price</th>
+                                    <th style={{ background: '#f8fafc', textAlign: 'right', padding: '12px 16px', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#64748b', borderBottom: '2px solid #e2e8f0' }}>Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {(order.items || []).map((item, idx) => {
+                                    const price = parseFloat((item.product?.price || '0').replace(/[^0-9.]/g, ''));
+                                    const subtotal = price * item.quantity;
+                                    return (
+                                        <tr key={idx}>
+                                            <td style={{ padding: '12px 16px', fontSize: '14px', borderBottom: '1px solid #f1f5f9' }}>
+                                                {item.product?.name || 'Unknown'}<br />
+                                                <span style={{ fontSize: '11px', color: '#94a3b8' }}>{item.product?.packSize || ''}</span>
+                                            </td>
+                                            <td style={{ padding: '12px 16px', fontSize: '14px', borderBottom: '1px solid #f1f5f9' }}>{item.quantity}</td>
+                                            <td style={{ padding: '12px 16px', fontSize: '14px', borderBottom: '1px solid #f1f5f9' }}>{item.product?.price}</td>
+                                            <td style={{ padding: '12px 16px', fontSize: '14px', borderBottom: '1px solid #f1f5f9', textAlign: 'right' }}>৳ {subtotal.toFixed(2)}</td>
+                                        </tr>
+                                    );
+                                })}
+                                <tr style={{ background: '#f0fdf4' }}>
+                                    <td colSpan="3" style={{ padding: '12px 16px', fontWeight: 'bold', fontSize: '16px', color: '#6CA668' }}>Total</td>
+                                    <td style={{ padding: '12px 16px', fontWeight: 'bold', fontSize: '16px', color: '#6CA668', textAlign: 'right' }}>{order.total}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        {order.notes && (
+                            <div style={{ padding: '12px 16px', background: '#f8fafc', borderRadius: '8px', fontSize: '13px', color: '#64748b' }}>
+                                <strong>Note:</strong> {order.notes}
+                            </div>
+                        )}
                     </div>
-
-                    {/* Items Table */}
-                    <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '24px' }}>
-                        <thead>
-                            <tr>
-                                <th style={{ background: '#f8fafc', textAlign: 'left', padding: '12px 16px', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#64748b', borderBottom: '2px solid #e2e8f0' }}>Item</th>
-                                <th style={{ background: '#f8fafc', textAlign: 'left', padding: '12px 16px', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#64748b', borderBottom: '2px solid #e2e8f0' }}>Qty</th>
-                                <th style={{ background: '#f8fafc', textAlign: 'left', padding: '12px 16px', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#64748b', borderBottom: '2px solid #e2e8f0' }}>Price</th>
-                                <th style={{ background: '#f8fafc', textAlign: 'right', padding: '12px 16px', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#64748b', borderBottom: '2px solid #e2e8f0' }}>Subtotal</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {(order.items || []).map((item, idx) => {
-                                const price = parseFloat((item.product?.price || '0').replace(/[^0-9.]/g, ''));
-                                const subtotal = price * item.quantity;
-                                return (
-                                    <tr key={idx}>
-                                        <td style={{ padding: '12px 16px', fontSize: '14px', borderBottom: '1px solid #f1f5f9' }}>
-                                            {item.product?.name || 'Unknown'}<br />
-                                            <span style={{ fontSize: '11px', color: '#94a3b8' }}>{item.product?.packSize || ''}</span>
-                                        </td>
-                                        <td style={{ padding: '12px 16px', fontSize: '14px', borderBottom: '1px solid #f1f5f9' }}>{item.quantity}</td>
-                                        <td style={{ padding: '12px 16px', fontSize: '14px', borderBottom: '1px solid #f1f5f9' }}>{item.product?.price}</td>
-                                        <td style={{ padding: '12px 16px', fontSize: '14px', borderBottom: '1px solid #f1f5f9', textAlign: 'right' }}>৳ {subtotal.toFixed(2)}</td>
-                                    </tr>
-                                );
-                            })}
-                            <tr style={{ background: '#f0fdf4' }}>
-                                <td colSpan="3" style={{ padding: '12px 16px', fontWeight: 'bold', fontSize: '16px', color: '#6CA668' }}>Total</td>
-                                <td style={{ padding: '12px 16px', fontWeight: 'bold', fontSize: '16px', color: '#6CA668', textAlign: 'right' }}>{order.total}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    {order.notes && (
-                        <div style={{ padding: '12px 16px', background: '#f8fafc', borderRadius: '8px', fontSize: '13px', color: '#64748b' }}>
-                            <strong>Note:</strong> {order.notes}
-                        </div>
-                    )}
                 </div>
             </div>
         </div>

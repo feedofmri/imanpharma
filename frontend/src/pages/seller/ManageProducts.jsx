@@ -12,9 +12,14 @@ function ManageProducts() {
         name: '', category: 'Medicines', description: '', price: '', manufacturer: '', packSize: '', branchId: '', quantity: 1
     });
 
-    // Manager isolation: only see products for their branch
+    // Manager isolation: only see products with stock in their branch
     const managedBranch = branches.find(b => b.managerId === user?.id);
-    const displayProducts = isAdmin ? products : products.filter(p => p.branchId === managedBranch?.id);
+    const displayProducts = isAdmin
+        ? products
+        : products.filter(p => {
+            const stock = p.branchStock || {};
+            return stock[String(managedBranch?.id)] > 0;
+        });
 
     const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -86,14 +91,23 @@ function ManageProducts() {
                                     <td className="px-6 py-4 whitespace-nowrap">{product.category}</td>
                                     <td className="px-6 py-4 font-semibold text-slate-900 dark:text-white whitespace-nowrap">{product.price?.split(' ')[0] || product.price}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">
-                                        <span className="text-xs text-primary-600 dark:text-primary-400 font-medium">{getBranchName(product.branchId)}</span>
+                                        <span className="text-xs text-primary-600 dark:text-primary-400 font-medium">
+                                            {isAdmin ? (product.branchId ? getBranchName(product.branchId) : 'All') : managedBranch?.name || '—'}
+                                        </span>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
-                                        {product.inStock ? (
-                                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">In Stock</span>
-                                        ) : (
-                                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-rose-50 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400">Out of Stock</span>
-                                        )}
+                                        {(() => {
+                                            const stock = isAdmin
+                                                ? Object.values(product.branchStock || {}).reduce((sum, v) => sum + v, 0)
+                                                : (product.branchStock || {})[String(managedBranch?.id)] || 0;
+                                            return stock > 0 ? (
+                                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
+                                                    {stock} units
+                                                </span>
+                                            ) : (
+                                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-rose-50 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400">Out of Stock</span>
+                                            );
+                                        })()}
                                     </td>
                                     <td className="px-6 py-4 text-right">
                                         <div className="flex items-center justify-end gap-2">

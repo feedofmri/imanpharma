@@ -6,11 +6,24 @@ import { branches as initialBranches } from '../mockdata/branches';
 
 const DataContext = createContext();
 
+// ⚡ Bump this version whenever mock data files change.
+// This forces localStorage to reset so fresh data loads.
+const DATA_VERSION = '4';
+
 export const useData = () => {
     return useContext(DataContext);
 };
 
 export const DataProvider = ({ children }) => {
+    // Clear stale cache when DATA_VERSION changes
+    if (localStorage.getItem('app_data_version') !== DATA_VERSION) {
+        localStorage.removeItem('app_users');
+        localStorage.removeItem('app_products');
+        localStorage.removeItem('app_orders');
+        localStorage.removeItem('app_branches');
+        localStorage.setItem('app_data_version', DATA_VERSION);
+    }
+
     // Helper to initialize state from localStorage or fallback to mockdata
     const initializeState = (key, initialData) => {
         const savedData = localStorage.getItem(key);
