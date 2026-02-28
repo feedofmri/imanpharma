@@ -5,9 +5,11 @@ import {
   Sparkles,
   Cross,
   Upload,
-  FileText,
+  CheckCircle2,
   ArrowRight,
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useRef } from 'react';
 
 const categories = [
   {
@@ -48,6 +50,17 @@ const categories = [
 ];
 
 function Services() {
+  const navigate = useNavigate();
+  const fileInputRef = useRef(null);
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Navigate to order details page, passing the file info in state
+      navigate('/order-details', { state: { fileName: file.name } });
+    }
+  };
+
   return (
     <>
       {/* Page Header */}
@@ -106,54 +119,73 @@ function Services() {
         </div>
       </section>
 
-      {/* Prescription Upload Placeholder */}
-      <section className="bg-white dark:bg-[#0F172A]">
+      {/* Upload Prescription Card */}
+      <section className="bg-white dark:bg-[#0F172A] border-t border-gray-100 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-          <div className="max-w-2xl mx-auto">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-3">
-                Upload Your <span className="text-primary-600 dark:text-primary-400">Prescription</span>
-              </h2>
-              <p className="text-slate-600 dark:text-slate-400">
-                Send us your prescription and we'll prepare your medicines. This feature is coming
-                soon!
-              </p>
-            </div>
+          <div className="max-w-2xl mx-auto relative z-10">
+            {/* Background glowing blur effect */}
+            <div className="absolute inset-0 bg-primary-400/20 dark:bg-primary-600/10 blur-3xl rounded-full transform translate-y-10 scale-105" />
 
-            {/* Drop Zone */}
-            <div className="border-2 border-dashed border-gray-300 dark:border-slate-600 rounded-xl p-10 text-center hover:border-primary-400 dark:hover:border-primary-500 transition-colors duration-200 cursor-pointer">
-              <div className="w-16 h-16 rounded-full bg-gray-100 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 flex items-center justify-center mx-auto mb-4">
-                <Upload className="w-7 h-7 text-slate-400 dark:text-slate-500" />
+            <div className="relative bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-slate-800/80 rounded-3xl p-8 shadow-2xl shadow-slate-200/50 dark:shadow-none">
+              <div className="mb-8 text-center">
+                <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
+                  Upload Your Prescription
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400">
+                  Upload it securely and let our pharmacists prepare your order for quick pickup or delivery.
+                </p>
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1">
-                Drag & Drop Your Prescription
-              </h3>
-              <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">
-                or click to browse files (JPG, PNG, PDF)
-              </p>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary-600 dark:bg-primary-500 text-white text-sm font-medium">
-                <FileText className="w-4 h-4" />
-                Browse Files
-              </div>
-              <p className="mt-4 text-xs text-amber-600 dark:text-amber-400 font-medium">
-                ⚠ This feature is a UI placeholder and will be functional in a future update.
-              </p>
-            </div>
 
-            {/* CTA */}
-            <div className="mt-8 text-center">
-              <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">
-                In the meantime, you can send your prescription via WhatsApp:
-              </p>
-              <a
-                href="https://wa.me/8801XXXXXXXXX"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold text-sm hover:underline"
+              <div
+                onClick={() => fileInputRef.current?.click()}
+                className="border-2 border-dashed border-primary-200 dark:border-primary-800/60 rounded-2xl p-10 text-center bg-primary-50/50 dark:bg-primary-900/10 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-300 cursor-pointer group"
               >
-                Send via WhatsApp
-                <ArrowRight className="w-4 h-4" />
-              </a>
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                  className="hidden"
+                  accept=".jpg,.jpeg,.png,.pdf"
+                />
+                <div className="w-20 h-20 rounded-full bg-primary-100 dark:bg-primary-900/40 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:bg-primary-200 dark:group-hover:bg-primary-800/60 transition-all duration-300">
+                  <Upload className="w-10 h-10 text-primary-600 dark:text-primary-400" />
+                </div>
+                <p className="text-lg text-slate-900 dark:text-white font-medium mb-1 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                  Click to upload or drag & drop
+                </p>
+                <p className="text-slate-500 dark:text-slate-500 text-sm">
+                  JPG, PNG or PDF (max. 10MB)
+                </p>
+              </div>
+
+              <div className="mt-8 flex flex-col gap-4">
+                <div className="flex items-center justify-center gap-4 text-sm font-medium text-slate-500 dark:text-slate-400">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                    <span>Verified Secure</span>
+                  </div>
+                  <span className="w-1.5 h-1.5 rounded-full bg-gray-300 dark:bg-slate-600"></span>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                    <span>Fast Processing</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 text-center">
+                <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">
+                  Or send your prescription via WhatsApp:
+                </p>
+                <a
+                  href="https://wa.me/8801XXXXXXXXX"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold text-sm hover:underline"
+                >
+                  Message on WhatsApp
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
             </div>
           </div>
         </div>

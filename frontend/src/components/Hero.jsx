@@ -1,16 +1,24 @@
-import { MapPin, MessageCircle, Upload, CheckCircle2 } from 'lucide-react';
+import { MapPin, MessageCircle, Upload, CheckCircle2, Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 function Hero() {
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       // Navigate to order details page, passing the file info in state
       navigate('/order-details', { state: { fileName: file.name } });
+    }
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
     }
   };
 
@@ -42,28 +50,28 @@ function Hero() {
               reliable health solutions for the entire Ullapara community.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href="#location"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600 text-white font-semibold text-sm shadow-lg shadow-primary-600/20 transition-all duration-200"
-              >
-                <MapPin className="w-4 h-4" />
-                Find Location
-              </a>
-              <a
-                href="https://wa.me/8801XXXXXXXXX"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-primary-600 dark:border-primary-500 text-primary-600 dark:text-primary-400 font-semibold text-sm hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-200"
-              >
-                <MessageCircle className="w-4 h-4" />
-                WhatsApp Now
-              </a>
-            </div>
+            <form onSubmit={handleSearch} className="mt-8 relative max-w-lg">
+              <div className="flex items-center bg-white dark:bg-[#1E293B] rounded-2xl p-2 pl-4 shadow-lg shadow-slate-200/50 dark:shadow-none border border-gray-100 dark:border-slate-800 focus-within:ring-2 focus-within:ring-primary-500/50 focus-within:border-primary-500 transition-all">
+                <input
+                  type="text"
+                  placeholder="Search for medicines, devices..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full bg-transparent border-none outline-none focus:ring-0 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 px-3 py-3"
+                />
+                <button
+                  type="submit"
+                  aria-label="Search"
+                  className="shrink-0 p-3.5 rounded-xl bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600 text-white transition-colors flex items-center justify-center"
+                >
+                  <Search className="w-5 h-5" />
+                </button>
+              </div>
+            </form>
           </div>
 
           {/* Upload Prescription Card */}
-          <div className="hidden lg:block relative z-10">
+          <div className="relative z-10 mt-12 lg:mt-0">
             {/* Background glowing blur effect */}
             <div className="absolute inset-0 bg-primary-400/20 dark:bg-primary-600/10 blur-3xl rounded-full transform translate-y-10 scale-105" />
 

@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Pill, Search, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { products } from '../data/products';
 
 const categories = ['All', 'Medicines', 'Medical Devices', 'Antibiotics', 'Supplements'];
 
 function Products() {
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchParams] = useSearchParams();
+    const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 18;
@@ -15,6 +16,14 @@ function Products() {
     useEffect(() => {
         setCurrentPage(1);
     }, [searchTerm, selectedCategory]);
+
+    // Update local search term if URL parameter changes (e.g. from navbar search while already on this page)
+    useEffect(() => {
+        const query = searchParams.get('search');
+        if (query !== null) {
+            setSearchTerm(query);
+        }
+    }, [searchParams]);
 
     const filteredProducts = products.filter((product) => {
         const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
@@ -147,8 +156,8 @@ function Products() {
                                         key={idx}
                                         onClick={() => setCurrentPage(idx + 1)}
                                         className={`w-10 h-10 rounded-lg text-sm font-medium transition-colors ${currentPage === idx + 1
-                                                ? 'bg-primary-600 text-white border border-primary-600'
-                                                : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700'
+                                            ? 'bg-primary-600 text-white border border-primary-600'
+                                            : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700'
                                             }`}
                                     >
                                         {idx + 1}

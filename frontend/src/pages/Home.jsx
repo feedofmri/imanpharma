@@ -1,7 +1,8 @@
-import { ShieldCheck, HeartHandshake, Clock, Pill, Baby, Truck, ArrowRight } from 'lucide-react';
+import { ShieldCheck, HeartHandshake, Clock, Pill, Baby, Truck, ArrowRight, MapPin, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 import FeatureCard from '../components/FeatureCard';
+import { products } from '../data/products';
 
 const stats = [
   {
@@ -44,6 +45,8 @@ const services = [
 ];
 
 function Home() {
+  const featuredProducts = products.slice(0, 9);
+
   return (
     <>
       {/* Hero */}
@@ -64,6 +67,70 @@ function Home() {
             {stats.map((stat) => (
               <FeatureCard key={stat.title} {...stat} />
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section className="bg-white dark:bg-[#0F172A] border-t border-gray-100 dark:border-slate-800 py-16 sm:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
+              Featured <span className="text-primary-600 dark:text-primary-400">Products</span>
+            </h2>
+            <p className="mt-3 text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
+              A selection of our most popular medicines and healthcare items.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredProducts.map((product) => (
+              <Link
+                to={`/product/${product.id}`}
+                key={product.id}
+                className="group p-6 rounded-2xl border border-gray-200 dark:border-slate-800 bg-white dark:bg-[#0F172A] hover:shadow-xl dark:hover:shadow-primary-900/5 hover:-translate-y-1 transition-all duration-300 flex flex-col cursor-pointer"
+              >
+                <div className="flex justify-between items-start mb-4">
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">
+                    {product.category}
+                  </span>
+                  {product.inStock ? (
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400">
+                      In Stock
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400">
+                      Out of Stock
+                    </span>
+                  )}
+                </div>
+
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                  {product.name}
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400 text-sm mb-6 flex-grow line-clamp-2">
+                  {product.description}
+                </p>
+
+                <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-slate-800">
+                  <span className="text-lg font-bold text-slate-900 dark:text-white">
+                    {product.price}
+                  </span>
+                  <button className="px-4 py-2 text-sm font-medium text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 rounded-lg group-hover:bg-primary-100 dark:group-hover:bg-primary-900/50 transition-colors">
+                    Details
+                  </button>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link
+              to="/products"
+              className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 font-semibold hover:bg-primary-100 dark:hover:bg-primary-900/40 transition-colors border border-primary-200 dark:border-primary-800/50"
+            >
+              Browse Full Catalog <ArrowRight className="w-5 h-5" />
+            </Link>
           </div>
         </div>
       </section>
@@ -113,8 +180,12 @@ function Home() {
         </div>
       </section>
 
+      
+
+      
+
       {/* Explore Section */}
-      <section className="bg-white dark:bg-[#0F172A] border-t border-gray-100 dark:border-slate-800">
+      <section className="bg-gray-50 dark:bg-slate-900/50 border-t border-gray-100 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <div className="grid md:grid-cols-2 gap-8">
             <div className="p-8 rounded-2xl bg-primary-50 dark:bg-primary-900/20 border border-primary-100 dark:border-primary-800/50">
@@ -145,6 +216,40 @@ function Home() {
               >
                 Read FAQ
               </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Action Strip */}
+      <section className="bg-primary-600 dark:bg-primary-900 border-t border-primary-700 dark:border-primary-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="text-center md:text-left">
+              <h2 className="text-2xl font-bold text-white mb-2">
+                Need Immediate Assistance?
+              </h2>
+              <p className="text-primary-100 dark:text-primary-200">
+                Reach out to us directly via WhatsApp or visit our pharmacy in person.
+              </p>
+            </div>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a
+                href="#location"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white dark:bg-[#1E293B] text-primary-600 dark:text-primary-400 font-semibold text-sm shadow-lg hover:bg-gray-50 dark:hover:bg-slate-800 transition-all duration-200"
+              >
+                <MapPin className="w-4 h-4" />
+                Find Location
+              </a>
+              <a
+                href="https://wa.me/8801XXXXXXXXX"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-white dark:border-slate-700 text-white font-semibold text-sm hover:bg-primary-700 dark:hover:bg-slate-800 transition-all duration-200"
+              >
+                <MessageCircle className="w-4 h-4" />
+                WhatsApp Now
+              </a>
             </div>
           </div>
         </div>
