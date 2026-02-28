@@ -141,7 +141,7 @@ function Products() {
 
                     {/* Pagination */}
                     {totalPages > 1 && (
-                        <div className="mt-12 flex justify-center items-center gap-2">
+                        <div className="mt-12 flex flex-wrap justify-center items-center gap-2">
                             <button
                                 onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                                 disabled={currentPage === 1}
@@ -150,7 +150,7 @@ function Products() {
                                 <ChevronLeft className="w-5 h-5" />
                             </button>
 
-                            <div className="flex gap-1">
+                            <div className="flex flex-wrap justify-center gap-1">
                                 {[...Array(totalPages)].map((_, idx) => (
                                     <button
                                         key={idx}

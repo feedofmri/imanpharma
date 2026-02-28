@@ -42,12 +42,12 @@ function Hero() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight">
               Your Trusted{' '}
               <span className="text-primary-600 dark:text-primary-400">Health Partner</span>{' '}
-              in Ullapara
+              in Sirajganj
             </h1>
 
             <p className="mt-6 text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-lg">
               M/S Iman Pharmacy provides 100% authentic medicines, expert pharmaceutical advice, and
-              reliable health solutions for the entire Ullapara community.
+              reliable health solutions for the entire Sirajganj community.
             </p>
 
             <form onSubmit={handleSearch} className="mt-8 relative max-w-lg">

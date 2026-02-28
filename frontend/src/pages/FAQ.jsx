@@ -8,7 +8,7 @@ const faqs = [
     },
     {
         question: "Do you offer home delivery?",
-        answer: "Yes, we offer home delivery within the local Ullapara area. Please call our contact number or message us on WhatsApp with your prescription to arrange delivery."
+        answer: "Yes, we offer home delivery within the local Sirajganj area. Please call our contact number or message us on WhatsApp with your prescription to arrange delivery."
     },
     {
         question: "Do I need a prescription to buy medicines?",

@@ -7,8 +7,8 @@ export function ThemeProvider({ children }) {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('iman-pharmacy-theme');
       if (saved) return saved === 'dark';
-      return window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
+    // Default to light mode (false) if no preference is saved
     return false;
   });
 

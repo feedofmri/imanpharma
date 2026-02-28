@@ -26,7 +26,7 @@ function Footer() {
               </div>
             </div>
             <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-              Your trusted health partner in Ullapara. Providing authentic medicines and expert
+              Your trusted health partner in Sirajganj. Providing authentic medicines and expert
               pharmaceutical advice to the community since day one.
             </p>
           </div>
@@ -65,19 +65,19 @@ function Footer() {
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-primary-600 dark:text-primary-400 shrink-0" />
                 <a
-                  href="tel:+8801XXXXXXXXX"
+                  href="tel:+8801716982965"
                   className="text-sm text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                 >
-                  +880 1XXX-XXXXXX
+                  +880 1716 982965
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-primary-600 dark:text-primary-400 shrink-0" />
                 <a
-                  href="mailto:info@imanpharmacy.com"
+                  href="mailto:info@imanpharma.com"
                   className="text-sm text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                 >
-                  info@imanpharmacy.com
+                  info@imanpharma.com
                 </a>
               </li>
             </ul>
@@ -90,7 +90,7 @@ function Footer() {
             © {currentYear} M/S Iman Pharmacy. All rights reserved.
           </p>
           <p className="text-xs text-slate-500 dark:text-slate-500">
-            Proprietor: <span className="font-medium text-slate-700 dark:text-slate-300">Md. Shafiqul Islam</span>
+            Managing Director: <span className="font-medium text-slate-700 dark:text-slate-300">Md. Shofiqul Islam</span>
           </p>
         </div>
       </div>

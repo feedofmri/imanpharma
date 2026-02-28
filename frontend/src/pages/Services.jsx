@@ -177,7 +177,7 @@ function Services() {
                   Or send your prescription via WhatsApp:
                 </p>
                 <a
-                  href="https://wa.me/8801XXXXXXXXX"
+                  href="https://wa.me/8801716982965"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold text-sm hover:underline"

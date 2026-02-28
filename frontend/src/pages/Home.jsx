@@ -60,7 +60,7 @@ function Home() {
               Why Choose <span className="text-primary-600 dark:text-primary-400">Iman Pharmacy?</span>
             </h2>
             <p className="mt-3 text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
-              Trusted by hundreds of families in Ullapara for genuine medicines and caring service.
+              Trusted by hundreds of families in Sirajganj for genuine medicines and caring service.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -180,9 +180,9 @@ function Home() {
         </div>
       </section>
 
-      
 
-      
+
+
 
       {/* Explore Section */}
       <section className="bg-gray-50 dark:bg-slate-900/50 border-t border-gray-100 dark:border-slate-800">
@@ -242,7 +242,7 @@ function Home() {
                 Find Location
               </a>
               <a
-                href="https://wa.me/8801XXXXXXXXX"
+                href="https://wa.me/8801716982965"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-white dark:border-slate-700 text-white font-semibold text-sm hover:bg-primary-700 dark:hover:bg-slate-800 transition-all duration-200"

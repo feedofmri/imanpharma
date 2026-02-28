@@ -153,7 +153,7 @@ function OrderDetails() {
                                                 value={formData.address}
                                                 onChange={handleChange}
                                                 className="pl-10 block w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary-500 focus:ring-primary-500 sm:text-sm py-3"
-                                                placeholder="House/Apt, Street, Area, Ullapara"
+                                                placeholder="House/Apt, Street, Area, Sirajganj"
                                             />
                                         </div>
                                     </div>
