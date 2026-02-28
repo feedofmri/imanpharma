@@ -1,68 +1,32 @@
-import { useState } from 'react';
-import { Pill, Search, Filter } from 'lucide-react';
-
-const products = [
-    {
-        id: 1,
-        name: 'Paracetamol 500mg',
-        category: 'Medicines',
-        description: 'Relief for fever and moderate pain.',
-        price: '৳20.00 / strip',
-        inStock: true,
-    },
-    {
-        id: 2,
-        name: 'Amoxicillin 250mg',
-        category: 'Antibiotics',
-        description: 'Treats a variety of bacterial infections.',
-        price: '৳55.00 / strip',
-        inStock: true,
-    },
-    {
-        id: 3,
-        name: 'Digital Thermometer',
-        category: 'Medical Devices',
-        description: 'Accurate clinical digital thermometer.',
-        price: '৳150.00',
-        inStock: true,
-    },
-    {
-        id: 4,
-        name: 'Vitamin D3 2000 IU',
-        category: 'Supplements',
-        description: 'Promotes bone and immune system health.',
-        price: '৳120.00 / bottle',
-        inStock: false,
-    },
-    {
-        id: 5,
-        name: 'Ibuprofen 400mg',
-        category: 'Medicines',
-        description: 'Nonsteroidal anti-inflammatory drug.',
-        price: '৳30.00 / strip',
-        inStock: true,
-    },
-    {
-        id: 6,
-        name: 'First Aid Kit',
-        category: 'Medical Devices',
-        description: 'Essential items for treating minor injuries.',
-        price: '৳450.00',
-        inStock: true,
-    },
-];
+import { useState, useEffect } from 'react';
+import { Pill, Search, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { products } from '../data/products';
 
 const categories = ['All', 'Medicines', 'Medical Devices', 'Antibiotics', 'Supplements'];
 
 function Products() {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All');
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 18;
+
+    // Reset page to 1 whenever filters change
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchTerm, selectedCategory]);
 
     const filteredProducts = products.filter((product) => {
         const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
         const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory;
         return matchesSearch && matchesCategory;
     });
+
+    const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+    const currentProducts = filteredProducts.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    );
 
     return (
         <>
@@ -114,8 +78,8 @@ function Products() {
                                     key={category}
                                     onClick={() => setSelectedCategory(category)}
                                     className={`px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${selectedCategory === category
-                                            ? 'bg-primary-600 text-white border border-primary-600'
-                                            : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700'
+                                        ? 'bg-primary-600 text-white border border-primary-600'
+                                        : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700'
                                         }`}
                                 >
                                     {category}
@@ -126,10 +90,11 @@ function Products() {
 
                     {/* Product Grid */}
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {filteredProducts.map((product) => (
-                            <div
+                        {currentProducts.map((product) => (
+                            <Link
+                                to={`/product/${product.id}`}
                                 key={product.id}
-                                className="group p-6 rounded-2xl border border-gray-200 dark:border-slate-800 bg-white dark:bg-[#0F172A] hover:shadow-xl dark:hover:shadow-primary-900/5 hover:-translate-y-1 transition-all duration-300 flex flex-col"
+                                className="group p-6 rounded-2xl border border-gray-200 dark:border-slate-800 bg-white dark:bg-[#0F172A] hover:shadow-xl dark:hover:shadow-primary-900/5 hover:-translate-y-1 transition-all duration-300 flex flex-col cursor-pointer"
                             >
                                 <div className="flex justify-between items-start mb-4">
                                     <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">
@@ -149,7 +114,7 @@ function Products() {
                                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                                     {product.name}
                                 </h3>
-                                <p className="text-slate-600 dark:text-slate-400 text-sm mb-6 flex-grow">
+                                <p className="text-slate-600 dark:text-slate-400 text-sm mb-6 flex-grow line-clamp-2">
                                     {product.description}
                                 </p>
 
@@ -157,13 +122,49 @@ function Products() {
                                     <span className="text-lg font-bold text-slate-900 dark:text-white">
                                         {product.price}
                                     </span>
-                                    <button className="px-4 py-2 text-sm font-medium text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 rounded-lg hover:bg-primary-100 dark:hover:bg-primary-900/50 transition-colors">
+                                    <button className="px-4 py-2 text-sm font-medium text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 rounded-lg group-hover:bg-primary-100 dark:group-hover:bg-primary-900/50 transition-colors">
                                         Details
                                     </button>
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
+
+                    {/* Pagination */}
+                    {totalPages > 1 && (
+                        <div className="mt-12 flex justify-center items-center gap-2">
+                            <button
+                                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                                disabled={currentPage === 1}
+                                className="p-2 rounded-lg border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-gray-50 dark:hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                            >
+                                <ChevronLeft className="w-5 h-5" />
+                            </button>
+
+                            <div className="flex gap-1">
+                                {[...Array(totalPages)].map((_, idx) => (
+                                    <button
+                                        key={idx}
+                                        onClick={() => setCurrentPage(idx + 1)}
+                                        className={`w-10 h-10 rounded-lg text-sm font-medium transition-colors ${currentPage === idx + 1
+                                                ? 'bg-primary-600 text-white border border-primary-600'
+                                                : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700'
+                                            }`}
+                                    >
+                                        {idx + 1}
+                                    </button>
+                                ))}
+                            </div>
+
+                            <button
+                                onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                                disabled={currentPage === totalPages}
+                                className="p-2 rounded-lg border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-gray-50 dark:hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                            >
+                                <ChevronRight className="w-5 h-5" />
+                            </button>
+                        </div>
+                    )}
 
                     {filteredProducts.length === 0 && (
                         <div className="text-center py-20">
